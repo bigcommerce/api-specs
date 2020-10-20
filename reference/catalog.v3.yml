@@ -20176,7 +20176,7 @@ definitions:
           variants:
             $ref: '#/definitions/productVariant_Post_Product'
     description: The model for a POST to create a product.
-    title: ''
+    title: product_Post
   product_Put:
     description: The model for a PUT to update a product.
     allOf:
