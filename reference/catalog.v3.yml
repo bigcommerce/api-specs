@@ -378,8 +378,7 @@ paths:
           in: body
           required: true
           schema:
-            allOf:
-              - $ref: '#/definitions/product_Post'
+            $ref: '#/definitions/product_Post'
           x-examples:
             Simple Product: |-
               {
@@ -438,10 +437,10 @@ paths:
             type: object
             properties:
               data:
-                allOf:
-                  - $ref: '#/definitions/product_Full'
+                $ref: '#/definitions/product_Full'
               meta:
                 $ref: '#/definitions/metafield_Base'
+          description: ''
         '409':
           description: |
             `Product` was in conflict with another product. This is the result of duplicate unique values, such as name or SKU; a missing or invalid `category_id`, `brand_id`, or `tax_class id`; or a conflicting `bulk_pricing_rule`.
@@ -20191,7 +20190,7 @@ definitions:
   product_Post:
     $ref: '#/definitions/product_Base'
     allOf:
-      - $ref: '#/definitions/product_Post'
+      - $ref: '#/definitions/product_Base'
       - type: object
         properties:
           variants:
