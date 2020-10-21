@@ -631,6 +631,15 @@ paths:
       responses:
         '200':
           $ref: '#/responses/ProductCollectionResponse'
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/product_Full'
+              meta:
+                $ref: '#/definitions/metaCollection_Full'
         '404':
           description: The resource was not found.
           schema:
@@ -777,10 +786,7 @@ paths:
         - in: body
           name: body
           schema:
-            title: Product Collection Put
-            type: array
-            items:
-              $ref: '#/definitions/product_Put_Collection'
+            $ref: '#/definitions/product_Put_Collection'
           x-examples:
             application/json:
               - id: 123
