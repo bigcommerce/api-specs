@@ -20196,7 +20196,7 @@ definitions:
   product_Post:
     $ref: '#/definitions/product_Base'
     allOf:
-      - $ref: '#/definitions/product_Base'
+      - $ref: '#/definitions/product_Post'
       - type: object
         properties:
           variants:
