@@ -1116,7 +1116,9 @@ definitions:
             example: '0'
           purchase_date:
             type: string
-            description: 'Date the gift certificate was purchased. If not assigned, this will be set to today’s date.'
+            description: >-
+              Date the gift certificate was purchased. If not assigned, this
+              will be set to today’s date.
             example: 'Mon, 19 Jan 1970 07:21:46 CST'
           expiry_date:
             type: string
@@ -1162,6 +1164,11 @@ definitions:
             type: string
             description: 'Date the gift certificate was purchased. If not assigned, this will be set to today’s date.'
             example: '1520957992'
+            description: >-
+              Date the gift certificate was purchased. If not assigned, this
+              will be set to today’s date.
+            example: 'Mon, 19 Jan 1970 07:21:46 CST'
+
           expiry_date:
             type: string
             description: Date on which the gift certificate is set to expire.
@@ -1224,8 +1231,10 @@ definitions:
             example: '0'
           purchase_date:
             type: string
-            description: 'Date the gift certificate was purchased. If not assigned, this will be set to today’s date.'
-            example: '1520957992'
+            description: >-
+              Date the gift certificate was purchased. If not assigned, this
+              will be set to today’s date.
+            example: 'Mon, 19 Jan 1970 07:21:46 CST'
           expiry_date:
             type: string
             description: Date on which the gift certificate is set to expire.
