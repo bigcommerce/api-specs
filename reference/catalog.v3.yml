@@ -766,8 +766,8 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: body
-          name: body
+        - name: products
+          in: body
           schema:
             $ref: '#/definitions/product_Put_Collection'
           x-examples:
