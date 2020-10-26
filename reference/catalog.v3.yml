@@ -433,14 +433,6 @@ paths:
       responses:
         '200':
           $ref: '#/responses/ProductResponse'
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/product_Full'
-              meta:
-                $ref: '#/definitions/metafield_Base'
-          description: ''
         '409':
           description: |
             `Product` was in conflict with another product. This is the result of duplicate unique values, such as name or SKU; a missing or invalid `category_id`, `brand_id`, or `tax_class id`; or a conflicting `bulk_pricing_rule`.
@@ -631,15 +623,6 @@ paths:
       responses:
         '200':
           $ref: '#/responses/ProductCollectionResponse'
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/product_Full'
-              meta:
-                $ref: '#/definitions/metaCollection_Full'
         '404':
           description: The resource was not found.
           schema:
@@ -1001,13 +984,6 @@ paths:
       responses:
         '200':
           $ref: '#/responses/ProductResponse'
-          schema:
-            type: object
-            properties:
-              data:
-                $ref: '#/definitions/product_Full'
-              meta:
-                $ref: '#/definitions/metafield_Base'
         '201':
           description: Created
           schema:
@@ -20194,14 +20170,13 @@ definitions:
         description: |
           A public URL for a GIF, JPEG, or PNG image. Limit of 8MB per file. 
   product_Post:
-    $ref: '#/definitions/product_Base'
+    description: The model for a POST to create a product.
     allOf:
-      - $ref: '#/definitions/product_Post'
+      - $ref: '#/definitions/product_Base'
       - type: object
         properties:
           variants:
             $ref: '#/definitions/productVariant_Post_Product'
-    description: The model for a POST to create a product.
     title: product_Post
   product_Put:
     description: The model for a PUT to update a product.
