@@ -371,7 +371,7 @@ paths:
         - `base_variant_id`
 
         **Usage Notes**
-        * `POST` requests to `/products` accepts a single `video` object; to send an array of video objects, see: `/products/{product_id}/videos`
+        * `POST` requests to `/products` accepts a single `video` object; to send an array of video objects, see: `/products/{product_id}/videos`.
       operationId: createProduct
       parameters:
         - name: product
@@ -766,13 +766,10 @@ paths:
           type: string
           default: application/json
           required: true
-        - in: body
-          name: body
+        - name: products
+          in: body
           schema:
-            title: Product Collection Put
-            type: array
-            items:
-              $ref: '#/definitions/product_Put_Collection'
+            $ref: '#/definitions/product_Put_Collection'
           x-examples:
             application/json:
               - id: 123
@@ -978,6 +975,11 @@ paths:
       responses:
         '200':
           $ref: '#/responses/ProductResponse'
+        '201':
+          description: Created
+          schema:
+            type: object
+            properties: {}
         '404':
           description: |
             The resource was not found.
@@ -20159,14 +20161,13 @@ definitions:
         description: |
           A public URL for a GIF, JPEG, or PNG image. Limit of 8MB per file. 
   product_Post:
-    $ref: '#/definitions/product_Base'
+    description: The model for a POST to create a product.
     allOf:
-      - $ref: '#/definitions/product_Post'
+      - $ref: '#/definitions/product_Base'
       - type: object
         properties:
           variants:
             $ref: '#/definitions/productVariant_Post_Product'
-    description: The model for a POST to create a product.
     title: product_Post
   product_Put:
     description: The model for a PUT to update a product.
