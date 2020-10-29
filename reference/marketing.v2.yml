@@ -1109,7 +1109,7 @@ definitions:
             example: '0'
           purchase_date:
             type: string
-            description: 'Date the gift certificate was purchased. If not assigned, this will be set to today’s date. Date dsiplays in Unix timestamp format.'
+            description: 'Date the gift certificate was purchased. If not assigned, this will be set to today’s date. Date displays in Unix timestamp format.'
             example: '1454432829'
           expiry_date:
             type: string
