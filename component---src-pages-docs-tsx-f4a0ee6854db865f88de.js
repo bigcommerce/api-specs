@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{HPWl:function(e,t,r){"use strict";r.r(t);var n=r("+tu8"),c=r("q1tI"),o=r.n(c),a=r("9Dj+"),i=r("H8eV");t.default=function(){return o.a.createElement(a.a,null,o.a.createElement(i.a,{title:"BigCommerce API Reference"}),o.a.createElement(n.StoplightProject,{workspaceSlug:"bigcommerce",projectSlug:"api-reference",basePath:"api-specs/docs/",router:"undefined"==typeof window?"memory":"history"}))}}}]);
+//# sourceMappingURL=component---src-pages-docs-tsx-f4a0ee6854db865f88de.js.map
