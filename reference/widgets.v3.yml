@@ -196,6 +196,7 @@ paths:
               template: >-
                 {{#each images}}<a href='{{image_url}}'><img
                 src={{image_source}} style='width:33.3%'/></a>{{/each}}
+              create_new_version: true
         - name: Accept
           in: header
           type: string
@@ -783,7 +784,13 @@ parameters:
     name: Content-Type
 definitions:
   widgetTemplate_Put:
-    $ref: '#/definitions/widgetTemplate_Base'
+    allOf:
+      - $ref: '#/definitions/widgetTemplate_Base'
+      - type: object
+        properties:
+          create_new_version:
+            type: boolean
+            description: Can be added to create a new widget template version instead of updating the current one.
     title: widgetTemplate_Put
   widgetTemplate_Post:
     title: widgetTemplate_Post
