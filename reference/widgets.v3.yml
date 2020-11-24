@@ -1194,6 +1194,12 @@ definitions:
     type: object
     title: widgetSchemaConditional
     description: 'An optional property that can be added to each setting to control whether it should be displayed to the user while editing in Page Builder. This does not clear the value in the setting, just controls the display of the setting.'
+    x-examples:
+      Conditional attribute:
+        key: backgroundType
+        operator: IN
+        value:
+          - color
     properties:
       key:
         type: string
@@ -1201,18 +1207,12 @@ definitions:
         example: backgroundType
       operator:
         type: string
-        description: 'Specifies the operation used to determine whether to display the setting. The `IN` operator is currently the only supported operator. The setting will be displayed, if the conditional’s `value` property is equal to the selected value of the `selectOptions`. '
+        description: 'Specifies the operation used to determine whether to display the setting. The `IN` operator is currently the only supported operator. The setting will be displayed if the conditional’s `value` property is equal to the selected value of the `selectOptions`. '
         example: IN
       value:
         type: array
         description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
         items: {}
-    x-examples:
-      Conditional attribute:
-        key: backgroundType
-        operator: IN
-        value:
-          - color
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
