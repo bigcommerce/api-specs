@@ -1059,7 +1059,7 @@ definitions:
         typeMeta:
           type: string
         conditional:
-          type: string
+          $ref: '#/definitions/widgetSchemaConditional'
   widgetSchemaTab:
     type: object
     title: widgetSchemaTab
@@ -1149,8 +1149,20 @@ definitions:
         type: string
         description: The default value to use when rendering the widget for the first time. Make sure to set sensible defaults to make your widget easier to use.
       typeMeta:
-        type: string
+        type: object
         description: Additional information needed based on the selected setting type.
+        properties:
+          selectOptions:
+            type: array
+            items:
+              type: object
+              properties:
+                label:
+                  type: string
+                  example: "Image"
+                value: 
+                  type: string
+                  example: image
       conditional:
         $ref: '#/definitions/widgetSchemaConditional'
   widgetSchema:
@@ -1193,7 +1205,7 @@ definitions:
         example: IN
       value:
         type: array
-        description: A single-object array containing a value from the typeMeta's selectOptions.
+        description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
     items: {}
 securityDefinitions:
   X-Auth-Token:
