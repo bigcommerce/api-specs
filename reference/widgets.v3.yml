@@ -1159,8 +1159,8 @@ definitions:
               properties:
                 label:
                   type: string
-                  example: "Image"
-                value: 
+                  example: Image
+                value:
                   type: string
                   example: image
       conditional:
@@ -1197,16 +1197,22 @@ definitions:
     properties:
       key:
         type: string
-        description: The ID of the setting the conditional attribute is related to.
+        description: The ID of the `setting` object the conditional attribute is related to.
         example: backgroundType
       operator:
         type: string
-        description: Specifies the operation used to determine if the setting will be shown or not. The IN operator will evaluate to true if the conditional’s value property is equal to the selected value of the selectOptions.
+        description: 'Specifies the operation used to determine whether to display the setting. The `IN` operator is currently the only supported operator. The setting will be displayed, if the conditional’s `value` property is equal to the selected value of the `selectOptions`. '
         example: IN
       value:
         type: array
         description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
-    items: {}
+        items: {}
+    x-examples:
+      Conditional attribute:
+        key: backgroundType
+        operator: IN
+        value:
+          - color
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
