@@ -81,6 +81,23 @@ paths:
                       }
                   ]
               }
+            Create a Cart using Date Option: |-
+              {
+                "line_items": [
+                  {
+                    "quantity": 5,
+                    "product_id": 191,
+                    "variant_id": 185,
+                    "option_selections": [
+                      {
+                        "option_id": 440,
+                        "option_value": 1743570000
+                      }
+                    ]
+                  }
+                ]
+              } 
+            # The API supports timestamps, "option_value": 1743570000, and dates as an array, "option_value": {"day" : "01", "month" : "02", "year" : "2020"} 
             With a Variant of Checkbox and Picklist: |-
               {
                 "line_items": [
@@ -106,10 +123,9 @@ paths:
                         "option_value": "Hello"
                       },
                       {
-                        "option_id": 123,
+                        "option_id": 123, 
                         "option_value": 104
                       }
-
                     ]
                   }
                 ]
@@ -130,10 +146,12 @@ paths:
             2. Creating a cart with a variant. This works when a product can be
             specified purely by a variant, without any other required options.
 
-            3. Creating a cart with a variant, a checkbox, and a picklist
+            3. Creating a cart using a date option. The API supports timestamps, “option_value”: 1743570000, and dates as an array, “option_value”: {“day”:”01”, “month”:”02”, “year”:”2020”}.
+
+            4. Creating a cart with a variant, a checkbox, and a picklist
             modifier added.
 
-            4. Creating a cart using a custom item.
+            5. Creating a cart using a custom item.
         - name: include
           in: query
           type: string
@@ -2828,13 +2846,13 @@ securityDefinitions:
     description: >-
       ### OAuth Scopes
 
-      |  **UI Name** | **Permission** | **Parameter** |
+      |UI Name |Permission |Parameter |
 
-      | --- | --- | --- |
+      |-|-|-|
 
-      |  Carts | modify | `store_cart` |
+      |Carts|modify|`store_cart`|
 
-      |  Carts | read-only | `store_cart_read_only` |
+      |Carts |read-only|`store_cart_read_only`|
 
 
       ### Headers
