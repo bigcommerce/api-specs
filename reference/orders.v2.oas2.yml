@@ -2250,6 +2250,7 @@ definitions:
     properties:
       products:
         type: array
+        description: Required to create an order.
         items:
           anyOf:
             - $ref: '#/definitions/orderProduct_Write'
@@ -2282,8 +2283,6 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/shippingAddress_Base'
-    required:
-      - products
 tags:
   - name: Orders
   - name: Order Coupons
