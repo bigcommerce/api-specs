@@ -33,6 +33,7 @@ info:
     ### Currency Fields
 
     The **default** currency refers to the transactional currency which is the currency the shopper pays in.
+
     The **display** currency refers to the presentational currency used to present prices to the shopper on the storefront.
 
     * `currency_id` - the display currency ID. Depending on the currency selected, the value may be different from the transactional currency.
