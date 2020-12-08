@@ -32,12 +32,18 @@ info:
 
     ### Currency Fields
 
-    * `currency_code` - the display currency used to present prices to the shopper on the storefront.
-    * `currency_exchange_rate`: the exchange rate between the store's default currency and the display currency; when the order is created by means of the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
+    The **default** currency refers to the transactional currency which is the currency the shopper pays in.
+    The **display** currency refers to the presentational currency used to present prices to the shopper on the storefront.
+
+    * `currency_id` - the display currency ID. Depending on the currency selected, the value may be different from the transactional currency.
+    * `currency_code` - the currency code of the display currency used to present prices to the shopper on the storefront. Depending on the currency selected, the value may be different from the transactional currency.
+    * `currency_exchange_rate` - the exchange rate between the store's default currency and the display currency. For orders created using the V2 endpoints, this value is always 1 (only in the storefront this value can be different to 1).
+    * `default_currency_id` - the transactional currency ID.
+    * `default_currency_code` - the currency code of the transactional currency the shopper pays in.
 
     The following additional fields are returned on orders when Multi-Currency is enabled on the store:
 
-    * `store_default_currency_code` - the store's default currency
+    * `store_default_currency_code` - the currency code of the store's default currency.
     * `store_default_to_transactional_exchange_rate` - the exchange rate between the store's default currency and the transactional currency used in the order.
 
     **Example:**
