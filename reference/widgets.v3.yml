@@ -777,6 +777,7 @@ definitions:
   widgetTemplate_Post:
     title: widgetTemplate_Post
     type: object
+    description: ''
     properties:
       name:
         type: string
@@ -789,11 +790,10 @@ definitions:
         format: html
       storefront_api_query:
         type: string
-        description: 'GraphQL Storefront API query that provides widget data; accessed in a template via `{{_.data}}`. '
+        description: 'GraphQL Storefront API query that provides widget data. '
     required:
       - name
       - template
-    description: ''
   widgetTemplate_Full:
     allOf:
       - $ref: '#/definitions/widgetTemplate_Base'
