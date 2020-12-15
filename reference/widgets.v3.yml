@@ -790,7 +790,7 @@ definitions:
         format: html
       storefront_api_query:
         type: string
-        description: 'GraphQL Storefront API query that provides widget data. '
+        description: GraphQL Storefront API query that provides widget data.
     required:
       - name
       - template
