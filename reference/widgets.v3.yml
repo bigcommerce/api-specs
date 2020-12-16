@@ -28,16 +28,16 @@ info:
     ## Subresources
 
     ### Widget templates
-    Widget templates are reusable Handlebars-enabled HTML templates that define the structure of the widget on a page.
+    [Widget templates](https://developer.bigcommerce.com/api-reference/store-management/widgets/widget-template/getwidgettemplates) are reusable Handlebars-enabled HTML templates that define the structure of the widget on a page.
 
     ### Widgets
-    Widgets are units of content placed on specific pages in a Stencil theme. Widgets consist of a widget configuration and a widget template UUID and render as part of the storefront’s HTML.
+    [Widgets](https://developer.bigcommerce.com/api-reference/store-management/widgets/widget/getwidgets) are units of content placed on specific pages in a Stencil theme. Widgets consist of a widget configuration and a widget template UUID and render as part of the storefront’s HTML.
 
     ### Regions
-    Regions are specific locations in the Stencil theme template files where you can place a widget.
+    [Regions](https://developer.bigcommerce.com/api-reference/store-management/widgets/regions/getcontentregions) are specific locations in the Stencil theme template files where you can place a widget.
 
     ### Placements
-    Placements determine the region where you place widgets and in what order.
+    [Placements](https://developer.bigcommerce.com/api-reference/store-management/widgets/placement/getplacements) determine the region where you place widgets and in what order.
 
     ## Additional Information
 
