@@ -2,7 +2,48 @@ swagger: '2.0'
 info:
   title: Widgets
   version: ''
-  description: 'Create and manage [widgets](/api-docs/storefront/widgets/widgets-overview), widget templates, regions, and placements.'
+  description: |
+    Create and manage widget templates, widgets, regions, and placements.
+
+    - [Authentication](#authentication)
+    - [Subresources](#subresources)
+    - [Additional Information](#additional-information)
+
+    ## Authentication
+
+    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+
+    ```http
+    GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v3/{{ENDPOINT}}
+    Content-Type: application/json
+    X-Auth-Token: {{ACCESS_TOKEN}}
+    ```
+
+    ### OAuth Scopes
+    |  **UI Name** | **Permission** | **Parameter** |
+    | --- | --- | --- |
+    |  Content | modify | `store_v2_content` |
+    |  Content | read-only | `store_v2_content_read_only` |
+
+    ## Subresources
+
+    ### Widget templates
+    Widget templates are reusable Handlebars-enabled HTML templates that define the structure of the widget on a page.
+
+    ### Widgets
+    Widgets are units of content placed on specific pages in a Stencil theme. Widgets consist of a widget configuration and a widget template UUID and render as part of the storefront’s HTML.
+
+    ### Regions
+    Regions are specific locations in the Stencil theme template files where you can place a widget.
+
+    ### Placements
+    Placements determine the region where you place widgets and in what order.
+
+    ## Additional Information
+
+    * [Widgets API Overview](https://developer.bigcommerce.com/api-docs/store-management/widgets/overview)
+    * [Widget UI Schema](https://developer.bigcommerce.com/stencil-docs/page-builder/widget-ui-schema)
+    * [Widget UI Input Types](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings)
   termsOfService: ''
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
