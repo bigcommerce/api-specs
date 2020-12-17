@@ -143,10 +143,6 @@ paths:
         Creates a **Widget Template**.
 
         ***Note:*** *There is a limit of 100 custom widget templates per store.*
-
-        **Required Fields**
-        * name
-        * template
     get:
       tags:
         - Widget Template
@@ -1119,19 +1115,27 @@ definitions:
     properties:
       type:
         type: string
+        description: The type of setting component to display.
+        enum:
+          - tab
       label:
         type: string
+        example: Content
+        description: The user-friendly message to inform the user how this setting will be used.
       sections:
         type: array
+        description: Groups of related settings.
         items:
           type: object
           title: widgetSchemaTabSections
           properties:
             label:
               type: string
+              description: The user-friendly message to inform the user how this setting will be used.
+              example: Product
             settings:
               type: array
-              description: 'For examples of each type of setting, see [Page Builder > Schema Settings](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings/alignment) in Theme Docs.'
+              description: 'For examples of schema settings, see [Widget UI Input Types](https://developer.bigcommerce.com/stencil-docs/page-builder/schema-settings).'
               items:
                 type: object
                 title: widgetSchemaSetting_Base
@@ -1205,6 +1209,7 @@ definitions:
                       value:
                         type: array
                         description: A single-object array containing a value from the `typeMeta`'s `selectOptions`.
+                        items: {}
   widgetSchemaTabSections:
     type: object
     title: widgetSchemaTabSections
