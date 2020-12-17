@@ -208,7 +208,7 @@ paths:
           $ref: '#/responses/Error404_Resp'
         '422':
           $ref: '#/responses/Error422_Resp'
-      description: Return a single **Widget Template**.
+      description: Returns a single **Widget Template**.
     put:
       tags:
         - Widget Template
@@ -259,7 +259,7 @@ paths:
           $ref: '#/responses/Error404_Resp'
         '422':
           $ref: '#/responses/Error422_Resp'
-      description: Update a **Widget Template**.
+      description: Updates a **Widget Template**.
     delete:
       tags:
         - Widget Template
@@ -287,7 +287,7 @@ paths:
           $ref: '#/responses/Error404_Resp'
         '422':
           $ref: '#/responses/Error422_Resp'
-      description: Delete a **Widget Template**.
+      description: Deletes a **Widget Template**.
   /content/widgets:
     post:
       tags:
@@ -329,10 +329,6 @@ paths:
         Creates a **Widget**.
 
         ***Note:*** *There is a limit of 1000 widgets per store.*
-
-        **Required Fields**
-        * name
-        * widget_template_uuid
     get:
       tags:
         - Widget
@@ -522,7 +518,7 @@ paths:
 
         ## Template files
 
-        The `template_file` property accepts the following values.
+        The `template_file` property accepts the following values:
 
         |Template File|Description|
         |-|-|
@@ -690,11 +686,7 @@ paths:
         '200':
           $ref: '#/responses/ThemeRegions_Resp'
       summary: Get Theme Regions
-      description: |-
-        Returns a list of unique **Theme Regions** in a file.
-
-        **Required Query**
-        * `template_file`
+      description: Returns a list of unique **Theme Regions** in a file.
       operationId: getContentRegions
       tags:
         - Regions
@@ -829,7 +821,7 @@ definitions:
         format: html
       storefront_api_query:
         type: string
-        description: GraphQL Storefront API query that provides widget data.
+        description: The GraphQL Storefront API query that provides widget data.
     required:
       - name
       - template
@@ -1074,7 +1066,8 @@ definitions:
         description: The widget template HTML. Supports Handlebars and Paper helpers.
       storefront_api_query:
         type: string
-        description: GraphQL Storefront API query that provides widget data.
+        description: The GraphQL Storefront API query that provides widget data.
+    description: ''
   widget_Base:
     type: object
     title: widget_Base
