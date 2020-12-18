@@ -1230,9 +1230,7 @@ definitions:
   widgetSchemaArray:
     type: object
     title: widgetSchemaArray
-    description: |-
-      **Array.** 
-      Use the **array** settings type to build collections of elements within the widget. Each element in the array can contain tabs, sections, and an entire schema.
+    description: '**Array.** Use the **array** settings type to build collections of elements within the widget. Each element in the array can contain tabs, sections, and an entire schema.'
     properties:
       type:
         type: string
