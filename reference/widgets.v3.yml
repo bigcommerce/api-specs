@@ -856,7 +856,12 @@ definitions:
           current_version_uuid:
             type: string
             description: The identifier to the current version of this widget template.
+          icon_name:
+            type: string
+            default: default
+            description: A read-only value. Do not attempt to set or modify this value in a POST or PUT operation.
     title: widgetTemplate_Full
+    description: ''
   widget_Full:
     title: widget_Full
     allOf:
@@ -1110,7 +1115,7 @@ definitions:
   widgetSchemaTab:
     type: object
     title: widgetSchemaTab
-    description: Use the **tab** settings type to set up settings visible in Page Builder.
+    description: '**Tab**'
     enum:
       - tab
     properties:
@@ -1225,7 +1230,7 @@ definitions:
   widgetSchemaArray:
     type: object
     title: widgetSchemaArray
-    description: 'Use the **array** settings type to build collections of elements within the widget. Each element in the array can contain tabs, sections, and an entire schema.'
+    description: '**Array**'
     properties:
       type:
         type: string
@@ -1312,7 +1317,7 @@ definitions:
   widgetSchemaHidden:
     type: object
     title: widgetSchemaHidden
-    description: Use the **hidden** settings type to set up controls which have no user interface drawn in Page Builder. Hidden settings are not grouped into any other tabs or arrays.
+    description: '**Hidden**'
     enum:
       - hidden
     properties:
