@@ -1115,7 +1115,7 @@ definitions:
   widgetSchemaTab:
     type: object
     title: widgetSchemaTab
-    description: '**Tab**'
+    description: Use the **tab** settings type to create settings visible in Page Builder.
     enum:
       - tab
     properties:
@@ -1230,7 +1230,7 @@ definitions:
   widgetSchemaArray:
     type: object
     title: widgetSchemaArray
-    description: '**Array**'
+    description: 'Use the **array** settings type to build collections of elements within the widget. Each element in the array can contain tabs, sections, and an entire schema.'
     properties:
       type:
         type: string
@@ -1317,7 +1317,7 @@ definitions:
   widgetSchemaHidden:
     type: object
     title: widgetSchemaHidden
-    description: '**Hidden**'
+    description: Use the **hidden** settings type to create controls that have no user interface drawn in Page Builder. Hidden settings are not grouped into any other tabs or arrays.
     enum:
       - hidden
     properties:
