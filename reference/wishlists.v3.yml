@@ -3,9 +3,7 @@ info:
   version: ''
   title: Wishlist
   contact: {}
-  description: >-
-    Create and manage customer
-    [wishlists](https://support.bigcommerce.com/s/article/Wishlists).
+  description: 'Create and manage customer [wishlists](https://support.bigcommerce.com/s/article/Wishlists).'
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
 schemes:
@@ -17,15 +15,11 @@ produces:
 paths:
   /wishlists:
     post:
-      description: >-
-        Creates a Wishlist and Wishlist Item. More than one item can be added in
-        the POST.
-
+      description: |-
+        Creates a Wishlist and Wishlist Item. More than one item can be added in the POST.
 
         **Required Fields**
-
         * name
-
         * customer_id
       summary: Create a Wishlist
       tags:
@@ -92,9 +86,7 @@ paths:
               type:
                 type: string
     get:
-      description: >-
-        Returns a list of Wishlists. Optional filter parameters can be passed
-        in.
+      description: Returns a list of Wishlists. Optional filter parameters can be passed in.
       summary: Get All Wishlists
       tags:
         - Wishlists
@@ -109,16 +101,12 @@ paths:
           type: integer
           name: page
           format: int32
-          description: >-
-            The page number of results per page. 1 is the default and starts
-            from record 0.
+          description: The page number of results per page. 1 is the default and starts from record 0.
         - name: limit
           in: query
           type: integer
           format: int32
-          description: >-
-            The numbers of items to return per page. Default is 50 and maximum
-            is 250.
+          description: The numbers of items to return per page. Default is 50 and maximum is 250.
         - name: Accept
           in: header
           type: string
@@ -279,16 +267,12 @@ paths:
               type:
                 type: string
     put:
-      description: >-
+      description: |-
         Updates a Wishlist.
 
-
-        Use this endpoint to update an existing wishlist items, change the
-        wishlist name, customer ID or if the wishlist is available publicly.
-
+        Use this endpoint to update existing wishlist items, change the wishlist's name and whether the wishlist is available publicly. To add or delete a wishlist item, see [Wishlist Items](https://developer.bigcommerce.com/api-reference/store-management/wishlists/wishlists-items).
 
         **Required Fields**
-
         * customer_id
       summary: Update a Wishlist
       tags:
@@ -507,7 +491,7 @@ definitions:
     type: object
     properties:
       customer_id:
-        description: The customer id.
+        description: The customer ID.
         type: integer
         format: int32
       is_public:
@@ -524,17 +508,17 @@ definitions:
           type: object
           properties:
             id:
-              description: The ID of the item
               type: integer
-              format: int32
               example: 12
+              format: int32
+              description: The ID of the item.
             product_id:
               description: The ID of the product.
               type: integer
               format: int32
               example: 55
             variant_id:
-              description: The variant ID of the item.
+              description: The variant ID of the product.
               type: integer
               format: int32
               example: 22
@@ -563,10 +547,7 @@ definitions:
         type: boolean
         example: true
       token:
-        description: >-
-          The token of the Wishlist. This is created internally within
-          BigCommerce. The Wishlist ID is to be used for external apps.
-          Read-Only
+        description: The token of the Wishlist. This is created internally within BigCommerce. The Wishlist ID is to be used for external apps. Read-Only
         type: string
         format: uuid
         example: 2d55481-13eb-4d1e-9d79-9062b518570d
@@ -622,9 +603,7 @@ definitions:
         type: integer
         format: int32
       per_page:
-        description: >-
-          The amount of items returned in the collection per page, controlled by
-          the limit parameter.
+        description: 'The amount of items returned in the collection per page, controlled by the limit parameter.'
         type: integer
         format: int32
       current_page:
@@ -783,9 +762,7 @@ parameters:
     type: integer
     name: page
     format: int32
-    description: >-
-      The page number of results per page. 1 is the default and starts from
-      record 0.
+    description: The page number of results per page. 1 is the default and starts from record 0.
   FilterLimit:
     name: limit
     in: query
@@ -814,47 +791,29 @@ securityDefinitions:
     type: apiKey
     name: X-Auth-Token
     in: header
-    description: >-
+    description: |-
       ### OAuth Scopes
-
       |  **UI Name** | **Permission** | **Parameter** |
-
       | --- | --- | --- |
-
       |  Customers | modify | `store_v2_customers` |
-
       |  Customers | read-only | `store_v2_customers_read_only` |
-
 
       ### Headers
 
-
       |Header|Parameter|Description|
-
       |-|-|-|
-
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or
-      installing an app in a BigCommerce control panel.|
-
+      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
       ### Example
 
-
       ```http
-
       GET /stores/{$$.env.store_hash}/v3/catalog/summary
-
       host: api.bigcommerce.com
-
       Content-Type: application/json
-
       X-Auth-Token: {access_token}
-
       ```
 
-
-      * For more information on Authenticating BigCommerce APIs, see:
-      [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
+      * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication). 
 security:
   - X-Auth-Client: []
   - X-Auth-Token: []
