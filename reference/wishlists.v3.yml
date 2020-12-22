@@ -529,7 +529,7 @@ definitions:
         description: Array of wishlist items.
         type: array
         items:
-          title: Wishlist Item
+          title: Wishlist item
           type: object
           properties:
             id:
