@@ -496,7 +496,7 @@ definitions:
         description: Array of wishlist items.
         type: array
         items:
-          title: Add Item to Wishlist
+          title: Add item to wishlist
           type: object
           properties:
             product_id:
