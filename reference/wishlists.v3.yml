@@ -26,6 +26,9 @@ info:
     |  Customers | read-only | `store_v2_customers_read_only` |
 
     For more information on OAuth scopes, see [Authenticating BigCommerce's REST APIs](https://developer.bigcommerce.com/api-docs/getting-started/authentication/rest-api-authentication#oauth-scopes).
+
+    ## Additional Information
+    * [Wishlists](https://support.bigcommerce.com/s/article/Wishlists)
 host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
 schemes:
