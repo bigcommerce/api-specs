@@ -93,7 +93,7 @@ paths:
         - $ref: '#/parameters/order_id_path'
       responses:
         '200':
-          $ref: '#/responses/order_Resp'
+          $ref: '#/responses/order_Full'
         '404':
           description: '"The requested resource was not found."'
           schema: {}
@@ -110,7 +110,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: '#/definitions/order_Req'
+            $ref: '#/definitions/order_Put'
           x-examples:
             application/json:
               status_id: 0
@@ -151,6 +151,7 @@ paths:
                       value: '180'
                     - id: 230
                       value: '192'
+              customer_locale: en
             Adding an Existing Product:
               products:
                 - product_id: 123
@@ -170,7 +171,7 @@ paths:
         - $ref: '#/parameters/order_id_path'
       responses:
         '200':
-          $ref: '#/responses/order_Resp'
+          $ref: '#/responses/order_Full'
       operationId: updateAnOrder
     delete:
       description: |-
@@ -2310,6 +2311,9 @@ definitions:
     title: order_Full
     description: Order object returned in responses.
     allOf: []
+  order_Put:
+    $ref: '#/definitions/order_Shared'
+    description: 'Order properties used in `POST` and `PUT` request bodies; **required** : `products`, `billing_address`.'
 tags:
   - name: Orders
   - name: Order Coupons
