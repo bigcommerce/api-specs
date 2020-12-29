@@ -3215,7 +3215,7 @@ responses:
             count: 1
             sort_order: 14
         count: 133
-    description: Order Countr response collection.
+    description: Order Count response collection.
   order_Resp:
     description: Multiple Items -- An order that contains mulitple products. The store it set to display prices excluding taxes. The tax rate is 8.95%.
     schema:
