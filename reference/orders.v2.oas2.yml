@@ -268,7 +268,7 @@ paths:
           required: true
           description: ''
           schema:
-            $ref: '#/definitions/order_Req'
+            $ref: '#/definitions/order_Post'
           x-examples:
             application/json:
               billing_address:
@@ -974,6 +974,90 @@ definitions:
     allOf:
       - $ref: '#/definitions/order_RespOnly'
       - $ref: '#/definitions/order_Shared'
+    x-examples:
+      example-1:
+        id: 118
+        date_modified: string
+        date_shipped: string
+        cart_id: a8458391-ef68-4fe5-9ec1-442e6a767364
+        status: Awaiting Fulfillment
+        subtotal_tax: '0.0000'
+        shipping_cost_tax: '0.0000'
+        shipping_cost_tax_class_id: 2
+        handling_cost_tax: '0.0000'
+        handling_cost_tax_class_id: 2
+        wrapping_cost_tax: '0.0000'
+        wrapping_cost_tax_class_id: 3
+        payment_status: authorized
+        store_credit_amount: '0.0000'
+        gift_certificate_amount: '0.0000'
+        currency_id: 1
+        currency_code: USD
+        currency_exchange_rate: '1.0000000000'
+        default_currency_id: 1
+        coupon_discount: '5.0000'
+        shipping_address_count: 0
+        is_email_opt_in: false
+        order_source: www
+        products:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/products'
+          resource: /orders/129/products
+        shipping_addresses:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/shippingaddresses'
+          resource: /orders/129/shippingaddresses
+        coupons:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/129/coupons'
+          resource: /orders/129/coupons
+        status_id: 7
+        billing_address:
+          first_name: Jane
+          last_name: Doe
+          company: string
+          street_1: 123 Main Street
+          street_2: string
+          city: Austin
+          state: TX
+          zip: '12345'
+          country: United States
+          country_iso2: US
+          phone: string
+          email: janedoe@email.com
+          form_fields:
+            - name: License Id
+              value: 123BAF
+        subtotal_ex_tax: '225.0000'
+        subtotal_inc_tax: '225.0000'
+        base_shipping_cost: '0.0000'
+        shipping_cost_ex_tax: '0.0000'
+        shipping_cost_inc_tax: '0.0000'
+        base_handling_cost: '0.0000'
+        handling_cost_ex_tax: '0.0000'
+        handling_cost_inc_tax: 0
+        base_wrapping_cost: 0
+        wrapping_cost_ex_tax: '0.0000'
+        wrapping_cost_inc_tax: '0.0000'
+        total_ex_tax: '225.0000'
+        total_inc_tax: '225.0000'
+        items_total: 1
+        items_shipped: 0
+        payment_method: Credit Card
+        payment_provider_id: null
+        refunded_amount: '0.0000'
+        order_is_digital: false
+        ip_address: 12.345.678.910
+        geoip_country: United States
+        geoip_country_iso2: US
+        staff_notes: Send Saturday
+        customer_message: Thank you
+        discount_amount: '0.0000'
+        is_deleted: false
+        ebay_order_id: '0'
+        external_source: 'null'
+        external_id: null
+        channel_id: 1
+        tax_provider_id: BasicTaxProvider
+        date_created: string
+        default_currency_code: string
   ordersCount_Full:
     title: ordersCount_Full
     example:
@@ -2311,9 +2395,119 @@ definitions:
     title: order_Full
     description: Order object returned in responses.
     allOf: []
+    x-examples:
+      application/json:
+        status_id: 0
+        customer_id: 11
+        billing_address:
+          first_name: Jane
+          last_name: Doe
+          street_1: 123 Main Street
+          city: Austin
+          state: Texas
+          zip: '78751'
+          country: United States
+          country_iso2: US
+          email: janedoe@email.com
+        shipping_addresses:
+          - first_name: Trish
+            last_name: Test
+            company: Acme Pty Ltd
+            street_1: 666 Sussex St
+            city: Austin
+            state: Texas
+            zip: '78751'
+            country: United States
+            country_iso2: US
+            email: elsie@example.com
+        products:
+          - name: BigCommerce Poster
+            quantity: 1
+            price_inc_tax: 10.98
+            price_ex_tax: 10
+          - name: BigCommerce Coffee Mug
+            quantity: 1
+            price_inc_tax: 50
+            price_ex_tax: 45
+          - product_id: 184
+            product_options:
+              - id: 200
+                value: '180'
+              - id: 230
+                value: '192'
+        customer_locale: en
+      Custom Product:
+        status_id: 0
+        customer_id: 11
+        billing_address:
+          first_name: Jane
+          last_name: Doe
+          street_1: 123 Main Street
+          city: Austin
+          state: Texas
+          zip: '78751'
+          country: United States
+          country_iso2: US
+          email: janedoe@email.com
+        shipping_addresses:
+          - first_name: Trish
+            last_name: Test
+            company: Acme Pty Ltd
+            street_1: 666 Sussex St
+            city: Austin
+            state: Texas
+            zip: '78751'
+            country: United States
+            country_iso2: US
+            email: elsie@example.com
+        products:
+          - name: BigCommerce Poster
+            quantity: 1
+            price_inc_tax: 10.98
+            price_ex_tax: 10
+          - name: BigCommerce Coffee Mug
+            quantity: 1
+            price_inc_tax: 50
+            price_ex_tax: 45
+      Product with options:
+        status_id: 0
+        customer_id: 11
+        billing_address:
+          first_name: Jane
+          last_name: Doe
+          street_1: 123 Main Street
+          city: Austin
+          state: Texas
+          zip: '78751'
+          country: United States
+          country_iso2: US
+          email: janedoe@email.com
+        shipping_addresses:
+          - first_name: Trish
+            last_name: Test
+            company: Acme Pty Ltd
+            street_1: 666 Sussex St
+            city: Austin
+            state: Texas
+            zip: '78751'
+            country: United States
+            country_iso2: US
+            email: elsie@example.com
+        products:
+          - product_id: 184
+            product_options:
+              - id: 200
+                value: '180'
+              - id: 230
+                value: '192'
+      Multiple products: {}
   order_Put:
     $ref: '#/definitions/order_Shared'
     description: 'Order properties used in `POST` and `PUT` request bodies; **required** : `products`, `billing_address`.'
+  order_Post:
+    title: order_Post
+    allOf:
+      - $ref: '#/definitions/order_Shared'
 tags:
   - name: Orders
   - name: Order Coupons
