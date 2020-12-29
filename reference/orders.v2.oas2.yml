@@ -3303,105 +3303,98 @@ responses:
         store_default_currency_code: ''
         store_default_to_transactional_exchange_rate: '1.0000000000'
         custom_status: Awaiting Payment
-      Multiple Items: |-
-        {
-          "id": 247,
-          "customer_id": 11,
-          "date_created": "Thu, 20 Jun 2019 16:07:08 +0000",
-          "date_modified": "Thu, 20 Jun 2019 16:07:08 +0000",
-          "date_shipped": "",
-          "status_id": 11,
-          "status": "Awaiting Fulfillment",
-          "subtotal_ex_tax": "924.4700",
-          "subtotal_inc_tax": "1000.7400",
-          "subtotal_tax": "76.2700",
-          "base_shipping_cost": "8.0000",
-          "shipping_cost_ex_tax": "7.3900",
-          "shipping_cost_inc_tax": "8.0000",
-          "shipping_cost_tax": "0.6100",
-          "shipping_cost_tax_class_id": 0,
-          "base_handling_cost": "0.0000",
-          "handling_cost_ex_tax": "0.0000",
-          "handling_cost_inc_tax": "0.0000",
-          "handling_cost_tax": "0.0000",
-          "handling_cost_tax_class_id": 0,
-          "base_wrapping_cost": "0.0000",
-          "wrapping_cost_ex_tax": "0.0000",
-          "wrapping_cost_inc_tax": "0.0000",
-          "wrapping_cost_tax": "0.0000",
-          "wrapping_cost_tax_class_id": 0,
-          "total_ex_tax": "931.8600",
-          "total_inc_tax": "1008.7400",
-          "total_tax": "76.8800",
-          "items_total": 11,
-          "items_shipped": 0,
-          "payment_method": "Test Payment Gateway",
-          "payment_provider_id": "",
-          "payment_status": "captured",
-          "refunded_amount": "0.0000",
-          "order_is_digital": false,
-          "store_credit_amount": "0.0000",
-          "gift_certificate_amount": "0.0000",
-          "ip_address": "70.112.53.67",
-          "geoip_country": "United States",
-          "geoip_country_iso2": "US",
-          "currency_id": 1,
-          "currency_code": "USD",
-          "currency_exchange_rate": "1.0000000000",
-          "default_currency_id": 1,
-          "default_currency_code": "USD",
-          "staff_notes": "BIN-45",
-          "customer_message": "Custom Journal Added",
-          "discount_amount": "0.0000",
-          "coupon_discount": "0.0000",
-          "shipping_address_count": 1,
-          "is_deleted": false,
-          "ebay_order_id": "0",
-          "cart_id": "8b84f622-faf1-4c10-887b-f5dff2f9eaf4",
-          "billing_address": {
-            "first_name": "Jane",
-            "last_name": "Doe",
-            "company": "",
-            "street_1": "555 East Street",
-            "street_2": "",
-            "city": "Austin",
-            "state": "Texas",
-            "zip": "78108",
-            "country": "United States",
-            "country_iso2": "US",
-            "phone": "1234567890",
-            "email": "janedoe@email.com",
-            "form_fields": [
-              {
-                "name": "Delivery Instructions",
-                "value": "Leave in backyard"
-              }
-            ]
-          },
-          "is_email_opt_in": false,
-          "credit_card_type": {},
-          "order_source": "manual",
-          "channel_id": 1,
-          "external_source": {},
-          "products": {
-            "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/products",
-            "resource": "/orders/247/products"
-          },
-          "shipping_addresses": {
-            "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/shippingaddresses",
-            "resource": "/orders/247/shippingaddresses"
-          },
-          "coupons": {
-            "url": "https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/coupons",
-            "resource": "/orders/247/coupons"
-          },
-          "external_id": {},
-          "external_merchant_id": {},
-          "tax_provider_id": "BasicTaxProvider",
-          "store_default_currency_code": "USD",
-          "store_default_to_transactional_exchange_rate": "1.0000000000",
-          "custom_status": "Awaiting Fulfillment"
-        }
+        customer_locale: en
+      Multiple Items:
+        id: 247
+        customer_id: 11
+        date_created: 'Thu, 20 Jun 2019 16:07:08 +0000'
+        date_modified: 'Thu, 20 Jun 2019 16:07:08 +0000'
+        date_shipped: ''
+        status_id: 11
+        status: Awaiting Fulfillment
+        subtotal_ex_tax: '924.4700'
+        subtotal_inc_tax: '1000.7400'
+        subtotal_tax: '76.2700'
+        base_shipping_cost: '8.0000'
+        shipping_cost_ex_tax: '7.3900'
+        shipping_cost_inc_tax: '8.0000'
+        shipping_cost_tax: '0.6100'
+        shipping_cost_tax_class_id: 0
+        base_handling_cost: '0.0000'
+        handling_cost_ex_tax: '0.0000'
+        handling_cost_inc_tax: '0.0000'
+        handling_cost_tax: '0.0000'
+        handling_cost_tax_class_id: 0
+        base_wrapping_cost: '0.0000'
+        wrapping_cost_ex_tax: '0.0000'
+        wrapping_cost_inc_tax: '0.0000'
+        wrapping_cost_tax: '0.0000'
+        wrapping_cost_tax_class_id: 0
+        total_ex_tax: '931.8600'
+        total_inc_tax: '1008.7400'
+        total_tax: '76.8800'
+        items_total: 11
+        items_shipped: 0
+        payment_method: Test Payment Gateway
+        payment_provider_id: ''
+        payment_status: captured
+        refunded_amount: '0.0000'
+        order_is_digital: false
+        store_credit_amount: '0.0000'
+        gift_certificate_amount: '0.0000'
+        ip_address: 70.112.53.67
+        geoip_country: United States
+        geoip_country_iso2: US
+        currency_id: 1
+        currency_code: USD
+        currency_exchange_rate: '1.0000000000'
+        default_currency_id: 1
+        default_currency_code: USD
+        staff_notes: BIN-45
+        customer_message: Custom Journal Added
+        discount_amount: '0.0000'
+        coupon_discount: '0.0000'
+        shipping_address_count: 1
+        is_deleted: false
+        ebay_order_id: '0'
+        cart_id: 8b84f622-faf1-4c10-887b-f5dff2f9eaf4
+        billing_address:
+          first_name: Jane
+          last_name: Doe
+          company: ''
+          street_1: 555 East Street
+          street_2: ''
+          city: Austin
+          state: Texas
+          zip: '78108'
+          country: United States
+          country_iso2: US
+          phone: '1234567890'
+          email: janedoe@email.com
+          form_fields:
+            - name: Delivery Instructions
+              value: Leave in backyard
+        is_email_opt_in: false
+        credit_card_type: {}
+        order_source: manual
+        channel_id: 1
+        external_source: {}
+        products:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/products'
+          resource: /orders/247/products
+        shipping_addresses:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/shippingaddresses'
+          resource: /orders/247/shippingaddresses
+        coupons:
+          url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v2/orders/247/coupons'
+          resource: /orders/247/coupons
+        external_id: {}
+        external_merchant_id: {}
+        tax_provider_id: BasicTaxProvider
+        store_default_currency_code: USD
+        store_default_to_transactional_exchange_rate: '1.0000000000'
+        custom_status: Awaiting Fulfillment
+        customer_locale: en
   orderCouponsCollection_Resp:
     description: ''
     schema:
