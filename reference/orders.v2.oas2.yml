@@ -2753,6 +2753,7 @@ responses:
           store_default_currency_code: ''
           store_default_to_transactional_exchange_rate: '1.0000000000'
           custom_status: Awaiting Fulfillment
+          customer_locale: en
         - id: 104
           customer_id: 2
           date_created: 'Wed, 10 Jan 2018 21:23:58 +0000'
@@ -2840,6 +2841,7 @@ responses:
           store_default_currency_code: ''
           store_default_to_transactional_exchange_rate: '1.0000000000'
           custom_status: Awaiting Fulfillment
+          customer_locale: en-us
         - id: 105
           customer_id: 3
           date_created: 'Wed, 10 Jan 2018 21:23:59 +0000'
@@ -2927,6 +2929,7 @@ responses:
           store_default_currency_code: ''
           store_default_to_transactional_exchange_rate: '1.0000000000'
           custom_status: Awaiting Fulfillment
+          customer_locale: en-au
         - id: 107
           customer_id: 1
           date_created: 'Thu, 11 Jan 2018 20:43:07 +0000'
@@ -3014,6 +3017,7 @@ responses:
           store_default_currency_code: ''
           store_default_to_transactional_exchange_rate: '1.0000000000'
           custom_status: Awaiting Fulfillment
+          customer_locale: fr
         - id: 110
           customer_id: 4
           date_created: 'Thu, 11 Jan 2018 20:57:52 +0000'
@@ -3101,6 +3105,7 @@ responses:
           store_default_currency_code: ''
           store_default_to_transactional_exchange_rate: '1.0000000000'
           custom_status: Completed - Testing
+          customer_locale: en
   ordersCount_Resp:
     schema:
       type: array
