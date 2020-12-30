@@ -2522,8 +2522,25 @@ definitions:
                 value: '192'
       Multiple products: {}
   order_Put:
-    $ref: '#/definitions/order_Shared'
-    description: 'Order properties used in `POST` and `PUT` request bodies; **required** : `products`, `billing_address`.'
+    allOf:
+      - type: object
+        properties:
+          order_Base:
+            $ref: '#/definitions/order_Base'
+          shipping_addresses:
+            $ref: '#/definitions/shippingAddress_Base'
+          order_Shared:
+            $ref: '#/definitions/order_Shared'
+          customer_locale:
+            type: string
+            description: The customer's locale
+            example: '\"en\", \"en-us\"'
+            pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
+      - type: array
+        items:
+          anyOf:
+            - $ref: '#/definitions/orderCatalogProduct_Put'
+            - $ref: '#/definitions/orderCustomProduct_Put'
   order_Post:
     title: order_Post
     allOf:
