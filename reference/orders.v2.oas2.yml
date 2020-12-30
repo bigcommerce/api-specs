@@ -2549,6 +2549,45 @@ definitions:
         $ref: '#/definitions/billingAddress_Base'
       form_fields:
         $ref: '#/definitions/formFields'
+  orderCustomProduct_Post:
+    title: orderCustomProduct_Post
+    type: object
+    description: |-
+      At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
+      Note: `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change value for both of those fields.
+
+      If both fields `name` and `name_customer` are present, they must have the same value.
+      If both fields `namd` and `name_customer` are omitted, or provided with empty value or null, those fields will fallback to have the value of `name_merchant`.
+
+      If field `name_merchant` is omitted, or provided with empty value (`\"\"`) or null (`null`), it will fallback to have the value of `name` (or `name_customer`).
+    properties:
+      name:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: Alias for name_customer. The product name that is shown to customer in storefront.
+      name_customer:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: The product name that is shown to customer in storefront.
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
+      quantity:
+        type: number
+      price_ex_tax:
+        type: number
+      price_inc_tax:
+        type: number
+      sku:
+        type: string
+      upc:
+        type: string
+    required:
+      - name
+      - quantity
+      - price_ex_tax
+      - price_inc_tax
 tags:
   - name: Orders
   - name: Order Coupons
