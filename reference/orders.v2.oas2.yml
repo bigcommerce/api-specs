@@ -1668,6 +1668,22 @@ definitions:
         description: 'How it is displayed on the storefront. Examples include Drop-down, radio buttons, or rectangles.'
         example: Rectangle
         type: string
+      display_name_customer:
+        type: string
+        description: The product option name that is shown to customer in storefront.
+        example: couleur
+      display_name_merchant:
+        type: string
+        description: The product option name that is shown to merchant in Control Panel.
+        example: color
+      display_value_customer:
+        type: string
+        example: bleu
+        description: The product option value that is shown to customer in storefront.
+      display_value_merchant:
+        type: string
+        example: blue
+        description: The product option value that is shown to merchant in Control Panel.
   formFields:
     title: formFields
     type: object
