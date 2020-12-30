@@ -1227,41 +1227,7 @@ definitions:
           The cost of your products to you; this is never shown to customers, but can be used for accounting purposes. Read Only
         example: '0.0000'
         type: string
-      weight:
-        description: 'Weight of the product. (Float, Float-As-String, Integer)'
-        example: 1
-        type: number
-      cost_price_tax:
-        description: |-
-          Tax applied to the product’s cost price. (Float, Float-As-String, Integer)
-          The cost of your products to you; this is never shown to customers, but can be used for accounting purposes. Read Only
-        example: '54.0000'
-        type: string
-      is_refunded:
-        description: Whether the product has been refunded.
-        example: false
-        type: boolean
-      refunded_amount:
-        description: 'The amount refunded from this transaction. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      return_id:
-        description: Numeric ID for the refund.
-        example: 0
-        type: number
-      wrapping_name:
-        description: Name of gift-wrapping option
-        example: 'null'
-        type: string
-      base_wrapping_cost:
-        description: 'The value of the base wrapping cost. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      wrapping_cost_ex_tax:
-        description: 'The value of the wrapping cost, excluding tax. (Float, Float-As-String, Integer)'
-        example: '0.0000'
-        type: string
-      wrapping_cost_inc_tax:
+      Traci Porter:
         description: 'The value of the wrapping cost, including tax. (Float, Float-As-String, Integer)'
         example: '0.0000'
         type: string
@@ -1487,6 +1453,7 @@ definitions:
   orderShipment:
     title: orderShipment
     type: object
+    description: ''
     properties:
       id:
         description: Shipment ID.
@@ -1537,9 +1504,6 @@ definitions:
         description: |-
           Tracking carrier for the shipment.
           Acceptable values include an empty string (`""`) or one of the valid tracking-carrier values viewable [here](https://docs.google.com/spreadsheets/d/1w9c_aECSCGyf-oOrvGeUniDl-ARGKemfZl0qSsav8D4/pubhtml?gid=0&single=true) and downloadable as a .CSV file [here](https://docs.google.com/spreadsheets/d/1mTueEynfcEmwsU2y2Jd2MX-8GKwNZrmlRMBcIElg9aY/pub?gid=0&single=true&output=csv).
-      tracking_link:
-        type: string
-        description: Returns a tracking link from the shipping service.
       comments:
         description: Comments the shipper wishes to add.
         type: string
@@ -1562,7 +1526,6 @@ definitions:
             quantity:
               type: number
               example: 2
-    description: ''
   billingAddress_Full:
     allOf:
       - $ref: '#/definitions/billingAddress_Base'
