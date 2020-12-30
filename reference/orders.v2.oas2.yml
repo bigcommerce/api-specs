@@ -1130,6 +1130,7 @@ definitions:
   orderProducts:
     title: orderProducts
     type: object
+    description: ''
     properties:
       id:
         description: Numeric ID of this product within this order.
@@ -1327,6 +1328,14 @@ definitions:
       variant_id:
         type: integer
         description: Products `variant_id`. PUT or POST. This field is not available for custom products.
+      name_customer:
+        type: string
+        description: The product name that is shown to customer in storefront.
+        example: Fog Linen Chambray Towel - Beige Stripe
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
   orderCount:
     title: orderCount
     example:
@@ -2394,7 +2403,35 @@ definitions:
   order_Full:
     title: order_Full
     description: Order object returned in responses.
-    allOf: []
+    allOf:
+      - $ref: '#/definitions/order_Shared'
+      - $ref: '#/definitions/order_RespOnly'
+      - type: object
+        properties:
+          customer_id:
+            type: number
+            description: The ID of the customer placing the order; or 0 if it was a guest order.
+            example: 6
+          custom_status:
+            type: string
+            description: 'Contains the same (string, optional) - value as the Order Statuses object''s `custom_label` property.'
+            example: Awaiting Fulfillment
+          total_tax:
+            type: string
+            example: '0.0000'
+            description: 'A read-only value. Do not attempt to set or modify this value in a POST or PUT operation. (Float, Float-As-String, Integer)'
+          default_currency_code:
+            type: string
+            example: USD
+            description: The currency code of the default currency for this type of transaction. A read-only value. Do not pass in a POST or PUT operation.
+          credit_card_type:
+            type: integer
+            description: Credit card type
+            example: '0'
+          customer_locale:
+            type: string
+            description: The customer's locale
+            example: '\"en\", \"en-us\"'
     x-examples:
       application/json:
         status_id: 0
@@ -5003,6 +5040,10 @@ responses:
             - BasicTaxProvider
             - AvaTaxProvider
             - ''
+        customer_locale:
+          type: string
+          example: '\"en\", \"en-us\"'
+          description: The customer's locale
   order_Full:
     description: Multiple Items -- An order that contains mulitple products. The store it set to display prices excluding taxes. The tax rate is 8.95%.
     content:
