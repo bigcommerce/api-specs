@@ -2219,6 +2219,21 @@ definitions:
         type: string
       shipping_method:
         type: string
+    x-examples:
+      example-1:
+        first_name: string
+        last_name: string
+        company: string
+        street_1: string
+        street_2: string
+        city: string
+        state: string
+        zip: string
+        country: string
+        country_iso2: string
+        email: string
+        phone: string
+        shipping_method: string
   order_RespOnly:
     title: order_RespOnly
     type: object
@@ -2527,8 +2542,8 @@ definitions:
         properties:
           order_Base:
             $ref: '#/definitions/order_Base'
-          shipping_addresses:
-            $ref: '#/definitions/shippingAddress_Base'
+          billing_address:
+            $ref: '#/definitions/billingAddress_Base'
           order_Shared:
             $ref: '#/definitions/order_Shared'
           customer_locale:
@@ -2536,11 +2551,14 @@ definitions:
             description: The customer's locale
             example: '\"en\", \"en-us\"'
             pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
+          form_fields:
+            $ref: '#/definitions/formFields'
       - type: array
         items:
           anyOf:
             - $ref: '#/definitions/orderCatalogProduct_Put'
             - $ref: '#/definitions/orderCustomProduct_Put'
+    description: ''
   order_Post:
     title: order_Post
     allOf:
