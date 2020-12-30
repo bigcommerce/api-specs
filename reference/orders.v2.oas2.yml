@@ -1298,6 +1298,44 @@ definitions:
         type: string
         example: Towel Type 1
         description: The product name that is shown to merchant in Control Panel.
+      weight:
+        type: number
+        description: 'Weight of the product. (Float, Float-As-String, Integer)'
+        example: '1'
+      cost_price_tax:
+        type: string
+        example: '54.0000'
+        description: |-
+          Tax applied to the product’s cost price. (Float, Float-As-String, Integer).
+          The cost of your products to you; this is never shown to customers, but can be used for accounting purposes. Read Only
+      is_refunded:
+        type: boolean
+        example: 'false'
+        description: Whether the product has been refunded.
+      refunded_amount:
+        type: string
+        description: 'The amount refunded from this transaction. (Float, Float-As-String, Integer)'
+        example: '0.0000'
+      return_id:
+        type: number
+        description: Numeric ID for refund.
+        example: '0'
+      wrapping_name:
+        type: string
+        example: 'null'
+        description: Name of gift-wrapping option
+      base_wrapping_cost:
+        type: string
+        example: '0.0000'
+        description: 'The value of the base wrapping cost. (Float, Float-As-String, Integer)'
+      wrapping_cost_ex_tax:
+        type: string
+        example: '0.0000'
+        description: 'The value of the wrapping cost, excluding tax. (Float, Float-As-String, Integer)'
+      wrapping_cost_inc_tax:
+        type: string
+        example: '0.0000'
+        description: 'The value of the wrapping cost, including tax. (Float, Float-As-String, Integer)'
   orderCount:
     title: orderCount
     example:
@@ -2110,6 +2148,10 @@ definitions:
       default_currency_code:
         type: string
         description: The currency code of the transactional currency the shopper pays in; writeable when multi-currency is enabled.
+      external_merchant_id:
+        type: string
+        example: 'null'
+        description: ID of the merchant
   billingAddress_Base:
     type: object
     title: billingAddress_Base
@@ -2190,6 +2232,20 @@ definitions:
         type: string
         example: janedoe@email.com
         description: 'Recipient''s email address. '
+    x-examples:
+      application/json:
+        first_name: Jane
+        last_name: Doe
+        company: string
+        street_1: 123 Main Street
+        street_2: string
+        city: Austin
+        state: Texas
+        zip: '12345'
+        country: United States
+        country_iso2: US
+        phone: string
+        email: janedoe@email.com
   shipping-addresses-post:
     type: object
     properties:
@@ -2553,6 +2609,8 @@ definitions:
             pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
           form_fields:
             $ref: '#/definitions/formFields'
+          shipping_addresses:
+            $ref: '#/definitions/shippingAddress_Base'
       - type: array
         items:
           anyOf:
@@ -3201,7 +3259,7 @@ responses:
     schema:
       type: array
       items:
-        $ref: '#/definitions/order_Resp'
+        $ref: '#/definitions/order_Full'
     examples:
       application/json:
         - id: 100
@@ -3760,7 +3818,7 @@ responses:
         count: 133
     description: Order Count response collection.
   order_Resp:
-    description: Multiple Items -- An order that contains mulitple products. The store it set to display prices excluding taxes. The tax rate is 8.95%.
+    description: Multiple Items -- An order that contains multiple products. The store it set to display prices excluding taxes. The tax rate is 8.95%.
     schema:
       $ref: '#/definitions/order_Resp'
     examples:
@@ -5450,7 +5508,6 @@ responses:
         store_default_currency_code: ''
         store_default_to_transactional_exchange_rate: '1.0000000000'
         custom_status: Awaiting Payment
-        customer_locale: en
       Multiple Items:
         id: 247
         customer_id: 11
@@ -5541,6 +5598,5 @@ responses:
         store_default_currency_code: USD
         store_default_to_transactional_exchange_rate: '1.0000000000'
         custom_status: Awaiting Fulfillment
-        customer_locale: en
     schema:
       $ref: '#/definitions/order_Full'
