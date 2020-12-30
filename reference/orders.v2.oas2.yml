@@ -1130,7 +1130,7 @@ definitions:
   orderProducts:
     title: orderProducts
     type: object
-    description: ''
+    description: '`product_options` are required if adding a product with variants.'
     properties:
       id:
         description: Numeric ID of this product within this order.
@@ -1225,10 +1225,6 @@ definitions:
         description: |-
           The products cost price excluding tax. (Float, Float-As-String, Integer)
           The cost of your products to you; this is never shown to customers, but can be used for accounting purposes. Read Only
-        example: '0.0000'
-        type: string
-      Traci Porter:
-        description: 'The value of the wrapping cost, including tax. (Float, Float-As-String, Integer)'
         example: '0.0000'
         type: string
       wrapping_cost_tax:
@@ -1526,6 +1522,8 @@ definitions:
             quantity:
               type: number
               example: 2
+      form_fields:
+        $ref: '#/definitions/formFields'
   billingAddress_Full:
     allOf:
       - $ref: '#/definitions/billingAddress_Base'
@@ -1535,12 +1533,7 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/formFields'
-      - properties: {}
-        anyOf:
-          - children: []
-            type: array
-          - properties: {}
-            $ref: '#/definitions/orderCustomProduct_Post'
+      - type: object
     title: billingAddress_Full
     description: Required to create an order.
   products_Resource:
@@ -1690,6 +1683,8 @@ definitions:
         type: string
         example: blue
         description: The product option value that is shown to merchant in Control Panel.
+      form_fields:
+        $ref: '#/definitions/formFields'
   formFields:
     title: formFields
     type: object
@@ -2417,6 +2412,9 @@ definitions:
             type: string
             description: The customer's locale
             example: '\"en\", \"en-us\"'
+          form_fields:
+            $ref: '#/definitions/formFields'
+      - $ref: '#/definitions/billingAddress_Base'
     x-examples:
       application/json:
         status_id: 0
@@ -2542,19 +2540,28 @@ definitions:
   order_Base:
     title: order_Base
     type: object
+    description: ''
     properties:
       status_id:
         type: integer
         description: The status ID of the order.
         example: 11
-      customer_id:
-        type: number
-        description: The ID of the customer placing the order; or 0 if it was a guest order.
-        example: 6
+      products:
+        type: array
+        items:
+          anyOf:
+            - $ref: '#/definitions/orderCatalogProduct_Post'
+            - $ref: '#/definitions/orderCustomProduct_Post'
       billing_address:
         $ref: '#/definitions/billingAddress_Base'
       form_fields:
         $ref: '#/definitions/formFields'
+      customer_id:
+        type: number
+        description: The ID of the customer placing the order; or 0 if it was a guest order.
+        example: 6
+    required:
+      - products
   orderCustomProduct_Post:
     title: orderCustomProduct_Post
     type: object
@@ -2789,25 +2796,25 @@ definitions:
               type: string
               example: blue
               description: The product option value that is shown to merchant in Control Panel.
-            quantity:
-              type: number
-            price_inc_tax:
-              type: number
-            price_ex_tax:
-              type: number
-            upc:
-              type: string
-            variant_id:
-              type: integer
-              description: '""'
-            wrapping_name:
-              type: string
-            wrapping_message:
-              type: string
-            wrapping_cost_ex_tax:
-              type: number
-            wrapping_cost_inc_tax:
-              type: number
+      quantity:
+        type: number
+      price_inc_tax:
+        type: number
+      price_ex_tax:
+        type: number
+      upc:
+        type: string
+      variant_id:
+        type: integer
+        description: '""'
+      wrapping_name:
+        type: string
+      wrapping_message:
+        type: string
+      wrapping_cost_ex_tax:
+        type: number
+      wrapping_cost_inc_tax:
+        type: number
     required:
       - name
 tags:
