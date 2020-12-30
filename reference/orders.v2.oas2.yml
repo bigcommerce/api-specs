@@ -2524,6 +2524,15 @@ definitions:
     title: order_Post
     allOf:
       - $ref: '#/definitions/order_Shared'
+      - type: object
+        properties:
+          shipping_addresses:
+            $ref: '#/definitions/shippingAddresses_Resource'
+          customer_locale:
+            type: string
+            description: The customer's locale
+            example: '\"en\", \"en-us\"'
+            pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
 tags:
   - name: Orders
   - name: Order Coupons
