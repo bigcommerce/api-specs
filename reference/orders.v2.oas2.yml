@@ -2533,6 +2533,22 @@ definitions:
             description: The customer's locale
             example: '\"en\", \"en-us\"'
             pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
+  order_Base:
+    title: order_Base
+    type: object
+    properties:
+      status_id:
+        type: integer
+        description: The status ID of the order.
+        example: 11
+      customer_id:
+        type: number
+        description: The ID of the customer placing the order; or 0 if it was a guest order.
+        example: 6
+      billing_address:
+        $ref: '#/definitions/billingAddress_Base'
+      form_fields:
+        $ref: '#/definitions/formFields'
 tags:
   - name: Orders
   - name: Order Coupons
