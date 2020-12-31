@@ -1350,8 +1350,7 @@ definitions:
   orderShippingAddress:
     title: orderShippingAddress
     allOf:
-      - type: object
-        properties:
+      - properties:
           id:
             type: integer
             example: 1
@@ -1425,7 +1424,9 @@ definitions:
               $ref: '#/definitions/formFields'
           shipping_quotes:
             $ref: '#/definitions/shippingQuotes_Resource'
-      - $ref: '#/definitions/shippingAddress_Base'
+          shippingAddress_Base:
+            $ref: '#/definitions/shippingAddress_Base'
+    type: object
   orderTaxes_Base:
     title: orderTaxes_Base
     type: object
