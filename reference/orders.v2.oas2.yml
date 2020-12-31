@@ -953,7 +953,7 @@ paths:
     get:
       responses:
         '200':
-          $ref: '#/responses/order_Full'
+          $ref: '#/responses/shippingQuotes_Base'
       summary: Get Order Shipping Quotes
       description: |-
         Gets all shipping quotes associated to an order.
