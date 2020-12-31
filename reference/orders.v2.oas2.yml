@@ -2695,9 +2695,7 @@ definitions:
             - $ref: '#/definitions/orderCatalogProduct_Post'
             - $ref: '#/definitions/orderCustomProduct_Post'
       billing_address:
-        $ref: '#/definitions/billingAddress_Base'
-      form_fields:
-        $ref: '#/definitions/formFields'
+        $ref: '#/definitions/billingAddress_Full'
       customer_id:
         type: number
         description: The ID of the customer placing the order; or 0 if it was a guest order.
