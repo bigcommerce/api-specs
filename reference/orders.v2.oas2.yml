@@ -1581,7 +1581,11 @@ definitions:
             type: array
             items:
               $ref: '#/definitions/formFields'
-      - type: object
+      - type: array
+        items:
+          anyOf:
+            - $ref: '#/definitions/orderCatalogProduct_Post'
+            - $ref: '#/definitions/orderCustomProduct_Post'
     title: billingAddress_Full
     description: Required to create an order.
   products_Resource:
@@ -2674,6 +2678,7 @@ definitions:
             description: The customer's locale
             example: '\"en\", \"en-us\"'
             pattern: '^([a-z][a-z])(\\-[a-z][a-z]){0,1}$'
+    description: Products and Billing address only required for POST operation.
   order_Base:
     title: order_Base
     type: object
