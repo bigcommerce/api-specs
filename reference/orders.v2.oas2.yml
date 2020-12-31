@@ -3913,6 +3913,7 @@ responses:
         store_default_currency_code: ''
         store_default_to_transactional_exchange_rate: '1.0000000000'
         custom_status: Awaiting Payment
+        customer_locale: en
       Multiple Items:
         id: 247
         customer_id: 11
@@ -4003,6 +4004,7 @@ responses:
         store_default_currency_code: USD
         store_default_to_transactional_exchange_rate: '1.0000000000'
         custom_status: Awaiting Fulfillment
+        customer_locale: en
   orderCouponsCollection_Resp:
     description: ''
     schema:
