@@ -2848,27 +2848,25 @@ definitions:
               type: string
               example: blue
               description: The product option value that is shown to merchant in Control Panel.
-            quantity:
-              type: number
-            price_inc_tax:
-              type: number
-            price_ex_tax:
-              type: number
-            upc:
-              type: string
-            variant_id:
-              type: integer
-              description: '""'
-            wrapping_name:
-              type: string
-            wrapping_message:
-              type: string
-            wrapping_cost_ex_tax:
-              type: number
-            wrapping_cost_inc_tax:
-              type: number
-          required:
-            - quantity
+      quantity:
+        type: number
+      price_inc_tax:
+        type: number
+      price_ex_tax:
+        type: number
+      upc:
+        type: string
+      variant_id:
+        type: integer
+        description: '""'
+      wrapping_name:
+        type: string
+      wrapping_message:
+        type: string
+      wrapping_cost_ex_tax:
+        type: number
+      wrapping_cost_inc_tax:
+        type: number
     required:
       - product_id
       - product_options
