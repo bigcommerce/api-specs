@@ -2516,7 +2516,19 @@ definitions:
             description: The customer's locale
             example: '\"en\", \"en-us\"'
           form_fields:
-            $ref: '#/definitions/formFields'
+            type: array
+            description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
+                  example: License ID
+                value:
+                  type: string
+                  description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
+                  example: 123BAF
       - $ref: '#/definitions/billingAddress_Base'
     x-examples:
       application/json:
