@@ -5614,3 +5614,57 @@ responses:
         customer_locale: en
     schema:
       $ref: '#/definitions/order_Full'
+  shippingQuotes_Base:
+    schema:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Id of the shipping quote
+          example: 24
+        uuid:
+          type: string
+          description: uuid of the shipping quote
+          example: a72acc8d-504b-4a40-8534-7c54d997ed59
+        timestamp:
+          type: string
+          description: Time the order was created in RFC 2822 format.
+          format: date-time
+        shipping_provider_id:
+          type: string
+          example: bcstatic
+          description: Id of the shipping provider
+        shipping_provider_quote:
+          type: array
+          description: This can vary based on the shipping provider. Manual shipping methods such as fixed will return an empty array. Shipping providers such as UPS will return an object with the shipping information. Since the shipping quote is tied to a shipping address only one quote will return in the response.
+          items: {}
+        provider_code:
+          type: string
+          example: shipping_byweight
+          description: Code of the shipping provider
+        carrier_code:
+          type: string
+          description: Code of the shipping carrier
+        rate_code:
+          type: string
+          description: Type of delivery. This can vary based on shipping quote.
+        rate_id:
+          type: string
+          description: This can vary based on shipping quote.
+        method_id:
+          type: integer
+          description: Shipping method ID
+    description: This response can vary depending on the shipping provider.
+    examples:
+      example-1:
+        id: 24
+        uuid: a72acc8d-504b-4a40-8534-7c54d997ed59
+        timestamp: '2019-08-24T14:15:22Z'
+        shipping_provider_id: bcstatic
+        shipping_provider_quote:
+          - null
+        provider_code: shipping_byweight
+        carrier_code: string
+        rate_code: string
+        rate_id: string
+        method_id: 0
