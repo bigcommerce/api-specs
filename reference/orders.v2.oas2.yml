@@ -1420,8 +1420,18 @@ definitions:
             example: United States
           form_fields:
             type: array
+            description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
             items:
-              $ref: '#/definitions/formFields'
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
+                  example: License Id
+                value:
+                  type: string
+                  description: Read-Only. If you have required address form fields they will need to be set as optional before creating an order via API.
+                  example: 123BAF
           shipping_quotes:
             $ref: '#/definitions/shippingQuotes_Resource'
           shippingAddress_Base:
