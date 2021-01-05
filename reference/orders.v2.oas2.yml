@@ -5952,7 +5952,17 @@ responses:
           description: Shipping method ID
     description: This response can vary depending on the shipping provider.
     examples:
-      example-1:
+      Fixed Shipping:
+        id: '16'
+        uuid: 18aaa5eb-3c7a-4bf8-bfaa-d14d155606f1
+        timestamp: 'Mon, 30 Jul 2018 15:32:35 +0000'
+        shipping_provider_id: bcproductbased
+        shipping_provider_quote: []
+        provider_code: productfixedshipping
+        carrier_code: ''
+        rate_code: ''
+        rate_id: ''
+      UPS Example:
         id: 24
         uuid: a72acc8d-504b-4a40-8534-7c54d997ed59
         timestamp: '2019-08-24T14:15:22Z'
