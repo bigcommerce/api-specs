@@ -286,6 +286,7 @@ paths:
                   quantity: 1
                   price_inc_tax: 50
                   price_ex_tax: 45
+              customer_locale: en
             Custom Product:
               status_id: 0
               customer_id: 11
@@ -389,7 +390,6 @@ paths:
                       value: '180'
                     - id: 230
                       value: '192'
-              customer_locale: en
       responses:
         '200':
           $ref: '#/responses/order_Resp'
