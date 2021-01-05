@@ -209,7 +209,7 @@ paths:
         - $ref: '#/parameters/Content-Type'
       responses:
         '200':
-          $ref: '#/responses/ordersCount_Resp'
+          $ref: '#/responses/ordersCount_Full'
       operationId: getCountOrder
   /orders:
     get:
