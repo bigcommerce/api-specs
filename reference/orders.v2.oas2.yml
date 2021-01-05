@@ -244,7 +244,7 @@ paths:
         - $ref: '#/parameters/channel_id'
       responses:
         '200':
-          $ref: '#/responses/orderCollection_Resp'
+          $ref: '#/responses/order_Full'
       summary: Get All Orders
       operationId: getAllOrders
     post:
