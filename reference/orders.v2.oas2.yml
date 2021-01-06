@@ -3867,7 +3867,7 @@ responses:
   order_Resp:
     description: Multiple Items -- An order that contains multiple products. The store it set to display prices excluding taxes. The tax rate is 8.95%.
     schema:
-      $ref: '#/definitions/order_Resp'
+      $ref: '#/definitions/order_Full'
     examples:
       application/json:
         id: 218
