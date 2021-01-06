@@ -207,6 +207,11 @@ paths:
       parameters:
         - $ref: '#/parameters/Accept'
         - $ref: '#/parameters/Content-Type'
+        - in: body
+          name: body
+          schema:
+            type: object
+            properties: {}
       responses:
         '200':
           $ref: '#/responses/ordersCount_Full'
@@ -1072,13 +1077,6 @@ definitions:
         sort_order: 0
       count: 45
     type: object
-    properties:
-      statuses:
-        $ref: '#/definitions/orderStatusCount'
-      count:
-        description: Total number of orders in the store
-        example: 45
-        type: number
     x-examples:
       example-1:
         statuses:
@@ -1090,6 +1088,15 @@ definitions:
           count: 6
           sort_order: 0
         count: 45
+    properties:
+      statuses:
+        allOf:
+          - $ref: '#/definitions/orderStatus_Base'
+          - $ref: '#/definitions/orderStatusCount'
+      count:
+        description: Total number of orders in the store
+        example: 45
+        type: number
   orderCoupons_Base:
     title: orderCoupons_Base
     type: object
@@ -2026,7 +2033,16 @@ definitions:
         example: 'An incomplete order happens when a shopper reached the payment page, but did not complete the transaction.'
         type: string
   orderStatusCount:
-    $ref: '#/definitions/orderCount'
+    type: object
+    properties:
+      count:
+        type: number
+        example: 6
+        description: Number of orders that exist with this status.
+      sort_order:
+        type: number
+        example: 0
+        description: The sort order of the order status from the Control Panel.
   orderStatus_OrderStatuses:
     allOf:
       - $ref: '#/definitions/orderStatus_Base'
@@ -6038,9 +6054,5 @@ responses:
               - $ref: '#/definitions/orderStatusCount'
           count:
             type: number
-            description: Number of orders that exist with this status.
-            example: 6
-          sort_order:
-            type: number
-            description: The sort order of the order status from the Control Panel.
-            example: 0
+            description: Total number of orders in the store.
+            example: 45
