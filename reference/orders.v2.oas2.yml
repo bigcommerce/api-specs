@@ -1053,6 +1053,7 @@ definitions:
   orderProducts:
     title: orderProducts
     type: object
+    description: ''
     properties:
       id:
         description: Numeric ID of this product within this order.
@@ -1071,7 +1072,7 @@ definitions:
         example: 20
         type: integer
       name:
-        description: The product name.
+        description: Alias of name_customer - The product name that is shown to customer in storefront.
         example: Fog Linen Chambray Towel - Beige Stripe
         type: string
       sku:
@@ -1250,6 +1251,14 @@ definitions:
       variant_id:
         type: integer
         description: Products `variant_id`. PUT or POST. This field is not available for custom products.
+      name_customer:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: The product name that is shown to customer in storefront.
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
   orderCount:
     title: orderCount
     example:
@@ -1587,11 +1596,11 @@ definitions:
         example: 120
         type: integer
       display_name:
-        description: 'The name of the option, as shown on the storefront.'
+        description: 'Alias for display_name_customer. The name of the option, as shown on the storefront.'
         example: Size
         type: string
       display_value:
-        description: 'The name of the value, as shown on the storefront.'
+        description: 'Alias for display_value_customer. The name of the value, as shown on the storefront.'
         example: S
         type: string
       value:
@@ -1619,6 +1628,22 @@ definitions:
         description: 'How it is displayed on the storefront. Examples include Drop-down, radio buttons, or rectangles.'
         example: Rectangle
         type: string
+      display_name_customer:
+        type: string
+        example: couleur
+        description: The product option name that is shown to customer in storefront.
+      display_name_merchant:
+        type: string
+        example: color
+        description: The product option name that is shown to merchant in Control Panel.
+      display_value_customer:
+        type: string
+        example: bleu
+        description: The product option value that is shown to customer in storefront.
+      display_value_merchant:
+        type: string
+        example: blue
+        description: The product option value that is shown to merchant in Control Panel.
   formFields:
     title: formFields
     type: object
