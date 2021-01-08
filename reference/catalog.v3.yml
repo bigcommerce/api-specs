@@ -347,6 +347,12 @@ paths:
             - inventory_level
             - is_visible
             - total_sold
+        - type: string
+          in: query
+          name: 'categories:in'
+        - type: string
+          in: query
+          name: 'channel_assignments:in'
       responses:
         '200':
           $ref: '#/responses/ProductCollectionResponse'
