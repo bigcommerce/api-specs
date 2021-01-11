@@ -3735,6 +3735,8 @@ responses:
           product_id: 77
           order_address_id: 51
           name: Fog Linen Chambray Towel - Beige Stripe
+          name_customer: Fog Linen Chambray Towel - Beige Stripe
+          name_merchant: Fog Linen Chambray Towel - Beige Stripe
           sku: S-ORAN
           upc: 1234567891112
           type: physical
@@ -3786,7 +3788,11 @@ responses:
               order_product_id: 65
               product_option_id: 120
               display_name: Size
+              display_name_customer: Size
+              display_name_merchant: Size
               display_value: S
+              display_value_customer: S
+              display_value_merchant: S
               value: '69'
               type: Multiple choice
               name: Apparel sizes
@@ -3797,6 +3803,8 @@ responses:
               product_option_id: 121
               display_name: Color
               display_value: Orange
+              display_value_customer: S
+              display_value_merchant: S
               value: '112'
               type: Swatch
               name: Colors
@@ -3885,6 +3893,8 @@ responses:
           variant_id: 0
           order_address_id: 151
           name: Journal
+          name_customer: Journal
+          name_merchant: Journal
           sku: Jour-BLK
           upc: ''
           type: physical
@@ -4134,6 +4144,8 @@ responses:
         product_id: 188
         order_address_id: 81
         name: Dustpan & Brush
+        name_customer: Dustpan & Brush
+        name_merchant: Dustpan & Brush
         sku: DUST1
         upc: 1234567891112
         type: physical
@@ -4180,169 +4192,180 @@ responses:
             order_product_id: 116
             product_option_id: 227
             display_name: Product Pick List
+            display_name_customer: Product Pick List
+            display_name_merchant: Product Pick List
             display_value: 1L Le Parfait Jar
+            display_value_customer: 1L Le Parfait Jar
+            display_value_merchant: 1L Le Parfait Jar
             value: '197'
             type: Product Pick List
             name: ProductPickList
             display_style: Pick list
         configurable_fields: []
-      Custom Product: |-
-        {
-            "id": 238,
-            "order_id": 247,
-            "product_id": 0,
-            "variant_id": 0,
-            "order_address_id": 151,
-            "name": "Journal",
-            "sku": "Jour-BLK",
-            "upc": "",
-            "type": "physical",
-            "base_price": "45.0000",
-            "price_ex_tax": "41.5700",
-            "price_inc_tax": "45.0000",
-            "price_tax": "3.4300",
-            "base_total": "45.0000",
-            "total_ex_tax": "41.5700",
-            "total_inc_tax": "45.0000",
-            "total_tax": "3.4300",
-            "weight": "0.0000",
-            "width": "0.0000",
-            "height": "0.0000",
-            "depth": "0.0000",
-            "quantity": 1,
-            "base_cost_price": "0.0000",
-            "cost_price_inc_tax": "0.0000",
-            "cost_price_ex_tax": "0.0000",
-            "cost_price_tax": "0.0000",
-            "is_refunded": false,
-            "quantity_refunded": 0,
-            "refund_amount": "0.0000",
-            "return_id": 0,
-            "wrapping_name": "",
-            "base_wrapping_cost": "0.0000",
-            "wrapping_cost_ex_tax": "0.0000",
-            "wrapping_cost_inc_tax": "0.0000",
-            "wrapping_cost_tax": "0.0000",
-            "wrapping_message": "",
-            "quantity_shipped": 0,
-            "event_name": null,
-            "event_date": "",
-            "fixed_shipping_cost": "0.0000",
-            "ebay_item_id": "",
-            "ebay_transaction_id": "",
-            "option_set_id": null,
-            "parent_order_product_id": null,
-            "is_bundled_product": false,
-            "bin_picking_number": "",
-            "external_id": null,
-            "fulfillment_source": "",
-            "applied_discounts": [],
-            "product_options": [],
-            "configurable_fields": []
-        }
-      Product with Variants: |-
-        {
-          "id": 240,
-          "order_id": 247,
-          "product_id": 201,
-          "variant_id": 477,
-          "order_address_id": 151,
-          "name": "BigCommerce T-Shirt",
-          "sku": "SKU-201-Red-Small T-Shirt-Able Brewing System",
-          "upc": "",
-          "type": "physical",
-          "base_price": "235.0000",
-          "price_ex_tax": "217.0900",
-          "price_inc_tax": "235.0000",
-          "price_tax": "17.9100",
-          "base_total": "940.0000",
-          "total_ex_tax": "868.3600",
-          "total_inc_tax": "940.0000",
-          "total_tax": "71.6400",
-          "weight": "3.0000",
-          "width": "3.0000",
-          "height": "3.0000",
-          "depth": "3.0000",
-          "quantity": 4,
-          "base_cost_price": "0.0000",
-          "cost_price_inc_tax": "0.0000",
-          "cost_price_ex_tax": "0.0000",
-          "cost_price_tax": "0.0000",
-          "is_refunded": false,
-          "quantity_refunded": 0,
-          "refund_amount": "0.0000",
-          "return_id": 0,
-          "wrapping_name": "",
-          "base_wrapping_cost": "0.0000",
-          "wrapping_cost_ex_tax": "0.0000",
-          "wrapping_cost_inc_tax": "0.0000",
-          "wrapping_cost_tax": "0.0000",
-          "wrapping_message": "",
-          "quantity_shipped": 0,
-          "event_name": {},
-          "event_date": "",
-          "fixed_shipping_cost": "0.0000",
-          "ebay_item_id": "",
-          "ebay_transaction_id": "",
-          "option_set_id": 68,
-          "parent_order_product_id": {},
-          "is_bundled_product": false,
-          "bin_picking_number": "",
-          "external_id": {},
-          "fulfillment_source": "",
-          "applied_discounts": [],
-          "product_options": [
-            {
-              "id": 143,
-              "option_id": 96,
-              "order_product_id": 240,
-              "product_option_id": 242,
-              "display_name": "Color",
-              "display_value": "Red",
-              "value": "211",
-              "type": "Swatch",
-              "name": "Color1549572910-201",
-              "display_style": ""
-            },
-            {
-              "id": 144,
-              "option_id": 114,
-              "order_product_id": 240,
-              "product_option_id": 263,
-              "display_name": "PickList PriceList",
-              "display_value": "Able Brewing System",
-              "value": "237",
-              "type": "Product Pick List",
-              "name": "PickList-PriceList1549572910-201",
-              "display_style": "Pick list with photos"
-            },
-            {
-              "id": 145,
-              "option_id": 97,
-              "order_product_id": 240,
-              "product_option_id": 243,
-              "display_name": "T-Shirt Size",
-              "display_value": "Small T-Shirt",
-              "value": "214",
-              "type": "Multiple choice",
-              "name": "T-Shirt-Size1545071633-201",
-              "display_style": "Rectangle"
-            },
-            {
-              "id": 146,
-              "option_id": 105,
-              "order_product_id": 240,
-              "product_option_id": 254,
-              "display_name": "Custom Message",
-              "display_value": "BigCommerce",
-              "value": "BigCommerce",
-              "type": "Text field",
-              "name": "Custom-Message1549572912-201",
-              "display_style": ""
-            }
-          ],
-          "configurable_fields": []
-        }
+      Custom Product:
+        id: 238
+        order_id: 247
+        product_id: 0
+        variant_id: 0
+        order_address_id: 151
+        name: Journal
+        name_customer: Journal
+        name_merchant: Journal
+        sku: Jour-BLK
+        upc: ''
+        type: physical
+        base_price: '45.0000'
+        price_ex_tax: '41.5700'
+        price_inc_tax: '45.0000'
+        price_tax: '3.4300'
+        base_total: '45.0000'
+        total_ex_tax: '41.5700'
+        total_inc_tax: '45.0000'
+        total_tax: '3.4300'
+        weight: '0.0000'
+        width: '0.0000'
+        height: '0.0000'
+        depth: '0.0000'
+        quantity: 1
+        base_cost_price: '0.0000'
+        cost_price_inc_tax: '0.0000'
+        cost_price_ex_tax: '0.0000'
+        cost_price_tax: '0.0000'
+        is_refunded: false
+        quantity_refunded: 0
+        refund_amount: '0.0000'
+        return_id: 0
+        wrapping_name: ''
+        base_wrapping_cost: '0.0000'
+        wrapping_cost_ex_tax: '0.0000'
+        wrapping_cost_inc_tax: '0.0000'
+        wrapping_cost_tax: '0.0000'
+        wrapping_message: ''
+        quantity_shipped: 0
+        event_name: null
+        event_date: ''
+        fixed_shipping_cost: '0.0000'
+        ebay_item_id: ''
+        ebay_transaction_id: ''
+        option_set_id: null
+        parent_order_product_id: null
+        is_bundled_product: false
+        bin_picking_number: ''
+        external_id: null
+        fulfillment_source: ''
+        applied_discounts: []
+        product_options: []
+        configurable_fields: []
+      Product with Variants:
+        id: 240
+        order_id: 247
+        product_id: 201
+        variant_id: 477
+        order_address_id: 151
+        name: BigCommerce T-Shirt
+        name_customer: BigCommerce T-Shirt
+        name_merchant: BigCommerce T-Shirt
+        sku: SKU-201-Red-Small T-Shirt-Able Brewing System
+        upc: ''
+        type: physical
+        base_price: '235.0000'
+        price_ex_tax: '217.0900'
+        price_inc_tax: '235.0000'
+        price_tax: '17.9100'
+        base_total: '940.0000'
+        total_ex_tax: '868.3600'
+        total_inc_tax: '940.0000'
+        total_tax: '71.6400'
+        weight: '3.0000'
+        width: '3.0000'
+        height: '3.0000'
+        depth: '3.0000'
+        quantity: 4
+        base_cost_price: '0.0000'
+        cost_price_inc_tax: '0.0000'
+        cost_price_ex_tax: '0.0000'
+        cost_price_tax: '0.0000'
+        is_refunded: false
+        quantity_refunded: 0
+        refund_amount: '0.0000'
+        return_id: 0
+        wrapping_name: ''
+        base_wrapping_cost: '0.0000'
+        wrapping_cost_ex_tax: '0.0000'
+        wrapping_cost_inc_tax: '0.0000'
+        wrapping_cost_tax: '0.0000'
+        wrapping_message: ''
+        quantity_shipped: 0
+        event_name: {}
+        event_date: ''
+        fixed_shipping_cost: '0.0000'
+        ebay_item_id: ''
+        ebay_transaction_id: ''
+        option_set_id: 68
+        parent_order_product_id: {}
+        is_bundled_product: false
+        bin_picking_number: ''
+        external_id: {}
+        fulfillment_source: ''
+        applied_discounts: []
+        product_options:
+          - id: 143
+            option_id: 96
+            order_product_id: 240
+            product_option_id: 242
+            display_name: Color
+            display_name_customer: Color
+            display_name_merchant: Color
+            display_value: Red
+            display_value_customer: Red
+            display_value_merchant: Red
+            value: '211'
+            type: Swatch
+            name: Color1549572910-201
+            display_style: ''
+          - id: 144
+            option_id: 114
+            order_product_id: 240
+            product_option_id: 263
+            display_name: PickList PriceList
+            display_name_customer: PickList PriceList
+            display_name_merchant: PickList PriceList
+            display_value: Able Brewing System
+            display_value_customer: Able Brewing System
+            display_value_merchant: Able Brewing System
+            value: '237'
+            type: Product Pick List
+            name: PickList-PriceList1549572910-201
+            display_style: Pick list with photos
+          - id: 145
+            option_id: 97
+            order_product_id: 240
+            product_option_id: 243
+            display_name: T-Shirt Size
+            dislpay_name_customer: T-Shirt Size
+            display_name_merchant: T-Shirt Size
+            display_value: Small T-Shirt
+            display_value_customer: Small T-Shirt
+            display_value_merchant: Small T-Shirt
+            value: '214'
+            type: Multiple choice
+            name: T-Shirt-Size1545071633-201
+            display_style: Rectangle
+          - id: 146
+            option_id: 105
+            order_product_id: 240
+            product_option_id: 254
+            display_name: Custom Message
+            display_name_customer: Custom Message
+            display_name_merchant: Custom Message
+            display_value: BigCommerce
+            display_value_customer: BigCommerce
+            display_value_merchant: BigCommerce
+            value: BigCommerce
+            type: Text field
+            name: Custom-Message1549572912-201
+            display_style: ''
+        configurable_fields: []
   orderShipmentCollection_Resp:
     description: ''
     schema:
