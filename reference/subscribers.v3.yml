@@ -110,7 +110,7 @@ paths:
           in: header
           type: string
           default: application/json
-        - type: string
+        - type: integer
           in: query
           name: id
           description: Filter items by id.
