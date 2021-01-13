@@ -2508,7 +2508,7 @@ definitions:
   orderCatalogProduct_Put:
     title: orderCatalogProduct_Put
     type: object
-    description: |
+    description: |-
       To `add` product to an existing order, don't include `id` in the payload. And note that the `product_options` are required if adding a product with variants.
 
       To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
@@ -2516,10 +2516,14 @@ definitions:
       Note:
       - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
       - If both fields `xxx` and `xxx_customer` are present, they must have same value.
-      - If field `xxx_merchant` is provided with empty value (`\"\"`) or null (`null`), it will fallback to have the value from `catalog`.
-      - If both fields `xxx` and `xxx_customer` are provided with empty value (`\"\"`) or null (`null`), those fields will fallback to have the value of `xxx_merchant`.
-      - In case of adding product, if `xxx_merchant` is omitted, it will fallback to have the value from `catalog`.
-      - In case of adding product, if both fields `xxx` and `xxx_customer` are omitted, or provided with empty value or null, those files will fallback to have the value of `xxx_merchant`.
+
+
+      - In case of updating existing order product item, if field `xxx_merchant` is missing, or provided with empty value (`" "`) or null (`null`), it will not be updated.
+
+      - In case of updating existing order product item, if both fields `xxx` and `xxx_customer` are missing, or provided with empty value (`""`) or null (`null`), those fields will not be updated.
+
+      - In case of adding product, if `xxx_merchant` is omitted, or provided with empty value or null, then it will fallback to have the value from `catalog`.
+      - In case of adding product, if both fields `xxx` and `xxx_customer` are omitted, or provided with empty value or null, then those fields will fallback to have the value of `xxx_merchant`.
     properties:
       id:
         type: integer
@@ -2632,7 +2636,7 @@ definitions:
   orderCustomProduct_Put:
     title: orderCustomProduct_Put
     type: object
-    description: |-
+    description: |
       To `add` custom product to an existing order, don't include `id` in the payload. And note that at least one of these fields `name`, `name_customer` or `name_merchant` must be provided with non-empty value.
 
       To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
@@ -2640,10 +2644,12 @@ definitions:
       Note:
       - `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change value for both of those fields.
       - If both fields `name` and `name_customer` are present, they must have same value.
-      - If both fields `name` and `name_customer` are provided with empty value (`\"\"`) or null (`null`), those fields will fallback to have the value of `name_merchant`.
-      - If field `name_merchant` provided with empty value (`\"\"`) or null (`null`), it will fallback to have the value of `name` (or `name_customer`).
-      - In case of adding product, if `name_merchant` is omitted, it will fallback to have the value of `name` (or `name_customer`).
-      - In case of adding product, if both fields `name` and `name_customer` are omitted, those files will fallback to have the value of `name_merchant`.
+
+      - In case of updating existing order product item, if both fields `name` and `name_customer` are missing, or provided with empty value (`""`) or null (`null`), those fields will not be updated.
+      - In case of updating existing order product item, if field `name_merchant` is missing or provided with empty value (`""`) or null (`null`), it will not be updated.
+
+      - In case of adding product, if `name_merchant` is omitted, or provided with empty value (`""`) or null (`null`), then it will fallback to have the value of `name` (or `name_customer`).
+      - In case of adding product, if both fields `name` and `name_customer` are omitted, or provided with empty value (`""`) or null (`null`), then those fields will fallback to have the value of `name_merchant`.
     properties:
       name:
         type: string
