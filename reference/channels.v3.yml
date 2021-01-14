@@ -61,7 +61,7 @@ info:
 
     |Type|Platform|Allowed Statuses|
     |--|--|--|
-    |`storefront`|`bigcommerce`|`active`, `inactive`, `archived`|
+    |`storefront`|`bigcommerce`|`active`, `inactive`|
     |`storefront`|**Is not** `bigcommerce` |`active`, `inactive`, `disconnected`
     |`marketing`, `marketplace`, `pos`|N/A|`connected`, `disconnected`|
 
@@ -116,12 +116,42 @@ paths:
           $ref: '#/responses/error_Resp'
       description: Returns a list of *Channels*. Will always return the BigCommerce storefront with an ID of `1`.
       parameters:
+        - type: boolean
+          in: query
+          name: available
+          enum:
+            - true
+            - false
+          description: 'Setting this query to `true` will return channels with the status of `prelaunch`, `active` , `inactive`, or `connected`. Setting this query to `false` will return channels with the status of `disconnected`.'
         - type: string
           in: query
           name: include
-          description: Channels subresources that can be included in the response
+          description: Channels subresources that can be included in the response.
           enum:
             - currencies
+        - type: string
+          in: query
+          name: name
+          description: Filter items by name.
+        - type: string
+          in: query
+          name: status
+          description: Filter items by status.
+          enum:
+            - prelaunch
+            - active
+            - inactive
+            - connected
+            - disconnected
+        - type: string
+          in: query
+          name: type
+          description: Filter items by type.
+          enum:
+            - marketplace
+            - marketing
+            - pos
+            - storefront
     post:
       tags:
         - Channels
@@ -452,8 +482,7 @@ paths:
                 1.product_id: error.path.missing
       tags:
         - Channel Listings
-      description: |-
-        Updates a listing for provided channel
+      description: Updates a listing for provided channel
     post:
       summary: Create Channel Listings
       operationId: createChannelListings
@@ -1185,7 +1214,6 @@ definitions:
     properties: {}
     title: resp_error
   error:
-    title: error
     type: object
     properties:
       status:
@@ -1201,6 +1229,7 @@ definitions:
         type: object
         additionalProperties:
           type: string
+    title: error
   channelConfigMeta_Full:
     type: object
     properties:
@@ -1255,7 +1284,6 @@ definitions:
       - inactive
       - connected
       - disconnected
-      - archived
     description: 'The status of the channel; channel `platform` and `status` must be a [valid combination](https://developer.bigcommerce.com/api-reference/cart-checkout/channels-listings-api#status).'
   channelType:
     type: string
