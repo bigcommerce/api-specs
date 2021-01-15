@@ -821,6 +821,11 @@ paths:
           in: query
           type: string
           format: ISO-4217
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'currency:in'
         - name: page
           description: Specifies the page number in a limited (paginated) list of products.
           required: false
@@ -846,30 +851,60 @@ paths:
           required: false
           in: query
           type: number
+        - type: number
+          in: query
+          name: 'price:max'
+        - type: number
+          in: query
+          name: 'price:min'
         - name: sale_price
           description: |
             Filter items by sale_price.
           required: false
           in: query
           type: number
+        - type: number
+          in: query
+          name: 'sale_price:max'
+        - type: number
+          in: query
+          name: 'sale_price:min'
         - name: retail_price
           description: |
             Filter items by retail_price.
           required: false
           in: query
           type: number
+        - type: number
+          in: query
+          name: 'retail_price:max'
+        - type: number
+          in: query
+          name: 'retail_price:min'
         - name: map_price
           description: |
             Filter items by map_price.
           required: false
           in: query
           type: number
+        - type: number
+          in: query
+          name: 'map_price:max'
+        - type: number
+          in: query
+          name: 'map_price:min'
         - name: calculated_price
           description: |
             Filter items by calculated_price.
           required: false
           in: query
           type: number
+        - type: number
+          in: query
+          name: 'calculated_price:max'
+        - type: number
+          in: query
+          name: 'calculated_price:min'
         - name: date_created
           description: |
             Filter items by date_created.
@@ -877,18 +912,33 @@ paths:
           in: query
           type: string
           format: date-time
+        - type: string
+          in: query
+          name: 'date_created:max'
+        - type: string
+          in: query
+          name: 'date_created:min'
         - name: date_modified
           description: 'Filter items by date_modified. For example `v3/catalog/products?date_last_imported:min=2018-06-15`'
           required: false
           in: query
           type: string
           format: date-time
+        - type: string
+          in: query
+          name: 'date_modified:max'
+        - type: string
+          in: query
+          name: 'date_modified:min'
         - name: sku
           description: |
             Filter items by sku.
           required: false
           in: query
           type: string
+        - type: array
+          in: query
+          name: 'sku:in'
         - name: Content-Type
           in: header
           type: string
