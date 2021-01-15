@@ -122,7 +122,7 @@ paths:
           enum:
             - true
             - false
-          description: 'Setting this query to `true` will return channels with the status of `prelaunch`, `active` , `inactive`, or `connected`. Setting this query to `false` will return channels with the status of `disconnected`.'
+          description: 'Filter items based on whether the channel is currently available for integration. Setting this query to `true` will return channels with the status of `prelaunch`, `active` , `inactive`, or `connected`. Setting this query to `false` will return channels with the status of `disconnected`.'
         - type: string
           in: query
           name: include
