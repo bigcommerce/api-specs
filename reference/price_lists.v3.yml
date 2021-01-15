@@ -117,7 +117,7 @@ paths:
           required: false
           in: query
           type: integer
-        - name: id:in
+        - name: 'id:in'
           description: Filter items by id.
           required: false
           in: query
@@ -2373,10 +2373,38 @@ paths:
       description: Fetches an array of `Price List Assignments` matching a particular Customer Group and Price List and Channel.
       operationId: GetListOfPriceListAssignments
       parameters:
+        - type: integer
+          in: query
+          name: page
+          description: Specifies the page number in a limited (paginated) list of products.
+        - type: integer
+          in: query
+          name: limit
+          description: Controls the number of items per page in a limited (paginated) list of products.
         - $ref: '#/parameters/FilterAssignmentIdParam'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'id:in'
         - $ref: '#/parameters/FilterPriceListIdParam'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'price_list_id:in'
         - $ref: '#/parameters/FilterCustomerGroupIdParam'
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'customer_group_id:in'
         - $ref: '#/parameters/FilterChannelIdParam'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'channel_id:in'
       responses:
         '200':
           description: An array of price list assignments and metadata.
