@@ -1113,7 +1113,7 @@ paths:
           default: application/json
       responses:
         '200':
-          $ref: '#/responses/CustomerAttributeCollectionResponse'
+          $ref: '#/responses/CustomerAttributesResponse'
         '422':
           description: |
             The `Attribute` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
@@ -1172,7 +1172,7 @@ paths:
           default: application/json
       responses:
         '200':
-          $ref: '#/responses/CustomerAttributeCollectionResponse'
+          $ref: '#/responses/CustomerAttributesResponse'
         '422':
           description: |
             The `Attribute` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.
