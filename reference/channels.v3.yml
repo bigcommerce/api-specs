@@ -61,7 +61,7 @@ info:
 
     |Type|Platform|Allowed Statuses|
     |--|--|--|
-    |`storefront`|`bigcommerce`|`active`, `inactive`|
+    |`storefront`|`bigcommerce`|`prelaunch`, `active`, `inactive`|
     |`storefront`|**Is not** `bigcommerce` |`active`, `inactive`, `disconnected`
     |`marketing`, `marketplace`, `pos`|N/A|`connected`, `disconnected`|
 
@@ -117,6 +117,8 @@ paths:
           in: query
           name: include
           description: Channels subresources that can be included in the response.
+          schema:
+            type: string
         - type: boolean
           in: query
           name: available
@@ -124,10 +126,14 @@ paths:
             - true
             - false
           description: 'Filter items based on whether the channel is currently available for integration. Setting this query to `true` will return channels with the status of `prelaunch`, `active` , `inactive`, or `connected`. Setting this query to `false` will return channels with the status of `disconnected`.'
+          schema:
+            type: boolean
         - type: string
           in: query
           name: name
           description: Filter items by name.
+          schema:
+            type: string
         - type: string
           in: query
           name: status
@@ -138,6 +144,8 @@ paths:
             - connected
             - disconnected
           description: Filter items by status.
+          schema:
+            type: string
         - type: string
           in: query
           name: type
@@ -147,10 +155,14 @@ paths:
             - pos
             - storefront
           description: Filter items by type.
+          schema:
+            type: string
         - type: string
           in: query
           name: platform
-          description: Filter items by platform.
+          description: 'Filter items by platform. For a list of supported platforms, see [Platform](https://developer.bigcommerce.com/api-reference/store-management/channels#platform).'
+          schema:
+            type: string
     post:
       tags:
         - Channels
@@ -1750,6 +1762,7 @@ components:
       title: channelStatus
       enum:
         - active
+        - prelaunch
         - inactive
         - connected
         - disconnected
