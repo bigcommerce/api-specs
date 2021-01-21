@@ -898,6 +898,54 @@ paths:
           type: string
           name: Accept
           default: application/json
+        - type: array
+          in: query
+          name: 'sku:in'
+        - type: array
+          in: query
+          name: 'currency:in'
+        - type: number
+          in: query
+          name: 'price:max'
+        - type: number
+          in: query
+          name: 'price:min'
+        - type: number
+          in: query
+          name: 'sale_price:max'
+        - type: number
+          in: query
+          name: 'sale_price:min'
+        - type: number
+          in: query
+          name: 'retail_price:max'
+        - type: number
+          in: query
+          name: 'retail_price:min'
+        - type: number
+          in: query
+          name: 'map_price:max'
+        - type: number
+          in: query
+          name: 'map_price:min'
+        - type: number
+          in: query
+          name: 'calculated_price:max'
+        - type: number
+          in: query
+          name: 'calculated_price:min'
+        - type: string
+          in: query
+          name: 'date_created:max'
+        - type: string
+          in: query
+          name: 'date_created:min'
+        - type: string
+          in: query
+          name: 'date_modified:max'
+        - type: string
+          in: query
+          name: 'date_modified:min'
       responses:
         '200':
           description: ''
