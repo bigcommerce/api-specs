@@ -2378,6 +2378,26 @@ paths:
         - $ref: '#/parameters/FilterPriceListIdParam'
         - $ref: '#/parameters/FilterCustomerGroupIdParam'
         - $ref: '#/parameters/FilterChannelIdParam'
+        - type: array
+          in: query
+          name: 'id:in'
+        - type: array
+          in: query
+          name: 'customer_group_id:in'
+        - type: array
+          in: query
+          name: 'price_list_id:in'
+        - type: array
+          in: query
+          name: 'channel_id:in'
+        - type: integer
+          in: query
+          name: page
+          description: Specifies the page number in a limited (paginated) list of products.
+        - type: integer
+          in: query
+          name: limit
+          description: Controls the number of items per page in a limited (paginated) list of products.
       responses:
         '200':
           description: An array of price list assignments and metadata.
