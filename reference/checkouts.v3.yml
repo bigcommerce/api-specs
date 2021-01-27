@@ -400,7 +400,7 @@ paths:
                         name: Chambray Towel
                         url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2
                         discounts:
@@ -423,7 +423,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/able-brewing-system/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2
                         discounts:
@@ -446,7 +446,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/canvas-laundry-cart/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2
                         discounts:
@@ -470,7 +470,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/gather-journal-issue-7/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2
                         discounts:
@@ -3760,7 +3760,7 @@ responses:
                   name: Chambray Towel
                   url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2
                   discounts:
@@ -3782,7 +3782,7 @@ responses:
                   name: Able Brewing System
                   url: 'http://store-url.mybigcommerce.com/all/able-brewing-system/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2
                   discounts:
@@ -3804,7 +3804,7 @@ responses:
                   name: Canvas Laundry Cart
                   url: 'http://store-url.mybigcommerce.com/all/canvas-laundry-cart/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2
                   discounts:
@@ -3828,7 +3828,7 @@ responses:
                   url: >-
                     http://store-url.mybigcommerce.com/all/gather-journal-issue-7/
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2
                   discounts:
