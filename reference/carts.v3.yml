@@ -2450,7 +2450,7 @@ definitions:
         type: string
       list_price:
         type: string
-        description: Price of the item. With or without tax depending on your stores set up.
+        description: Price of the item. With or without tax, depending on your store's setup.
   cart_PostVariant:
     type: array
     title: cart_PostVariant
