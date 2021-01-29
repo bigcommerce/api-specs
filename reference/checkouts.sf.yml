@@ -2407,10 +2407,11 @@ definitions:
   checkout_Full:
     title: checkout_Full
     type: object
+    description: ''
     properties:
       id:
         description: ''
-        type: integer
+        type: string
         format: uuid
       cart:
         $ref: '#/definitions/checkoutCart'

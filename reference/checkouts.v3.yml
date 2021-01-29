@@ -941,7 +941,7 @@ definitions:
                   type: string
                 id:
                   description: The coupon ID.
-                  type: string
+                  type: integer
                 coupon_type:
                   description: Key name to identify the type of coupon.
                   type: string
@@ -1338,7 +1338,7 @@ definitions:
                             code:
                               type: string
                             id:
-                              type: string
+                              type: integer
                             coupon_type:
                               type: string
                             discounted_amount:
@@ -1381,6 +1381,8 @@ definitions:
                             type: number
                           amount_as_integer:
                             type: number
+                    required:
+                      - quantity
               required:
                 - physical_items
                 - digital_items
