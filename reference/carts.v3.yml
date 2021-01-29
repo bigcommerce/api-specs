@@ -1793,7 +1793,7 @@ definitions:
               type: string
             list_price:
               type: string
-              description: Price of the item. With or without tax depending on your stores set up. Optional price override.
+              description: Price of the item. With or without tax, depending on your store's setup. Optional price override.
     required:
       - physical_items
       - digital_items
