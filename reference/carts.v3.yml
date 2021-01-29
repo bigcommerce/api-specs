@@ -241,7 +241,7 @@ paths:
         * Once a redirect URL has been visited, it will be invalidated and cannot be used again. 
         * If your application requires URLs to be visited more than once, consider generating a fresh one each time you need to restore a cart, and redirecting to the URL from your own application.
         * Redirect URLs can be generated only from carts created using the Server to Server Cart API. 
-        * To restore a cart that was created on the storefront, either by a shopper or the Storefront Cart API, first recreate the cart using the Server to Server Cart API.
+        * To restore a cart created on the storefront, either by a shopper or the Storefront Cart API, first recreate the cart using the Server to Server Cart API.
       parameters:
         - name: cartId
           in: path
