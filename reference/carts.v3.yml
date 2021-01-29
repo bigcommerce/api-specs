@@ -1286,7 +1286,7 @@ definitions:
                     type: string
                   name:
                     type: string
-                    description: GiftCertificate-provided name that will appear in the control panel.
+                    description: Provided name that will appear in the control panel.
                   theme:
                     type: string
                     description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
