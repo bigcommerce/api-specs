@@ -400,7 +400,7 @@ paths:
                         name: Chambray Towel
                         url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2
                         discounts:
@@ -423,7 +423,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/able-brewing-system/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2
                         discounts:
@@ -446,7 +446,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/canvas-laundry-cart/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2
                         discounts:
@@ -470,7 +470,7 @@ paths:
                         url: >-
                           http://store-url.mybigcommerce.com/all/gather-journal-issue-7/
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: >-
                           https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2
                         discounts:
@@ -967,7 +967,7 @@ definitions:
                   type: string
                 id:
                   description: The coupon ID.
-                  type: string
+                  type: integer
                 coupon_type:
                   description: Key name to identify the type of coupon.
                   type: string
@@ -1065,7 +1065,7 @@ definitions:
                               type: string
                             id:
                               description: The coupon ID.
-                              type: string
+                              type: integer
                             coupon_type:
                               description: Key name to identify the type of coupon.
                               type: string
@@ -1219,7 +1219,7 @@ definitions:
                               type: string
                             id:
                               description: The coupon ID.
-                              type: string
+                              type: integer
                             coupon_type:
                               description: Key name to identify the type of coupon.
                               type: string
@@ -1351,15 +1351,169 @@ definitions:
                       message:
                         description: Limited to 200 characters.
                         type: string
-                    required:
-                      - theme
-                      - amount
-                      - sender
-                      - recipient
-              required:
-                - physical_items
-                - digital_items
-                - gift_certificates
+                required:
+                - theme
+                - amount
+                - sender
+                - recipient
+                custom_items:
+                  description: ''
+                  type: array
+                  items:
+                    title: Item Custom
+                    type: object
+                    properties:
+                      quantity:
+                        description: ''
+                        type: number
+                        format: double
+                      id:
+                        description: The line-item ID.
+                        type: string
+                      variant_id:
+                        description: ''
+                        type: number
+                        format: double
+                      product_id:
+                        description: ''
+                        type: number
+                        format: double
+                      sku:
+                        description: ''
+                        type: string
+                      name:
+                        description: The item's product name.
+                        type: string
+                      url:
+                        description: The product URL.
+                        type: string
+                      is_taxable:
+                        description: ''
+                        type: boolean
+                      image_url:
+                        description: ''
+                        type: string
+                      discounts:
+                        description: ''
+                        type: array
+                        items:
+                          title: Applied Discount
+                          type: object
+                          properties:
+                            id:
+                              description: ID of the applied discount.
+                              type: number
+                              format: double
+                            discounted_amount:
+                              description: >-
+                                The discounted amount applied within a given
+                                context.
+                              type: number
+                              format: double
+                      coupons:
+                        description: ''
+                        type: array
+                        items:
+                          title: Applied Coupon
+                          type: object
+                          properties:
+                            code:
+                              description: the coupon code
+                              type: string
+                            id:
+                              description: The coupon ID.
+                              type: integer
+                            coupon_type:
+                              description: Key name to identify the type of coupon.
+                              type: string
+                            discounted_amount:
+                              description: >-
+                                The discounted amount applied within a given
+                                context.
+                              type: number
+                              format: double
+                          required:
+                            - code
+                      discount_amount:
+                        description: The total value of all discounts applied to this item.
+                        type: number
+                        format: double
+                      coupon_amount:
+                        description: The total value of all coupons applied to this item.
+                        type: number
+                        format: double
+                      list_price:
+                        description: >-
+                          Item's list price, as quoted by the
+                          manufacturer/distributor.
+                        type: number
+                        format: double
+                      sale_price:
+                        description: >-
+                          Item's price after all discounts are applied. (The
+                          final price before tax calculation.)
+                        type: number
+                        format: double
+                      extended_list_price:
+                        description: Item's list price multiplied by the quantity.
+                        type: number
+                        format: double
+                      extended_sale_price:
+                        description: Item's sale price multiplied by the quantity.
+                        type: number
+                        format: double
+                      options:
+                        description: The list of selected options for this product.
+                        type: array
+                        items:
+                          title: Product Option
+                          type: object
+                          properties:
+                            name:
+                              description: >-
+                                The product option name. For example, Color or
+                                Size
+                              type: string
+                            name_id:
+                              description: The product option identifier.
+                              type: number
+                              format: double
+                            value:
+                              description: >-
+                                The product option value. For example, Red or
+                                Medium
+                              type: string
+                            value_id:
+                              description: The product option value identifier.
+                              type: number
+                              format: double
+                      is_require_shipping:
+                        description: ''
+                        type: boolean
+                      gift_wrapping:
+                        title: Gift Wrapping
+                        type: object
+                        properties:
+                          name:
+                            description: ''
+                            type: string
+                          message:
+                            description: ''
+                            type: string
+                          amount:
+                            description: ''
+                            type: number
+                            format: double
+                          amount_as_integer:
+                            description: ''
+                            type: number
+                            format: double
+                     required:
+                      - quantity
+                  required:
+            - physical_items
+            - digital_items
+            - gift_certificates
           created_time:
             description: Time when the cart was created.
             type: string
@@ -1831,7 +1985,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: integer
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -1981,7 +2135,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: integer
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -2114,6 +2268,156 @@ definitions:
                   - amount
                   - sender
                   - recipient
+             custom_items:
+              description: ''
+              type: array
+              items:
+                title: Item Custom
+                type: object
+                properties:
+                  quantity:
+                    description: ''
+                    type: number
+                    format: double
+                  id:
+                    description: The line-item ID.
+                    type: string
+                  variant_id:
+                    description: ''
+                    type: number
+                    format: double
+                  product_id:
+                    description: ''
+                    type: number
+                    format: double
+                  sku:
+                    description: ''
+                    type: string
+                  name:
+                    description: The item's product name.
+                    type: string
+                  url:
+                    description: The product URL.
+                    type: string
+                  is_taxable:
+                    description: ''
+                    type: boolean
+                  image_url:
+                    description: ''
+                    type: string
+                  discounts:
+                    description: ''
+                    type: array
+                    items:
+                      title: Applied Discount
+                      type: object
+                      properties:
+                        id:
+                          description: ID of the applied discount.
+                          type: number
+                          format: double
+                        discounted_amount:
+                          description: >-
+                            The discounted amount applied within a given
+                            context.
+                          type: number
+                          format: double
+                  coupons:
+                    description: ''
+                    type: array
+                    items:
+                      title: Applied Coupon
+                      type: object
+                      properties:
+                        code:
+                          description: the coupon code
+                          type: string
+                        id:
+                          description: The coupon ID.
+                          type: integer
+                        coupon_type:
+                          description: Key name to identify the type of coupon.
+                          type: string
+                        discounted_amount:
+                          description: >-
+                            The discounted amount applied within a given
+                            context.
+                          type: number
+                          format: double
+                      required:
+                        - code
+                  discount_amount:
+                    description: The total value of all discounts applied to this item.
+                    type: number
+                    format: double
+                  coupon_amount:
+                    description: The total value of all coupons applied to this item.
+                    type: number
+                    format: double
+                  list_price:
+                    description: >-
+                      Item's list price, as quoted by the
+                      manufacturer/distributor.
+                    type: number
+                    format: double
+                  sale_price:
+                    description: >-
+                      Item's price after all discounts are applied. (The final
+                      price before tax calculation.)
+                    type: number
+                    format: double
+                  extended_list_price:
+                    description: Item's list price multiplied by the quantity.
+                    type: number
+                    format: double
+                  extended_sale_price:
+                    description: Item's sale price multiplied by the quantity.
+                    type: number
+                    format: double
+                  options:
+                    description: The list of selected options for this product.
+                    type: array
+                    items:
+                      title: Product Option
+                      type: object
+                      properties:
+                        name:
+                          description: 'The product option name. For example, Color or Size'
+                          type: string
+                        name_id:
+                          description: The product option identifier.
+                          type: number
+                          format: double
+                        value:
+                          description: 'The product option value. For example, Red or Medium'
+                          type: string
+                        value_id:
+                          description: The product option value identifier.
+                          type: number
+                          format: double
+                  is_require_shipping:
+                    description: ''
+                    type: boolean
+                  gift_wrapping:
+                    title: Gift Wrapping
+                    type: object
+                    properties:
+                      name:
+                        description: ''
+                        type: string
+                      message:
+                        description: ''
+                        type: string
+                      amount:
+                        description: ''
+                        type: number
+                        format: double
+                      amount_as_integer:
+                        description: ''
+                        type: number
+                        format: double 
+                    required:
+                    - quantity
           required:
             - physical_items
             - digital_items
@@ -2244,7 +2548,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: integer
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2388,7 +2692,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: integer
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2519,6 +2823,156 @@ definitions:
       - physical_items
       - digital_items
       - gift_certificates
+     custom_items:
+          description: ''
+          type: array
+          items:
+          title: Item Custom
+           type: object
+            properties:
+           quantity:
+              description: ''
+              type: number
+              format: double
+            id:
+              description: The line-item ID.
+              type: string
+            variant_id:
+              description: ''
+              type: number
+              format: double
+            product_id:
+              description: ''
+              type: number
+              format: double
+            sku:
+              description: ''
+              type: string
+            name:
+              description: The item's product name.
+              type: string
+            url:
+              description: The product URL.
+              type: string
+            is_taxable:
+              description: ''
+              type: boolean
+            image_url:
+              description: ''
+              type: string
+            discounts:
+              description: ''
+              type: array
+              items:
+              title: Applied Discount
+                type: object
+                properties:
+               id:
+                 description: ID of the applied discount.
+                 type: number
+                 format: double
+               discounted_amount:
+                 description: >-
+                 The discounted amount applied within a given
+                 context.
+                 type: number
+                 format: double
+               coupons:
+                 description: ''
+                 type: array
+                    items:
+                      title: Applied Coupon
+                      type: object
+                      properties:
+                        code:
+                          description: the coupon code
+                          type: string
+                        id:
+                          description: The coupon ID.
+                          type: integer
+                        coupon_type:
+                          description: Key name to identify the type of coupon.
+                          type: string
+                        discounted_amount:
+                          description: >-
+                            The discounted amount applied within a given
+                            context.
+                          type: number
+                          format: double
+                      required:
+                        - code
+               discount_amount:
+                 description: The total value of all discounts applied to this item.
+                 type: number
+                 format: double
+               coupon_amount:
+                 description: The total value of all coupons applied to this item.
+                 type: number
+                 format: double
+               list_price:
+                 description: >-
+                  Item's list price, as quoted by the
+                  manufacturer/distributor.
+                 type: number
+                 format: double
+               sale_price:
+                 description: >-
+                 Item's price after all discounts are applied. (The final
+                 price before tax calculation.)
+                 type: number
+                 format: double
+               extended_list_price:
+                 description: Item's list price multiplied by the quantity.
+                 type: number
+                 format: double
+               extended_sale_price:
+                 description: Item's sale price multiplied by the quantity.
+                 type: number
+                 format: double
+                  options:
+                    description: The list of selected options for this product.
+                    type: array
+                    items:
+                      title: Product Option
+                      type: object
+                      properties:
+                      name:
+                          description: 'The product option name. For example, Color or Size'
+                          type: string
+                      name_id:
+                          description: The product option identifier.
+                          type: number
+                          format: double
+                      value:
+                          description: 'The product option value. For example, Red or Medium'
+                          type: string
+                      value_id:
+                          description: The product option value identifier.
+                          type: number
+                          format: double
+                 is_require_shipping:
+                    description: ''
+                    type: boolean
+                 gift_wrapping:
+                    title: Gift Wrapping
+                    type: object
+                    properties:
+                      name:
+                        description: ''
+                        type: string
+                      message:
+                        description: ''
+                        type: string
+                      amount:
+                        description: ''
+                        type: number
+                        format: double
+                      amount_as_integer:
+                        description: ''
+                        type: number
+                        format: double 
+                    required:
+                     - quantity
   ItemPhysical:
     title: Item Physical
     type: object
@@ -2580,7 +3034,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: integer
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2757,7 +3211,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: integer
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2879,6 +3333,183 @@ definitions:
       - amount
       - sender
       - recipient
+    ItemCustom:
+    title: Item Custom
+    type: object
+    properties:
+      quantity:
+        description: ''
+        type: number
+        format: double
+      id:
+        description: The line-item ID.
+        type: string
+      variant_id:
+        description: ''
+        type: number
+        format: double
+      product_id:
+        description: ''
+        type: number
+        format: double
+      sku:
+        description: ''
+        type: string
+      name:
+        description: The item's product name.
+        type: string
+      url:
+        description: The product URL.
+        type: string
+      is_taxable:
+        description: ''
+        type: boolean
+      image_url:
+        description: ''
+        type: string
+      discounts:
+        description: ''
+        type: array
+        items:
+          title: Applied Discount
+          type: object
+          properties:
+            id:
+              description: ID of the applied discount.
+              type: number
+              format: double
+            discounted_amount:
+              description: The discounted amount applied within a given context.
+              type: number
+              format: double
+      coupons:
+        description: ''
+        type: array
+        items:
+          title: Applied Coupon
+          type: object
+          properties:
+            code:
+              description: the coupon code
+              type: string
+            id:
+              description: The coupon ID.
+              type: integer
+            coupon_type:
+              description: Key name to identify the type of coupon.
+              type: string
+            discounted_amount:
+              description: The discounted amount applied within a given context.
+              type: number
+              format: double
+          required:
+            - code
+      discount_amount:
+        description: The total value of all discounts applied to this item.
+        type: number
+        format: double
+      coupon_amount:
+        description: The total value of all coupons applied to this item.
+        type: number
+        format: double
+      list_price:
+        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+        type: number
+        format: double
+      sale_price:
+        description: >-
+          Item's price after all discounts are applied. (The final price before
+          tax calculation.)
+        type: number
+        format: double
+      extended_list_price:
+        description: Item's list price multiplied by the quantity.
+        type: number
+        format: double
+      extended_sale_price:
+        description: Item's sale price multiplied by the quantity.
+        type: number
+        format: double
+      options:
+        description: The list of selected options for this product.
+        type: array
+        items:
+          title: Product Option
+          type: object
+          properties:
+            name:
+              description: 'The product option name. For example, Color or Size'
+              type: string
+            name_id:
+              description: The product option identifier.
+              type: number
+              format: double
+            value:
+              description: 'The product option value. For example, Red or Medium'
+              type: string
+            value_id:
+              description: The product option value identifier.
+              type: number
+              format: double
+      is_require_shipping:
+        description: ''
+        type: boolean
+      gift_wrapping:
+        title: Gift Wrapping
+        type: object
+        properties:
+          name:
+            description: ''
+            type: string
+          message:
+            description: ''
+            type: string
+          amount:
+            description: ''
+            type: number
+            format: double
+          amount_as_integer:
+            description: ''
+            type: number
+            format: double
+    required:
+      - quantity
+  ProductOption:
+    title: Product Option
+    type: object
+    properties:
+      name:
+        description: 'The product option name. For example, Color or Size'
+        type: string
+      name_id:
+        description: The product option identifier.
+        type: number
+        format: double
+      value:
+        description: 'The product option value. For example, Red or Medium'
+        type: string
+      value_id:
+        description: The product option value identifier.
+        type: number
+        format: double
+  GiftWrapping:
+    title: Gift Wrapping
+    type: object
+    properties:
+      name:
+        description: ''
+        type: string
+      message:
+        description: ''
+        type: string
+      amount:
+        description: ''
+        type: number
+        format: double
+      amount_as_integer:
+        description: ''
+        type: number
+        format: double
   ContactEntity:
     title: Contact Entity
     type: object
@@ -3547,7 +4178,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: integer
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -3760,7 +4391,7 @@ responses:
                   name: Chambray Towel
                   url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2
                   discounts:
@@ -3782,7 +4413,7 @@ responses:
                   name: Able Brewing System
                   url: 'http://store-url.mybigcommerce.com/all/able-brewing-system/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2
                   discounts:
@@ -3804,7 +4435,7 @@ responses:
                   name: Canvas Laundry Cart
                   url: 'http://store-url.mybigcommerce.com/all/canvas-laundry-cart/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2
                   discounts:
@@ -3828,7 +4459,7 @@ responses:
                   url: >-
                     http://store-url.mybigcommerce.com/all/gather-journal-issue-7/
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: >-
                     https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2
                   discounts:
