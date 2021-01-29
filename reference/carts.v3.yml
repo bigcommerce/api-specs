@@ -1227,7 +1227,7 @@ definitions:
                         description: The total value of all coupons applied to this item.
                       list_price:
                         type: number
-                        description: 'Item''s list price, as quoted by the manufacturer/distributor.'
+                        description: Item's list price, as quoted by the manufacturer/distributor.
                       sale_price:
                         type: number
                         description: Item's price after all discounts are applied. (The final price before tax calculation.)
