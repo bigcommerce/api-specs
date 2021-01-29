@@ -31,7 +31,7 @@ paths:
         * If a product has modifiers, omit the `variant_id` and instead use the `option_selections` array to describe both the **variant** and the **modifier** selections.
         * Redirect URLs can only be generated from carts created using the **Server-to-Server Carts API**. 
         * To get cart `redirect_urls` in the response, append the following query parameter to the request URL: `include=redirect_urls`.
-        * To restore a cart that was created by a shopper or via the Storefront Cart API, first recreate the cart using the Server to Server Cart API.
+        * To restore a cart created by a shopper or via the Storefront Cart API, first recreate the cart using the Server to Server Cart API.
       parameters:
         - name: cartData
           in: body
