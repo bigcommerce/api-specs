@@ -2310,7 +2310,7 @@ definitions:
                 - coupon_code
       discount_amount:
         type: number
-        description: The total value of all discounts applied to this item. This includes coupons and cart level discounts
+        description: The total value of all discounts applied to this item. This includes coupons and cart level discounts.
         example: 4
       coupon_amount:
         type: number
