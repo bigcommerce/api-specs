@@ -2124,7 +2124,7 @@ definitions:
                             - 4
                         discountAmount:
                           type: integer
-                          description: The amount of the discount based on the coupoon. For example 3 percent off will show a 3.
+                          description: The amount of the discount based on the coupon. For example, 3 percent off will show a 3.
                           example: 3
                         expiresDate:
                           type: integer
