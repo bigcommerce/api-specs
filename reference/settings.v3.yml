@@ -53,9 +53,9 @@ paths:
                 example-1:
                   value:
                     data:
-                      down_for_maintenance_message: string
-                      prelaunch_message: string
-                      prelaunch_password: string
+                      down_for_maintenance_message: Down for maintenance
+                      prelaunch_message: Prelaunch
+                      prelaunch_password: mezt1f77gd
                     meta: {}
         '422':
           description: The request is missing 1 or more required fields. See the response for more details.
@@ -78,9 +78,8 @@ paths:
             examples:
               example-1:
                 value:
-                  down_for_maintenance_message: string
-                  prelaunch_message: string
-                  prelaunch_password: string
+                  down_for_maintenance_message: Down for maintenance
+                  prelaunch_message: Coming soon
       responses:
         '200':
           description: ''
@@ -97,9 +96,9 @@ paths:
                 example-1:
                   value:
                     data:
-                      down_for_maintenance_message: string
-                      prelaunch_message: string
-                      prelaunch_password: string
+                      down_for_maintenance_message: Down for maintenance
+                      prelaunch_message: Coming soon
+                      prelaunch_password: mezt1f77gd
                     meta: {}
       parameters:
         - $ref: '#/components/parameters/ChannelIdParam'
@@ -799,6 +798,7 @@ components:
           type: string
         prelaunch_password:
           type: string
+          description: A read-only value representing the auto-generated storefront password.
     ProductSortEnumValues:
       type: string
       title: ProductSortEnumValues
