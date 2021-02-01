@@ -554,7 +554,7 @@ paths:
       summary: Get Available Filters
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
@@ -566,6 +566,39 @@ paths:
                       $ref: '#/components/schemas/AvailableFilter'
                   meta:
                     type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - id: Y2F0Zooo123=
+                        name: Category
+                        product_count: 7
+                        type: category
+                      - id: YnJh123=
+                        name: Brand
+                        product_count: 8
+                        type: brand
+                      - id: cmF0a123
+                        name: Rating
+                        product_count: 1
+                        type: rating
+                      - id: cHJp123=
+                        name: Price
+                        price_range_max: 300.99
+                        price_range_min: 6.75
+                        type: price
+                      - id: U2l123==
+                        name: Size
+                        product_count: 3
+                        type: product
+                      - id: Q29s123=
+                        name: Color
+                        product_count: 2
+                        type: product
+                      - id: Ym9123==
+                        name: Other
+                        type: other
+                    meta: {}
       operationId: getAvailable
       description: 'Returns a list of filters available to power [Product Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings).'
       parameters:
