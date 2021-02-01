@@ -817,11 +817,13 @@ components:
         default_product_sort:
           $ref: '#/components/schemas/ProductSortEnumValues'
         content_product_sort:
-          type: string
+          $ref: '#/components/schemas/ContentSortEnumValues'
         product_filtering_enabled:
           type: boolean
+          description: Controls whether Product Filtering feature is active on the storefront. Only supports manipulation on a global level.
         search_suggest:
           type: boolean
+      title: ''
     StoreProfile:
       description: 'The basic profile settings for a store, used to give the shopper information about the business from which they are purchasing.'
       type: object
@@ -856,7 +858,7 @@ components:
         - highestprice
         - lowestprice
         - bestreviewed
-      description: The available sorts for PLP pages
+      description: The available sorts for PLP pages.
     StorefrontSecuritySettings:
       title: StorefrontSecuritySettings
       type: object
