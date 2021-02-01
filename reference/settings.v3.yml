@@ -400,7 +400,7 @@ paths:
       summary: Get Enabled Filters
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
@@ -410,6 +410,44 @@ paths:
                     $ref: '#/components/schemas/ConfiguredFilters'
                   meta:
                     type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - collapsed_by_default: false
+                        display_name: Size
+                        display_product_count: true
+                        id: U123=
+                        is_enabled: true
+                        items_to_show: 10
+                        sort_by: alpha
+                        type: product
+                      - collapsed_by_default: false
+                        display_name: Brand
+                        display_product_count: true
+                        id: Y123=
+                        is_enabled: true
+                        items_to_show: 12
+                        sort_by: alpha
+                        type: brand
+                      - collapsed_by_default: false
+                        display_name: Color
+                        display_product_count: true
+                        id: Q123=
+                        is_enabled: true
+                        items_to_show: 10
+                        sort_by: alpha
+                        type: product
+                      - collapsed_by_default: true
+                        display_name: Ships for Free
+                        display_product_count: false
+                        id: Y456=
+                        is_enabled: true
+                        show_free_shipping_filter: true
+                        show_in_stock_filter: true
+                        show_is_featured_filter: true
+                        type: other
+                    meta: {}
       operationId: getEnabled
       description: 'Returns a list of enabled default [Product Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings) filters. These filters will be used if a store does not have contextual overrides.'
       tags:
@@ -419,13 +457,96 @@ paths:
       operationId: updateEnabled
       responses:
         '200':
-          description: OK
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/ConfiguredFilters'
+                  meta:
+                    type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      - collapsed_by_default: false
+                        display_name: Size
+                        display_product_count: true
+                        id: U123==
+                        is_enabled: true
+                        items_to_show: 12
+                        sort_by: alpha
+                        type: product
+                      - collapsed_by_default: false
+                        display_name: Brand
+                        display_product_count: true
+                        id: Y123=
+                        is_enabled: true
+                        items_to_show: 10
+                        sort_by: alpha
+                        type: brand
+                      - collapsed_by_default: false
+                        display_name: Color
+                        display_product_count: true
+                        id: Q123=
+                        is_enabled: true
+                        items_to_show: 10
+                        sort_by: alpha
+                        type: product
+                      - collapsed_by_default: true
+                        display_name: Ships for Free
+                        display_product_count: true
+                        id: Y456=
+                        is_enabled: true
+                        show_free_shipping_filter: true
+                        show_in_stock_filter: true
+                        show_is_featured_filter: true
+                        type: other
+                    meta: {}
       description: 'Updates enabled default [Product Filtering](https://support.bigcommerce.com/s/article/Product-Filtering-Settings) filters.'
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/ConfiguredFilters'
+            examples:
+              example-1:
+                value:
+                  - collapsed_by_default: false
+                    display_name: Size
+                    display_product_count: true
+                    id: U123=
+                    is_enabled: true
+                    items_to_show: 12
+                    sort_by: alpha
+                    type: product
+                  - collapsed_by_default: false
+                    display_name: Brand
+                    display_product_count: true
+                    id: Y123=
+                    is_enabled: true
+                    items_to_show: 10
+                    sort_by: alpha
+                    type: brand
+                  - collapsed_by_default: false
+                    display_name: Color
+                    display_product_count: true
+                    id: Q123=
+                    is_enabled: true
+                    items_to_show: 10
+                    sort_by: alpha
+                    type: product
+                  - collapsed_by_default: true
+                    display_name: Ships for Free
+                    display_product_count: true
+                    id: Y456=
+                    is_enabled: true
+                    show_free_shipping_filter: true
+                    show_in_stock_filter: true
+                    show_is_featured_filter: true
+                    type: other
       tags:
         - Search Filters
   /settings/search/filters/available:
