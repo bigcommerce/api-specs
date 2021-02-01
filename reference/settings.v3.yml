@@ -347,7 +347,7 @@ paths:
       summary: Get Search Settings
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
@@ -361,7 +361,10 @@ paths:
                 example-1:
                   value:
                     data:
+                      content_product_sort: relevance
                       default_product_sort: bestselling
+                      product_filtering_enabled: true
+                      search_suggest: true
                     meta: {}
         '422':
           description: Provided settings could not be applied for some reason - detailed errors in the response.
@@ -382,6 +385,13 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/StorefrontSearchSettings'
+            examples:
+              example-1:
+                value:
+                  content_product_sort: relevance
+                  default_product_sort: featured
+                  product_filtering_enabled: true
+                  search_suggest: true
       responses:
         '200':
           description: OK
@@ -394,6 +404,15 @@ paths:
                     $ref: '#/components/schemas/StorefrontSearchSettings'
                   meta:
                     type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      content_product_sort: relevance
+                      default_product_sort: featured
+                      product_filtering_enabled: true
+                      search_suggest: true
+                    meta: {}
       parameters:
         - $ref: '#/components/parameters/ChannelIdParam'
       tags:
@@ -797,6 +816,12 @@ components:
       properties:
         default_product_sort:
           $ref: '#/components/schemas/ProductSortEnumValues'
+        content_product_sort:
+          type: string
+        product_filtering_enabled:
+          type: boolean
+        search_suggest:
+          type: boolean
     StoreProfile:
       description: 'The basic profile settings for a store, used to give the shopper information about the business from which they are purchasing.'
       type: object
