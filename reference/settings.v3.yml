@@ -39,7 +39,7 @@ paths:
       summary: Get Status
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
@@ -53,13 +53,12 @@ paths:
                 example-1:
                   value:
                     data:
-                      status: prelaunch
                       down_for_maintenance_message: string
                       prelaunch_message: string
                       prelaunch_password: string
                     meta: {}
         '422':
-          description: Provided settings could not be applied for some reason - detailed errors in the response.
+          description: The request is missing 1 or more required fields. See the response for more details.
           content:
             application/json:
               schema:
@@ -76,9 +75,15 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/StorefrontStatus'
+            examples:
+              example-1:
+                value:
+                  down_for_maintenance_message: string
+                  prelaunch_message: string
+                  prelaunch_password: string
       responses:
         '200':
-          description: OK
+          description: ''
           content:
             application/json:
               schema:
@@ -88,6 +93,14 @@ paths:
                     $ref: '#/components/schemas/StorefrontStatus'
                   meta:
                     type: object
+              examples:
+                example-1:
+                  value:
+                    data:
+                      down_for_maintenance_message: string
+                      prelaunch_message: string
+                      prelaunch_password: string
+                    meta: {}
       parameters:
         - $ref: '#/components/parameters/ChannelIdParam'
       tags:
@@ -98,7 +111,7 @@ paths:
       operationId: delete-settings-storefront-status
       responses:
         '200':
-          description: OK
+          description: ''
       parameters:
         - $ref: '#/components/parameters/RequiredChannelIdParamForDelete'
         - $ref: '#/components/parameters/KeysToDelete'
