@@ -177,6 +177,10 @@ paths:
           type: string
           default: application/json
           name: Content-Type
+        - type: integer
+          in: query
+          name: channel_id
+          description: Filter items by channel_id.
       responses:
         '200':
           $ref: '#/responses/WidgetTemplateCollection_Resp'
@@ -355,12 +359,12 @@ paths:
           type: integer
         - in: query
           name: widget_template_kind
-          description: The kind of widget template.
+          description: Filter items by widget_template_kind.
           type: string
           required: false
         - in: query
           name: widget_template_uuid
-          description: The identifier for a specific widget template.
+          description: Filter items by widget_template_uuid.
           type: string
           format: uuid
           required: false
@@ -375,9 +379,14 @@ paths:
         - in: query
           name: name
           type: string
-          description: |-
-            The URL encoded name of the widget.
-            Use `name:in` to pass in comma-separated list of widget names. **Ex**: `/widgets?name:in=test-widget-name,header%20images`
+          description: Filter items by the URL encoded name of the widget.
+        - type: array
+          in: query
+          name: 'name:in'
+        - type: integer
+          in: query
+          name: channel_id
+          description: Filter items by channel_id.
       responses:
         '200':
           $ref: '#/responses/WidgetCollection_Resp'
