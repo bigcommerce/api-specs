@@ -359,12 +359,12 @@ paths:
           type: integer
         - in: query
           name: widget_template_kind
-          description: Filter items by widget_template_kind.
+          description: The kind of widget template.
           type: string
           required: false
         - in: query
           name: widget_template_uuid
-          description: Filter items by widget_template_uuid.
+          description: The identifier for a specific widget template.
           type: string
           format: uuid
           required: false
