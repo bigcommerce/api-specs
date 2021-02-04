@@ -578,7 +578,7 @@ paths:
         - Theme Configurations
       summary: Get Theme Configuration
       description: |-
-        Returns a list of configurations related to a theme.
+        Returns a list of theme's configurations.
 
         **Usage Notes**:
         * At least one filter must be provided.
