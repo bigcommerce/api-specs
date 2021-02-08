@@ -986,16 +986,16 @@ paths:
           type: number
           name: limit
           description: Items count per page. `limit=50`
-        - name: 'name:in'
+        - name: 'name'
           in: query
           required: false
           type: string
-          description: Filter items by first_name and last_name.
+          description: Filter items by customer attribute name `name=Date+Joined`.
         - name: 'name:like'
           in: query
           required: false
           type: string
-          description: Filter items by substring in first_name and last_name (%substring% - use with % symbols).
+          description: Filter items by substring in customer attribute name. `name:like=join`
         - name: type
           in: query
           required: false
