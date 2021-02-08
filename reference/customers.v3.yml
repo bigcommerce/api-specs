@@ -1000,7 +1000,7 @@ paths:
           in: query
           required: false
           type: string
-          description: The type of the customer attrribute.
+          description: The type of the customer attribute.
         - name: date_created
           in: query
           required: false
@@ -3503,7 +3503,7 @@ parameters:
     name: type
     in: query
     type: string
-    description: The type of the customer attrribute. `type=string`
+    description: The type of the customer attribute. `type=string`
     enum:
       - string
       - number
