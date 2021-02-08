@@ -990,7 +990,7 @@ paths:
           in: query
           required: false
           type: string
-          description: Filter items by customer attribute name `name=Date+Joined`.
+          description: Filter items by customer attribute name `name=Date+Joined`
         - name: 'name:like'
           in: query
           required: false
@@ -1006,37 +1006,37 @@ paths:
           required: false
           type: string
           format: date-time
-          description: Filter items by date_created.
+          description: Filter items by `date_created`. `date_created=2021-01-07T20:28:16Z`
         - name: 'date_created:max'
           in: query
           required: false
           type: string
           format: date-time
-          description: Filter items by date_created.
+          description: Filter items by maximum `date_created`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`
         - name: 'date_created:min'
           in: query
           required: false
           type: string
           format: date-time
-          description: Filter items by date_created.
+          description: Filter items by minimum `date_created`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`
         - name: date_modified
           in: query
           required: false
           type: string
           format: date-time
-          description: Filter items by date_modified.
+          description: Filter items by `date_modified`.
         - name: 'date_modified:max'
           in: query
           required: false
           type: string
           format: date-time
-          description: Filter items by date_modified.
+          description: Filter items by maximum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`
         - name: 'date_modified:min'
           in: query
           required: false
           type: string
           format: date-time
-          description: Filter items by date_modified.
+          description: Filter items by minimum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`
         - name: Accept
           in: header
           type: string
@@ -1255,47 +1255,47 @@ paths:
         - in: query
           type: array
           name: 'customer_id:in'
-          description: 'The ID of the customer. `customer_id:in=23,24,55`'
+          description: 'Filter items by the customer ID. `customer_id:in=23,24,55`'
           items:
             type: integer
         - name: 'attribute_id:in'
           in: query
           type: array
-          description: 'The attribute ID for which we should return values. `attribute_id:in=1,2`'
+          description: 'Filter items by the attribute ID. `attribute_id:in=1,2`'
           items:
             type: integer
         - name: name
           in: query
           type: string
-          description: The attribute name for which we should return values. `name=age`
+          description: Filter items by attribute name. `name=age`
         - name: date_created
           in: query
           type: string
-          description: 'Filter items by date_created. `date_created=2018-09-05T13:43:54`'
+          description: 'Filter items by `date_created`. `date_created=2018-09-05T13:43:54`'
           format: date-time
         - name: 'date_created:max'
           in: query
           type: string
-          description: 'Filter items by maximum date_created. `date_created:max=2018-09-10`'
+          description: 'Filter items by maximum `date_created`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
         - name: 'date_created:min'
           in: query
           type: string
-          description: 'Filter items by date_created. `date_created:min=2018-09-05`'
+          description: 'Filter items by minimum `date_created`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
           format: date-time
         - name: date_modified
           in: query
           type: string
-          description: 'Filter items by date_modified. `date_modified=2018-09-05T13:45:03`'
+          description: 'Filter items by `date_modified`. `date_modified=2018-09-05T13:45:03`'
           format: date-time
         - name: 'date_modified:max'
           in: query
           type: string
           format: date-time
-          description: 'Filter items by maximum date_modified `date_modified:max=2018-09-05T13:45:03` or `date_modified:max=2019-09-04`'
+          description: 'Filter items by maximum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
         - name: 'date_modified:min'
           in: query
           type: string
-          description: 'Filter items by mininum date_modified. `date_modified:min=2019-09-04T:00:00:00` or `date_modified:min=2019-09-04`'
+          description: 'Filter items by mininum `date_modified`. ISO 8601 full-date is required, ISO 8601 full-time is not required. UNIX timestamp also accepted. `date_created=2021-01-07` or `date_created=1610051296000`'
       responses:
         '200':
           $ref: '#/responses/CustomerAttributeValueCollectionResponse'
@@ -1486,20 +1486,20 @@ paths:
         - in: query
           type: integer
           name: customer_id
-          description: The ID of the *Customer*.
+          description: Filter by the customer's ID.
         - name: address_id
           in: query
           type: integer
-          description: The ID of the *Customer Address*.
+          description: Filter by the ID of the customer address.
         - name: field_name
           in: query
           type: string
-          description: The fields name.
+          description: Filter by field name.
         - name: field_type
           in: query
           type: string
           description: |-
-            The field type.
+            Filter by the field type.
              * `checkboxes` - checkboxes field
              * `date` - date field
              * `multiline` - multiline text field
@@ -1663,7 +1663,7 @@ paths:
                   - black
   '/customers/{customerId}/consent':
     get:
-      description: Gets the customer consent.
+      description: Gets the status of a customer's consent to allow data collection by cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
       tags:
         - Customer Consent
@@ -1674,7 +1674,7 @@ paths:
           in: path
           required: true
           type: string
-          description: ''
+          description: 'Customer ID'
       responses:
         '200':
           $ref: '#/responses/consent_Resp'
@@ -1691,7 +1691,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResponse'
     put:
-      description: Updates the customer consent.
+      description: Updates the status of a customer's consent to allow data collection by cookies and scripts while shopping on a storefront.
       summary: Update Customer Consent
       tags:
         - Customer Consent
