@@ -71,7 +71,7 @@ paths:
           in: query
           type: array
           description: |-
-            Filter items by id.
+            Filter items by ID.
             `id:in=4,5,6`
           items:
             type: integer
@@ -249,7 +249,7 @@ paths:
                   minLength: 0
                   maxLength: 255
                 customer_group_id:
-                  description: Id of the group which this customer belongs to.
+                  description: ID of the group which this customer belongs to.
                   type: integer
                   format: int32
                 addresses:
@@ -489,7 +489,7 @@ paths:
                   minLength: 0
                   maxLength: 255
                 customer_group_id:
-                  description: Id of the group which this customer belongs to.
+                  description: ID of the group which this customer belongs to.
                   type: integer
                   format: int32
                 id:
@@ -584,7 +584,7 @@ paths:
           items:
             type: integer
           description: |-
-            Filter items by id.
+            Filter items by ID.
             `id:in=4,5,6`
           required: true
       responses:
@@ -629,7 +629,7 @@ paths:
         - in: query
           type: array
           name: 'customer_id:in'
-          description: 'The ID of the customer. `customer_id:in=23,24,55`'
+          description: 'Filter by the ID of the customer. Also accepts comma seperated IDs to filter for multiple customers. `customer_id:in=23,24,55`'
           items:
             type: integer
         - name: include
@@ -645,7 +645,7 @@ paths:
           in: query
           type: array
           description: |-
-            Filter items by id.
+            Filter items by ID.
             `id:in=4,5,6`
           items:
             type: integer
@@ -961,7 +961,7 @@ paths:
           type: array
           required: true
           description: |-
-            Filter items by id.
+            Filter items by ID.
             `id:in=4,5,6`
           items:
             type: integer
@@ -1214,7 +1214,7 @@ paths:
           items:
             type: integer
             format: int32
-          description: Filter items by id.
+          description: Filter items by ID.
         - name: Accept
           in: header
           type: string
@@ -1261,7 +1261,7 @@ paths:
         - name: 'attribute_id:in'
           in: query
           type: array
-          description: 'The attribute id for which we should return values. `attribute_id:in=1,2`'
+          description: 'The attribute ID for which we should return values. `attribute_id:in=1,2`'
           items:
             type: integer
         - name: name
@@ -1419,7 +1419,7 @@ paths:
             type: integer
             format: int32
           description: |-
-            Filter items by id.
+            Filter items by ID.
             `id:in=4,5,6`
         - name: Accept
           in: header
@@ -1897,7 +1897,7 @@ definitions:
         minLength: 0
         maxLength: 255
       customer_group_id:
-        description: Id of the group which this customer belongs to.
+        description: ID of the group which this customer belongs to.
         type: integer
         format: int32
       id:
@@ -2239,7 +2239,7 @@ definitions:
         minLength: 0
         maxLength: 255
       customer_group_id:
-        description: Id of the group which this customer belongs to.
+        description: ID of the group which this customer belongs to.
         type: integer
         format: int32
       addresses:
@@ -2401,7 +2401,7 @@ definitions:
         minLength: 0
         maxLength: 255
       customer_group_id:
-        description: Id of the group which this customer belongs to.
+        description: ID of the group which this customer belongs to.
         type: integer
         format: int32
       id:
@@ -3290,7 +3290,7 @@ definitions:
         minLength: 0
         maxLength: 255
       customer_group_id:
-        description: Id of the group which this customer belongs to.
+        description: ID of the group which this customer belongs to.
         type: integer
         format: int32
   customerAttributes_Full:
@@ -3387,7 +3387,7 @@ definitions:
     required:
       - name
       - type
-      - id
+      - ID
     title: attribute_Base
   customerChannelIds:
     type: array
@@ -3438,7 +3438,7 @@ parameters:
     in: query
     type: array
     description: |-
-      Filter items by id.
+      Filter items by ID.
       `id:in=4,5,6`
     items:
       type: integer
@@ -3571,7 +3571,7 @@ parameters:
     name: 'attribute_id:in'
     in: query
     type: array
-    description: 'The attribute id for which we should return values. `attribute_id:in=1,2`'
+    description: 'The attribute ID for which we should return values. `attribute_id:in=1,2`'
     items:
       type: integer
   FilterCustomerIdEqualsParam:
