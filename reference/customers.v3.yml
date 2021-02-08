@@ -620,10 +620,10 @@ paths:
           items:
             type: string
           description: 'Filter items by company. `company:in=bigcommerce,commongood`'
-        - name: name
+        - name: name:in
           in: query
           type: array
-          description: 'Filter items by first_name and last_name. `name=moriarty,holmes`'
+          description: 'Filter items by first_name and last_name. `name:in=James+Moriarty`'
           items:
             type: string
         - in: query
