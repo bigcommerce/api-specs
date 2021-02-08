@@ -1486,7 +1486,7 @@ paths:
         - in: query
           type: integer
           name: customer_id
-          description: Filter by the customer's ID.
+          description: Filter by the customer ID.
         - name: address_id
           in: query
           type: integer
