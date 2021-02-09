@@ -807,6 +807,10 @@ paths:
           type: string
           default: application/json
           required: true
+        - type: integer
+          in: query
+          name: price_list_id
+          description: Filter by price_list_id.
       responses:
         '200':
           description: ''
