@@ -629,7 +629,7 @@ paths:
         - in: query
           type: array
           name: 'customer_id:in'
-          description: 'Filter by the ID of the customer. Also accepts comma seperated IDs to filter for multiple customers. `customer_id:in=23,24,55`'
+          description: 'Filter by the ID of the customer. Also accepts comma-separated IDs to filter for multiple customers. `customer_id:in=23,24,55`'
           items:
             type: integer
         - name: include
