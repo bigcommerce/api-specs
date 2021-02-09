@@ -1267,7 +1267,7 @@ paths:
         - name: name
           in: query
           type: string
-          description: Filter items by attribute name. `name=age`
+          description: Filter items by the attribute name. `name=age`
         - name: date_created
           in: query
           type: string
