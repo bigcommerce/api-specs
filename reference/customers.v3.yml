@@ -1494,7 +1494,7 @@ paths:
         - name: field_name
           in: query
           type: string
-          description: Filter by field name.
+          description: Filter by the field name.
         - name: field_type
           in: query
           type: string
