@@ -3840,7 +3840,7 @@ paths:
               instance:
                 type: string
             title: Not Found
-      summary: Get all Product Options
+      summary: Get All Product Options
       tags:
         - Product Options
     post:
@@ -5067,6 +5067,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
@@ -5161,7 +5163,7 @@ paths:
                   total_pages: 1
                   links:
                     current: '?page=1&limit=50'
-      summary: Get all Product Option Values
+      summary: Get All Product Option Values
       tags:
         - Product Option Values
     post:
