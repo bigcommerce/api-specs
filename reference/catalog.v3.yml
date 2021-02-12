@@ -8454,6 +8454,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
