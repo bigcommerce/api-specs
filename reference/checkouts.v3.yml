@@ -1307,80 +1307,16 @@ definitions:
                         type: number
                       id:
                         type: string
-                      variant_id:
+                      extended_list_price:
                         type: number
-                      product_id:
+                      list_price:
                         type: number
                       sku:
                         type: string
                       name:
                         type: string
-                      url:
-                        type: string
-                      is_taxable:
-                        type: boolean
                       image_url:
                         type: string
-                      discounts:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            id:
-                              type: number
-                            discounted_amount:
-                              type: number
-                      coupons:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            code:
-                              type: string
-                            id:
-                              type: integer
-                            coupon_type:
-                              type: string
-                            discounted_amount:
-                              type: number
-                      discount_amount:
-                        type: number
-                      coupon_amount:
-                        type: number
-                      list_price:
-                        type: number
-                      sale_price:
-                        type: number
-                      extended_list_price:
-                        type: number
-                      extended_sale_price:
-                        type: number
-                      options:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            name:
-                              type: string
-                            name_id:
-                              type: number
-                            value:
-                              type: string
-                            value_id:
-                              type: number
-                      is_require_shipping:
-                        type: boolean
-                      gift_wrapping:
-                        type: object
-                        properties:
-                          name:
-                            type: string
-                          message:
-                            type: string
-                          amount:
-                            type: number
-                          amount_as_integer:
-                            type: number
                     required:
                       - quantity
               required:
