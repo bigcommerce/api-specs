@@ -50,6 +50,7 @@ paths:
             * `cart.lineItems.digitalItems.options` - digital options
             * `cart.lineItems.physicalItems.categoryNames` - physical categories
             * `cart.lineItems.digitalItems.categoryNames` - digital categories
+            * `cart.lineItems.customItems.categoryNames` - custom categories
             * `customer` - customer
             * `customer.customerGroup` - customer group
             * `payments` - payments
@@ -916,6 +917,9 @@ definitions:
           base_amount:
             description: 'Cost of cart''s contents, before applying discounts.'
             type: number
+          channel_id:
+            description: ID of channel
+            type: number  
           discount_amount:
             description: Discounted amount.
             type: number            
