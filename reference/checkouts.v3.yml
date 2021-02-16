@@ -990,11 +990,9 @@ definitions:
                       variant_id:
                         description: ''
                         type: number
-                        format: double
                       product_id:
                         description: ''
                         type: number
-                        format: double
                       sku:
                         description: ''
                         type: string
@@ -1132,11 +1130,9 @@ definitions:
                       variant_id:
                         description: ''
                         type: number
-                        format: double
                       product_id:
                         description: ''
                         type: number
-                        format: double
                       sku:
                         description: ''
                         type: string
@@ -1711,11 +1707,9 @@ definitions:
                   variant_id:
                     description: ''
                     type: number
-                    format: double
                   product_id:
                     description: ''
                     type: number
-                    format: double
                   sku:
                     description: ''
                     type: string
@@ -1853,11 +1847,9 @@ definitions:
                   variant_id:
                     description: ''
                     type: number
-                    format: double
                   product_id:
                     description: ''
                     type: number
-                    format: double
                   sku:
                     description: ''
                     type: string
@@ -2102,11 +2094,9 @@ definitions:
             variant_id:
               description: ''
               type: number
-              format: double
             product_id:
               description: ''
               type: number
-              format: double
             sku:
               description: ''
               type: string
@@ -2244,11 +2234,9 @@ definitions:
             variant_id:
               description: ''
               type: number
-              format: double
             product_id:
               description: ''
               type: number
-              format: double
             sku:
               description: ''
               type: string
@@ -2428,11 +2416,9 @@ definitions:
       variant_id:
         description: ''
         type: number
-        format: double
       product_id:
         description: ''
         type: number
-        format: double
       sku:
         description: ''
         type: string
@@ -2603,11 +2589,9 @@ definitions:
       variant_id:
         description: ''
         type: number
-        format: double
       product_id:
         description: ''
         type: number
-        format: double
       sku:
         description: ''
         type: string
@@ -3366,11 +3350,9 @@ definitions:
       variant_id:
         description: ''
         type: number
-        format: double
       product_id:
         description: ''
         type: number
-        format: double
       sku:
         description: ''
         type: string
