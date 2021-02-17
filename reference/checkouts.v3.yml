@@ -1879,7 +1879,7 @@ definitions:
                     description: The URL for the combined downloads page.
                     type: string
                   download_size:
-                    description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
+                    description: 'Combined download size, in human-readable style. For example, `30MB`.'
                     type: string
                 required:
                   - quantity
