@@ -1065,7 +1065,7 @@ definitions:
                           type: object
                           properties:
                             name:
-                              description: 'The product option name. For example, Color or Size'
+                              description: 'The product option name. For example, Color or Size.'
                               type: string
                             name_id:
                               description: The product option identifier.
