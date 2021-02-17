@@ -1578,7 +1578,7 @@ definitions:
         description: Time when the cart was last updated.
         type: string
       customer_message:
-        description: Shopper's message provided as details for the order to be created from this checkout
+        description: Shopper's message provided as details for the order to be created from this checkout.
         type: string
   Cart:
     title: Cart
