@@ -1612,7 +1612,7 @@ definitions:
         description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax.'
         type: number
       cart_amount_ex_tax:
-        description: 'Sum of line-items amounts, minus cart-level discounts and coupons excluding tax'
+        description: 'Sum of line-items amounts, minus cart-level discounts and coupons excluding tax.'
         type: number
       coupons:
         description: ''
