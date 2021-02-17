@@ -1593,7 +1593,7 @@ definitions:
         type: integer
         format: int32
       email:
-        description: The cart's email. This is the same email that is used in the billing address
+        description: The cart's email. This is the same email that is used in the billing address.
         type: string
       currency:
         title: Currency
