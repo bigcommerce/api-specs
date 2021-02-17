@@ -1071,7 +1071,7 @@ definitions:
                               description: The product option identifier.
                               type: number
                             value:
-                              description: 'The product option value. For example, Red or Medium'
+                              description: 'The product option value. For example, Red or Medium.'
                               type: string
                             value_id:
                               description: The product option value identifier.
