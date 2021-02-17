@@ -186,8 +186,7 @@ paths:
           in: query
           type: integer
         - name: sort
-          description: |
-            Scripts field name to sort by.
+          description: Field name to sort the scripts by.
           required: false
           in: query
           type: string
@@ -215,6 +214,10 @@ paths:
           type: string
           default: application/json
           required: true
+        - type: array
+          in: query
+          name: 'channel_id:in'
+          description: Filters list of scripts by the associated channel_id.
       responses:
         '200':
           schema:
