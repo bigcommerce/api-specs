@@ -1105,7 +1105,7 @@ securityDefinitions:
 
       |Header|Parameter|Description|
       |-|-|-|
-      |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+      |`X-Auth-Token`|`access_token`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
       ### Example
 
