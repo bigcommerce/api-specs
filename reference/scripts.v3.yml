@@ -34,7 +34,7 @@ info:
 
     |Header|Parameter|Description|
     |-|-|-|
-    |`X-Auth-Token`|`access_token `|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+    |`X-Auth-Token`|`access_token`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
 
     For more information on Authenticating BigCommerce APIs, see [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
 
@@ -1033,7 +1033,7 @@ definitions:
         description: The user-friendly description.
       html:
         type: string
-        description: An html string containing exactly one `script` tag. Only present if `kind` is `script_tag`
+        description: An html string containing exactly one `script` tag. Only present if `kind` is `script_tag`.
       src:
         type: string
         description: The `src` attribute of the script to load. Only present if `kind` is `src`.
