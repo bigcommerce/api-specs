@@ -235,7 +235,6 @@ paths:
           $ref: '#/responses/RefundCollection_Resp'
       tags:
         - Order Refunds
-      x-private: true
     post:
       summary: Create Refunds - BATCH
       description: Creates a refund. This endpoint will accept a batch of one or more.
@@ -1724,7 +1723,9 @@ definitions:
               remaining_balance:
                 description: |
                   Remaining balance of shopper's store credit.
-                type: string
+                type: number
+                format: float
+                example: 35.42
     title: Transaction
     type: object
   CreditCard:
@@ -1783,7 +1784,9 @@ definitions:
       remaining_balance:
         description: |
           Remaining balance of shopper's store credit.
-        type: string
+        type: number
+        format: float
+        example: 35.42
   Custom:
     type: object
     description: Custom payment from manual order.

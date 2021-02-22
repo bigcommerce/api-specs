@@ -179,19 +179,35 @@ paths:
           in: query
           type: integer
         - name: date_modified
-          description: 'Filter items by `date_modified`. For example, `/v3/catalog/products?date_modified:min=2018-06-15` gets all products modified after `2018-06-15`'
+          description: 'Filter items by `date_modified`. '
           required: false
           in: query
           type: string
           format: date-time
+        - type: string
+          in: query
+          name: 'date_modified:max'
+          description: 'Filter items by `date_modified`. For example, `date_modified:max=2020-06-15`.'
+        - type: string
+          in: query
+          name: 'date_modified:min'
+          description: 'Filter items by `date_modified`. For example, `date_modified:min=2018-06-15`.'
         - name: date_last_imported
-          description: 'Filter items by date_last_imported. For example `v3/catalog/products?date_last_imported:min=2018-06-15`'
+          description: Filter items by date_last_imported.
           required: false
           in: query
           type: string
           format: date-time
+        - type: string
+          in: query
+          description: 'Filter items by date_last_imported. For example, `date_last_imported:max=2020-06-15`.'
+          name: 'date_last_imported:max'
+        - type: string
+          in: query
+          description: 'Filter items by date_last_imported. For example, `date_last_imported:min=2018-06-15`.'
+          name: 'date_last_imported:min'
         - name: is_visible
-          description: 'Filter items by if visible on the storefront. '
+          description: Filter items based on whether the product is currently visible on the storefront.
           required: false
           in: query
           type: boolean
@@ -216,6 +232,24 @@ paths:
           required: false
           in: query
           type: integer
+        - type: integer
+          in: query
+          name: 'inventory_level:in'
+        - type: integer
+          in: query
+          name: 'inventory_level:not_in'
+        - type: integer
+          in: query
+          name: 'inventory_level:min'
+        - type: integer
+          in: query
+          name: 'inventory_level:max'
+        - type: integer
+          in: query
+          name: 'inventory_level:greater'
+        - type: integer
+          in: query
+          name: 'inventory_level:less'
         - name: inventory_low
           description: |
             Filter items by inventory_low. Values: 1, 0.
@@ -235,7 +269,7 @@ paths:
           in: query
           type: integer
         - name: type
-          description: 'Filter items by type: `physical` or `digital`.'
+          description: Filter items by type.
           required: false
           in: query
           type: string
@@ -304,11 +338,7 @@ paths:
             - disabled
             - preorder
         - name: price_list_id
-          description: |-
-            This filter returns the product pricing with the *Price List* pricing instead. To use:
-            `?price_list_id=1`.
-            If there are variants use:
-            `?price_list_id=1&include=variants`
+          description: 'This filter returns the product pricing with the *Price List* pricing instead. To use:`?price_list_id=1`.If there are variants use:`?price_list_id=1&include=variants`.'
           required: false
           in: query
           type: integer
@@ -347,6 +377,10 @@ paths:
             - inventory_level
             - is_visible
             - total_sold
+        - type: integer
+          in: query
+          description: 'Filter items by categories. Use for products in multiple categories. For example, `categories:in=12`.'
+          name: 'categories:in'
       responses:
         '200':
           $ref: '#/responses/ProductCollectionResponse'
@@ -642,77 +676,23 @@ paths:
                 type: string
             title: Not Found
         '409':
-          description: '`Product` was in conflict with another product. This is caused by: duplicate unique values, such as name or SKU; a missing category, brand, or tax_class with which the product is being associated; or a conflicting bulk pricing rule.'
+          description: '`Product` was in conflict with another product. This is the result of duplicate unique values such as name or SKU; a missing or invalid `category_id`, `brand_id`, or `tax_class id`; or a conflicting `bulk_pricing_rule`.'
           schema:
-            type: array
-            items:
-              allOf:
-                - type: object
-                  description: |
-                    Error payload for the BigCommerce API.
-                  properties:
-                    status:
-                      description: |
-                        The HTTP status code.
-                      type: integer
-                    title:
-                      description: |
-                        The error title describing the particular error.
-                      type: string
-                    type:
-                      type: string
-                    instance:
-                      type: string
-                  title: Base Error
-                - type: object
-                  properties:
-                    errors:
-                      type: object
-                      title: Detailed Errors
-                      properties:
-                        additionalProperties:
-                          type: string
-              title: Error Response
+            $ref: '#/definitions/errorResponse_409'
         '413':
-          description: ''
+          description: 413 Request Entity Too Large
           examples:
             application/json:
               errors: {}
               status: 413
               title: The request payload is too large. The maximum items allowed in the array is 50
               type: 'https://developer.bigcommerce.com/api-docs/getting-started/api-status-codes'
-        '422':
-          description: '`Product` was not valid. This is the result of missing required fields, or of invalid data. See the response for more details.'
           schema:
-            type: array
-            items:
-              allOf:
-                - type: object
-                  description: |
-                    Error payload for the BigCommerce API.
-                  properties:
-                    status:
-                      description: |
-                        The HTTP status code.
-                      type: integer
-                    title:
-                      description: |
-                        The error title describing the particular error.
-                      type: string
-                    type:
-                      type: string
-                    instance:
-                      type: string
-                  title: Base Error
-                - type: object
-                  properties:
-                    errors:
-                      type: object
-                      title: Detailed Errors
-                      properties:
-                        additionalProperties:
-                          type: string
-              title: Error Response
+            $ref: '#/definitions/error_Base'
+        '422':
+          description: '`Product` was not valid. This is the result of missing required fields or invalid data. See the response for more details.'
+          schema:
+            $ref: '#/definitions/errorResponse_422'
           examples:
             application/json:
               - status: -511628
@@ -827,6 +807,10 @@ paths:
           type: string
           default: application/json
           required: true
+        - type: integer
+          in: query
+          name: price_list_id
+          description: Filter by price_list_id.
       responses:
         '200':
           description: ''
@@ -1212,7 +1196,9 @@ paths:
 
         **Usage Notes**
         - `image_url` - `255` character limit
+        - For file uploads, use the `multipart/form-data` media type
         - Only one image at a time can be created
+        - Supported image file types are BMP, GIF, JPEG, PNG, WBMP, XBM, and WEBP.
       operationId: createProductImage
       parameters:
         - name: productImage
@@ -1221,8 +1207,8 @@ paths:
           schema:
             description: The model for a POST to create an image on a product.
             allOf:
-              - type: object
-                description: Common ProductImage properties.
+              - description: Common ProductImage properties.
+                title: Product Image Base
                 properties:
                   id:
                     description: |
@@ -1233,8 +1219,9 @@ paths:
                       The unique numeric identifier for the product with which the image is associated.
                     type: integer
                   image_file:
-                    description: |
+                    description: |-
                       The local path to the original image file uploaded to BigCommerce.
+                      A `multipart/form-data` media type.
                     type: string
                   url_zoom:
                     description: |
@@ -1271,7 +1258,6 @@ paths:
                     description: |
                       The description for the image.
                     type: string
-                title: Product Image Base
               - properties:
                   image_url:
                     description: |
@@ -1316,12 +1302,13 @@ paths:
             description: |
               Response payload for the BigCommerce API.
             type: object
+            title: Product Image Response
             properties:
               data:
                 title: Product Image
                 allOf:
-                  - type: object
-                    description: Common ProductImage properties.
+                  - description: Common ProductImage properties.
+                    title: Product Image Base
                     properties:
                       id:
                         description: |
@@ -1332,8 +1319,10 @@ paths:
                           The unique numeric identifier for the product with which the image is associated.
                         type: integer
                       image_file:
-                        description: |
+                        description: |-
                           The local path to the original image file uploaded to BigCommerce.
+
+                          A `multipart/form-data` media type.
                         type: string
                       url_zoom:
                         description: |
@@ -1370,9 +1359,7 @@ paths:
                         description: |
                           The description for the image.
                         type: string
-                    title: Product Image Base
-                  - type: object
-                    properties:
+                  - properties:
                       id:
                         description: |
                           The unique numeric ID of the image; increments sequentially.
@@ -1382,8 +1369,9 @@ paths:
                           The unique numeric identifier for the product with which the image is associated.
                         type: integer
                       image_file:
-                        description: |
+                        description: |-
                           The local path to the original image file uploaded to BigCommerce. Use image_url when creating a product.
+                          A `multipart/form-data` media type.
                         type: string
                       url_zoom:
                         description: |
@@ -1412,11 +1400,11 @@ paths:
                         description: |-
                           Publically available URL.
                           Use the image_url when creating a product.
+                type: object
               meta:
                 type: object
                 description: Empty meta object; may be used later.
                 title: Meta
-            title: Product Image Response
           examples:
             application/json:
               data:
@@ -1551,13 +1539,9 @@ paths:
       description: |-
         Updates a *Product Image*.
 
-         **Required Fields**
-        - `image_file`, or
-        - `image_url`
-
         **Usage Notes**
         - `image_url` - `255` character limit
-        - When using file upload, other image file params can be updated using `key:value` pairs.
+        - For file uploads, send a POST request using the `multipart/form-data` media type
       operationId: updateProductImage
       parameters:
         - name: productImage
@@ -1832,6 +1816,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
@@ -3856,7 +3842,7 @@ paths:
               instance:
                 type: string
             title: Not Found
-      summary: Get all Product Options
+      summary: Get All Product Options
       tags:
         - Product Options
     post:
@@ -5083,6 +5069,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
@@ -5177,7 +5165,7 @@ paths:
                   total_pages: 1
                   links:
                     current: '?page=1&limit=50'
-      summary: Get all Product Option Values
+      summary: Get All Product Option Values
       tags:
         - Product Option Values
     post:
@@ -7511,6 +7499,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
@@ -8470,6 +8460,8 @@ paths:
           type: string
           default: application/json
           required: true
+        - $ref: '#/parameters/PageParam'
+        - $ref: '#/parameters/LimitParam'
       responses:
         '200':
           description: ''
@@ -12387,7 +12379,7 @@ paths:
         - Category Metafields
     post:
       description: |-
-        Creates a *Cateory Metafield*.
+        Creates a *Category Metafield*.
 
         **Required Fields:**
         - permission_set
@@ -21764,6 +21756,40 @@ definitions:
             minLength: 1
             maxLength: 255
     title: productVariant_Put
+  errorResponse_409:
+    title: errorResponse_409
+    allOf:
+      - properties:
+          code:
+            type: integer
+          status:
+            type: integer
+          title:
+            type: string
+            description: The error title describing the particular error.
+          type:
+            type: string
+      - properties:
+          errors:
+            $ref: '#/definitions/detailedErrors'
+    type: object
+  errorResponse_422:
+    title: errorResponse_422
+    allOf:
+      - properties:
+          code:
+            type: integer
+          status:
+            type: integer
+          title:
+            type: string
+            description: The error title describing the particular error.
+          type:
+            type: string
+      - properties:
+          errors:
+            $ref: '#/definitions/detailedErrors'
+    type: object
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
