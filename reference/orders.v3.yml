@@ -214,21 +214,19 @@ paths:
 
 
             Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format.
+            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
             Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
           format: date-time
-          default: RFC 3339
         - in: query
           name: 'created:max'
           type: string
           format: date-time
-          default: RFC 3339
           description: |-
             Filter results so they are earlier than or equal to provided date.
 
 
             Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC-3339 format.
+            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
             Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
       responses:
         '200':
