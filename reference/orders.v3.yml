@@ -228,6 +228,14 @@ paths:
             Must be in url-encoded RFC 3339 format.
             e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
             Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
+        - in: query
+          name: page
+          type: integer
+          description: Specifies the page number in a limited (paginated) list of items.
+        - in: query
+          name: limit
+          type: integer
+          description: Controls the number of items per page in a limited (paginated) list of items.
       responses:
         '200':
           $ref: '#/responses/RefundCollection_Resp'
