@@ -2794,9 +2794,9 @@ definitions:
     title: orderCustomProduct_Put
     type: object
     description: |
-      To `add` custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
+      - To `add` a custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
 
-      To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+      - To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
 
       - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
 
@@ -2809,6 +2809,7 @@ definitions:
       - When updating an existing order product, if `name_merchant` is omitted from the request, it will not be updated.
 
       - When adding product, if `name_merchant` is omitted, it will be set to the value of `name` (or `name_customer`).
+
       - When adding a new product to an existing order, if both fields `name` and `name_customer` are omitted, they will be set to the value of `name_merchant`.
     properties:
       id:
@@ -2938,7 +2939,7 @@ definitions:
       - When updating an existing order product, if both fields `xxx` and `xxx_customer`are not part of the request they will not be updated.
       - When adding a product to an existing order or changing the variant, product, or product options.
       - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`, if `xxx_merchant` is omitted it will default to have the catalog value.
-      - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the value of `xxx_merchant`.
+      - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
     properties:
       id:
         type: integer
@@ -4820,14 +4821,13 @@ responses:
           type:
             - string
             - 'null'
-        upc:
-          type: string
-          maxLength: 255
-          description: Universal Product Code. Can be written to for custom products and
-            catalog products.
-        variant_id:
-          type: integer
-          description: Products `variant_id`. PUT or POST. This field is not available for
+          upc:
+            type: string
+            maxLength: 255
+            description: Universal Product Code. Can be written to for custom products and catalog products.
+          variant_id:
+            type: integer
+            description: Products `variant_id`. PUT or POST. This field is not available for
             custom products.
     orderCount:
       title: orderCount
