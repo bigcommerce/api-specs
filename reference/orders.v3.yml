@@ -765,6 +765,16 @@ parameters:
     required: false
     in: query
     type: integer
+  DirectionParam:
+    name: direction
+    description: |
+      Sort direction. Acceptable values are: `asc`, `desc`.
+    required: false
+    in: query
+    type: string
+    enum:
+      - asc
+      - desc  
 securityDefinitions:
   X-Auth-Token:
     type: apiKey
