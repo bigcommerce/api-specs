@@ -611,6 +611,7 @@ paths:
         - $ref: "#/parameters/LimitParam"
         - $ref: "#/parameters/MetafieldKeyParam"
         - $ref: "#/parameters/MetafieldNamespaceParam"
+        - $ref: "#/parameters/DirectionParam"
       responses:
         '200':
           description: |
