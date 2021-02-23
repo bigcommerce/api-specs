@@ -703,9 +703,9 @@ definitions:
           code:
             type: string
             format: ISO-4217
-      (Beta) locale:
+      locale:
         type: string
-        description: (Beta) Accepts string of format `xx` or `xx-YY`.
+        description: Accepts string of format `xx` or `xx-YY`.
   CartRequestData:
     type: object
     title: Cart Request Data
@@ -1367,9 +1367,9 @@ definitions:
       channel_id:
         type: integer
         description: 'If no channel is specified, defaults to 1. '
-      (Beta) locale:
+      locale:
         type: string
-        description: (Beta) Locale of the cart.
+        description: Locale of the cart.
   Currency:
     type: object
     description: This will always be the same between cart and checkout.
