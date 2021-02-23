@@ -192,14 +192,14 @@ paths:
       parameters:
         - name: 'order_id:in'
           in: query
-          description: Filter by order_ids
+          description: Filter by `order_id`. Accepts multiple as comma-separated values. 
           type: array
           items:
             type: integer
           collectionFormat: csv
         - name: 'id:in'
           in: query
-          description: Filter by resource ids
+          description: Filter by refund `id`. Accepts multiple as comma-separated values.
           type: array
           items:
             type: integer
