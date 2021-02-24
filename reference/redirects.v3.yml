@@ -79,7 +79,7 @@ paths:
         - type: integer
           in: query
           name: site_id
-          description: Filters items by site_id.
+          description: Filters items by `site_id`.
         - type: array
           in: query
           name: 'id:in'
