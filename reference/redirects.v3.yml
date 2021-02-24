@@ -83,7 +83,7 @@ paths:
         - type: array
           in: query
           name: 'id:in'
-          description: Filters items by id; provided as a CSV string.
+          description: Filters items by redirect `id`. Also accepts comma-separated values to filter for multiple redirects.```
           items:
             type: string
         - type: integer
