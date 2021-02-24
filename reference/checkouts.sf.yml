@@ -3614,7 +3614,7 @@ definitions:
                             format: double
                           brand:
                             description: The item's brand.
-                            type: 
+                            type: string
                           isTaxable:
                             description: Whether the item is taxable.
                             type: boolean
