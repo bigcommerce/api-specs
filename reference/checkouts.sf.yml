@@ -3613,7 +3613,7 @@ definitions:
                             type: number
                             format: double
                           brand:
-                            description:
+                            description: The item's brand.
                             type: 
                           isTaxable:
                             description: Whether the item is taxable.
