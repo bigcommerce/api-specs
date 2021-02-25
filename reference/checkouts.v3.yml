@@ -917,18 +917,22 @@ definitions:
           base_amount:
             description: 'Cost of cart''s contents, before applying discounts.'
             type: number
+            format: double
           channel_id:
             description: ID of channel
             type: number  
           discount_amount:
             description: Discounted amount.
-            type: number            
+            type: number
+            format: double            
           cart_amount_inc_tax:
             description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax'
             type: number
+            format: double
           cart_amount_ex_tax:
             description: 'Sum of line-items amounts, minus cart-level discounts and coupons excluding tax'
             type: number
+            format: double
           coupons:
             description: ''
             type: array
@@ -948,7 +952,7 @@ definitions:
                 discounted_amount:
                   description: The discounted amount applied within a given context.
                   type: number
-
+                  format: double
               required:
                 - code
           discounts:
@@ -961,9 +965,11 @@ definitions:
                 id:
                   description: ID of the applied discount.
                   type: string
+                  format: double
                 discounted_amount:
                   description: The discounted amount applied within a given context.
                   type: number
+                  format: double
           line_items:
             description: ''
             type: array
@@ -981,15 +987,18 @@ definitions:
                       quantity:
                         description: ''
                         type: number
+                        format: double
                       id:
                         description: The line-item ID.
                         type: string
                       variant_id:
                         description: ''
                         type: number
+                        format: double
                       product_id:
                         description: ''
                         type: number
+                        format: double
                       sku:
                         description: ''
                         type: string
@@ -1015,9 +1024,11 @@ definitions:
                             id:
                               description: ID of the applied discount.
                               type: string
+                              format: double
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
+                              format: double
                       coupons:
                         description: ''
                         type: array
@@ -1037,48 +1048,43 @@ definitions:
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
+                              format: double
                           required:
                             - code
                       discount_amount:
                         description: The total value of all discounts applied to this item.
                         type: number
+                        format: double
                       coupon_amount:
                         description: The total value of all coupons applied to this item.
                         type: number
+                        format: double
                       list_price:
                         description: 'Item''s list price, as quoted by the manufacturer/distributor.'
                         type: number
+                        format: double
                       sale_price:
                         description: Item's price after all discounts are applied. (The final price before tax calculation.)
                         type: number
+                        format: double
                       extended_list_price:
                         description: Item's list price multiplied by the quantity.
                         type: number
+                        format: double
                       extended_sale_price:
                         description: Item's sale price multiplied by the quantity.
                         type: number
-                      options:
-                        description: The list of selected options for this product.
-                        type: array
-                        items:
-                          title: Product Option
-                          type: object
-                          properties:
-                            name:
-                              description: 'The product option name. For example, Color or Size.'
-                              type: string
-                            name_id:
-                              description: The product option identifier.
-                              type: number
-                            value:
-                              description: 'The product option value. For example, Red or Medium.'
-                              type: string
-                            value_id:
-                              description: The product option value identifier.
-                              type: number
+                        format: double
+                      
                       is_require_shipping:
                         description: ''
                         type: boolean
+                      is_mutable:
+                        description:
+                        type: boolean
+                      parent_id:
+                        description:
+                        type: null
                       gift_wrapping:
                         title: Gift Wrapping
                         type: object
@@ -1092,9 +1098,11 @@ definitions:
                           amount:
                             description: ''
                             type: number
+                            format: double
                           amount_as_integer:
                             description: ''
                             type: number
+                            format: double
                     required:
                       - quantity
                 digital_items:
@@ -1107,18 +1115,21 @@ definitions:
                       quantity:
                         description: ''
                         type: number
+                        format: double
                       id:
                         description: The line-item ID.
                         type: string
                       variant_id:
                         description: ''
                         type: number
+                        format: double
                       parent_id:
                         description:
                         type: null
                       product_id:
                         description: ''
                         type: number
+                        format: double
                       sku:
                         description: ''
                         type: string
@@ -1150,9 +1161,11 @@ definitions:
                             id:
                               description: ID of the applied discount.
                               type: string
+                              format: double
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
+                              format: double
                       coupons:
                         description: ''
                         type: array
@@ -1172,26 +1185,33 @@ definitions:
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
+                              format: double
                           required:
                             - code
                       discount_amount:
                         description: The total value of all discounts applied to this item.
                         type: number
+                        format: double
                       coupon_amount:
                         description: The total value of all coupons applied to this item.
                         type: number
+                        format: double
                       list_price:
                         description: 'Item''s list price, as quoted by the manufacturer/distributor.'
                         type: number
+                        format: double
                       sale_price:
                         description: Item's price after all discounts are applied. (The final price before tax calculation.)
                         type: number
+                        format: double
                       extended_list_price:
                         description: Item's list price multiplied by the quantity.
                         type: number
+                        format: double
                       extended_sale_price:
                         description: Item's sale price multiplied by the quantity.
-                        type: number                       
+                        type: number  
+                        format: double                     
                     required:
                       - quantity
                 gift_certificates:
@@ -1207,6 +1227,7 @@ definitions:
                       amount:
                         description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
                         type: number
+                        format: double
                       sender:
                         title: Contact Entity
                         type: object
@@ -1434,6 +1455,7 @@ definitions:
                   cost:
                     description: ''
                     type: number
+                    format: double
                   transit_time:
                     description: An estimate of the arrival time.
                     type: string
@@ -1478,6 +1500,7 @@ definitions:
                   amount:
                     description: ''
                     type: number
+                    format: double
             discounts:
               description: List of consignment discounts applied through cart level discounts
               type: array
@@ -1491,15 +1514,19 @@ definitions:
             shipping_cost_inc_tax:
               description: The shipping cost for this consignment including tax.
               type: number
+              format: double
             shipping_cost_ex_tax:
               description: The shipping cost for this consignment excluding tax.
               type: number
+              format: double
             handling_cost_inc_tax:
               description: The handling cost of shipping for this consignment including tax.
               type: number
+              format: double
             handling_cost_ex_tax:
               description: The handling cost of shipping for this consignment excluding tax.
               type: number
+              format: double
             line_item_ids:
               description: ''
               type: array
@@ -1518,6 +1545,7 @@ definitions:
             amount:
               description: ''
               type: number
+              format: double
       coupons:
         description: Coupons applied at checkout level.
         type: array
@@ -1529,27 +1557,35 @@ definitions:
       shipping_cost_total_inc_tax:
         description: Shipping cost before any discounts are applied including tax.
         type: number
+        format: double
       shipping_cost_total_ex_tax:
         description: Shipping cost before any discounts are applied excluding tax.
         type: number
+        format: double
       handling_cost_total_inc_tax:
         description: Handling cost for all consignments including tax.
         type: number
+        format: double
       handling_cost_total_ex_tax:
         description: Handling cost for all consignments excluding tax.
         type: number
+        format: double
       tax_total:
         description: ''
         type: number
+        format: double
       subtotal_inc_tax:
         description: Subtotal of the checkout before applying item level discounts including tax.
         type: number
+        format: double
       subtotal_ex_tax:
         description: Subtotal of the checkout before applying item level discounts excluding tax.
         type: number
+        format: double
       grand_total:
         description: 'The total payable amount, before applying any store credit or gift certificate.'
         type: number
+        format: double
       created_time:
         description: Time when the cart was created.
         type: string
@@ -1584,15 +1620,19 @@ definitions:
       base_amount:
         description: 'Cost of cart''s contents, before applying discounts.'
         type: number
+        format: double
       discount_amount:
         description: Discounted amount.
         type: number
+        format: double
       cart_amount_inc_tax:
         description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax.'
         type: number
+        format: double
       cart_amount_ex_tax:
         description: 'Sum of line-items amounts, minus cart-level discounts and coupons excluding tax.'
         type: number
+        format: double
       coupons:
         description: ''
         type: array
@@ -1608,9 +1648,11 @@ definitions:
             id:
               description: ID of the applied discount.
               type: string
+              format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
       line_items:
         description: ''
         type: array
@@ -1634,9 +1676,11 @@ definitions:
                   variant_id:
                     description: ''
                     type: number
+                    format: double
                   product_id:
                     description: ''
                     type: number
+                    format: double
                   sku:
                     description: ''
                     type: string
@@ -1662,9 +1706,11 @@ definitions:
                         id:
                           description: ID of the applied discount.
                           type: string
+                          format: double
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
+                          format: double
                   coupons:
                     description: ''
                     type: array
@@ -1684,6 +1730,7 @@ definitions:
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
+                          format: double
                       required:
                         - code
                   discount_amount:
@@ -1691,41 +1738,33 @@ definitions:
                     type: number
                   coupon_amount:
                     description: The total value of all coupons applied to this item.
-                    type: number                    
+                    type: number
+                    format: double                    
                   list_price:
                     description: 'Item''s list price, as quoted by the manufacturer/distributor.'
                     type: number
+                    format: double
                   sale_price:
                     description: Item's price after all discounts are applied. (The final price before tax calculation.)
                     type: number
+                    format: double
                   extended_list_price:
                     description: Item's list price multiplied by the quantity.
                     type: number
+                    format: double
                   extended_sale_price:
                     description: Item's sale price multiplied by the quantity.
                     type: number
-                  options:
-                    description: The list of selected options for this product.
-                    type: array
-                    items:
-                      title: Product Option
-                      type: object
-                      properties:
-                        name:
-                          description: 'The product option name. For example, Color or Size'
-                          type: string
-                        name_id:
-                          description: The product option identifier.
-                          type: number
-                        value:
-                          description: 'The product option value. For example, Red or Medium'
-                          type: string
-                        value_id:
-                          description: The product option value identifier.
-                          type: number
+                    format: double
                   is_require_shipping:
                     description: ''
                     type: boolean
+                  is_mutable:
+                    description:
+                    type: boolean
+                  parent_id:
+                    description:
+                    type: null
                   gift_wrapping:
                     title: Gift Wrapping
                     type: object
@@ -1739,9 +1778,11 @@ definitions:
                       amount:
                         description: ''
                         type: number
+                        format: double
                       amount_as_integer:
                         description: ''
                         type: number
+                        format: double
                 required:
                   - quantity
             digital_items:
@@ -1754,15 +1795,18 @@ definitions:
                   quantity:
                     description: ''
                     type: number
+                    format: double
                   id:
                     description: The line-item ID.
                     type: string
                   variant_id:
                     description: ''
                     type: number
+                    format: double
                   product_id:
                     description: ''
                     type: number
+                    format: double
                   sku:
                     description: ''
                     type: string
@@ -1794,9 +1838,11 @@ definitions:
                         id:
                           description: ID of the applied discount.
                           type: string
+                          format: double
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
+                          format: double
                   coupons:
                     description: ''
                     type: array
@@ -1816,6 +1862,7 @@ definitions:
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
+                          format: double
                       required:
                         - code
                   discount_amount:
@@ -1824,18 +1871,23 @@ definitions:
                   coupon_amount:
                     description: The total value of all coupons applied to this item.
                     type: number
+                    format: double
                   list_price:
                     description: 'Item''s list price, as quoted by the manufacturer/distributor.'
                     type: number
+                    format: double
                   sale_price:
                     description: Item's price after all discounts are applied. (The final price before tax calculation.)
                     type: number
+                    format: double
                   extended_list_price:
                     description: Item's list price multiplied by the quantity.
                     type: number
+                    format: double
                   extended_sale_price:
                     description: Item's sale price multiplied by the quantity.
                     type: number
+                    format: double
                 required:
                   - quantity
             gift_certificates:
@@ -1851,6 +1903,7 @@ definitions:
                   amount:
                     description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
                     type: number
+                    format: double
                   sender:
                     title: Contact Entity
                     type: object
@@ -1918,6 +1971,7 @@ definitions:
       discounted_amount:
         description: The discounted amount applied within a given context.
         type: number
+        format: double
       coupon_type:
         type: integer
         enum:
@@ -1944,9 +1998,11 @@ definitions:
       id:
         description: ID of the applied discount.
         type: string
+        format: double
       discounted_amount:
         description: The discounted amount applied within a given context.
         type: number
+        format: double
   LineItem:
     title: Line Item
     type: object
@@ -1961,15 +2017,18 @@ definitions:
             quantity:
               description: ''
               type: number
+              format: double
             id:
               description: The line-item ID.
               type: string
             variant_id:
               description: ''
               type: number
+              format: double
             product_id:
               description: ''
               type: number
+              format: double
             parent_id:
               description: ''
               type: null
@@ -2001,9 +2060,11 @@ definitions:
                   id:
                     description: ID of the applied discount.
                     type: string
+                    format: double
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
+                    format: double
             coupons:
               description: ''
               type: array
@@ -2023,45 +2084,33 @@ definitions:
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
+                    format: double
                 required:
                   - code
             discount_amount:
               description: The total value of all discounts applied to this item.
               type: number
+              format: double
             coupon_amount:
               description: The total value of all coupons applied to this item.
               type: number
+              format: double
             list_price:
               description: 'Item''s list price, as quoted by the manufacturer/distributor.'
               type: number
+              format: double
             sale_price:
               description: Item's price after all discounts are applied. (The final price before tax calculation.)
               type: number
+              format: double
             extended_list_price:
               description: Item's list price multiplied by the quantity.
               type: number
+              format: double
             extended_sale_price:
               description: Item's sale price multiplied by the quantity.
-              type: number              
-            options:
-              description: The list of selected options for this product.
-              type: array
-              items:
-                title: Product Option
-                type: object
-                properties:
-                  name:
-                    description: 'The product option name. For example, Color or Size'
-                    type: string
-                  name_id:
-                    description: The product option identifier.
-                    type: number
-                  value:
-                    description: 'The product option value. For example, Red or Medium'
-                    type: string
-                  value_id:
-                    description: The product option value identifier.
-                    type: number
+              type: number
+              format: double              
             is_require_shipping:
               description: ''
               type: boolean
@@ -2078,9 +2127,11 @@ definitions:
                 amount:
                   description: ''
                   type: number
+                  format: double
                 amount_as_integer:
                   description: ''
                   type: number
+                  format: double
           required:
             - quantity
       digital_items:
@@ -2093,15 +2144,21 @@ definitions:
             quantity:
               description: ''
               type: number
+              format: double
             id:
               description: The line-item ID.
               type: string
             variant_id:
               description: ''
               type: number
+              format: double
             product_id:
               description: ''
               type: number
+              format: double
+            parent_id:
+              description: ''
+              type: null
             sku:
               description: ''
               type: string
@@ -2133,9 +2190,11 @@ definitions:
                   id:
                     description: ID of the applied discount.
                     type: string
+                    format: double
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
+                    format: double
             coupons:
               description: ''
               type: array
@@ -2155,26 +2214,33 @@ definitions:
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
+                    format: double
                 required:
                   - code
             discount_amount:
               description: The total value of all discounts applied to this item.
               type: number
+              format: double
             coupon_amount:
               description: The total value of all coupons applied to this item.
               type: number
+              format: double
             list_price:
               description: 'Item''s list price, as quoted by the manufacturer/distributor.'
               type: number
+              format: double
             sale_price:
               description: Item's price after all discounts are applied. (The final price before tax calculation.)
               type: number
+              format: double
             extended_list_price:
               description: Item's list price multiplied by the quantity.
               type: number
+              format: double
             extended_sale_price:
               description: Item's sale price multiplied by the quantity.
               type: number
+              format: double
           required:
             - quantity
       gift_certificates:
@@ -2190,6 +2256,7 @@ definitions:
             amount:
               description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
               type: number
+              format: double
             sender:
               title: Contact Entity
               type: object
@@ -2238,15 +2305,18 @@ definitions:
       quantity:
         description: ''
         type: number
+        format: double
       id:
         description: The line-item ID.
         type: string
       variant_id:
         description: ''
         type: number
+        format: double
       product_id:
         description: ''
         type: number
+        format: double
       sku:
         description: ''
         type: string
@@ -2272,9 +2342,11 @@ definitions:
             id:
               description: ID of the applied discount.
               type: string
+              format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
       coupons:
         description: ''
         type: array
@@ -2294,45 +2366,33 @@ definitions:
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
           required:
             - code
       discount_amount:
         description: The total value of all discounts applied to this item.
         type: number
+        format: double
       coupon_amount:
         description: The total value of all coupons applied to this item.
         type: number
+        format: double
       list_price:
         description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
+        format: double
       sale_price:
         description: Item's price after all discounts are applied. (The final price before tax calculation.)
         type: number
+        format: double
       extended_list_price:
         description: Item's list price multiplied by the quantity.
         type: number
+        format: double
       extended_sale_price:
         description: Item's sale price multiplied by the quantity.
         type: number
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: number
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
+        format: double
       is_require_shipping:
         description: ''
         type: boolean
@@ -2349,9 +2409,11 @@ definitions:
           amount:
             description: ''
             type: number
+            format: double
           amount_as_integer:
             description: ''
             type: number
+            format: double
     required:
       - quantity
   ProductOption:
@@ -2364,12 +2426,14 @@ definitions:
       name_id:
         description: The product option identifier.
         type: number
+        format: double
       value:
         description: 'The product option value. For example, Red or Medium'
         type: string
       value_id:
         description: The product option value identifier.
         type: number
+        format: double
   GiftWrapping:
     title: Gift Wrapping
     type: object
@@ -2383,6 +2447,7 @@ definitions:
       amount:
         description: ''
         type: number
+        format: double
       amount_as_integer:
         description: ''
         type: number
@@ -2393,15 +2458,18 @@ definitions:
       quantity:
         description: ''
         type: number
+        format: double
       id:
         description: The line-item ID.
         type: string
       variant_id:
         description: ''
         type: number
+        format: double
       product_id:
         description: ''
         type: number
+        format: double
       sku:
         description: ''
         type: string
@@ -2427,9 +2495,11 @@ definitions:
             id:
               description: ID of the applied discount.
               type: string
+              format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
       coupons:
         description: ''
         type: array
@@ -2449,56 +2519,33 @@ definitions:
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
           required:
             - code
       discount_amount:
         description: The total value of all discounts applied to this item.
         type: number
+        format: double
       coupon_amount:
         description: The total value of all coupons applied to this item.
         type: number
+        format: double
       list_price:
         description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
+        format: double
       sale_price:
         description: Item's price after all discounts are applied. (The final price before tax calculation.)
         type: number
+        format: double
       extended_list_price:
         description: Item's list price multiplied by the quantity.
         type: number
+        format: double
       extended_sale_price:
         description: Item's sale price multiplied by the quantity.
         type: number
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: number
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
-      download_file_urls:
-        description: URLs to download all product files.
-        type: array
-        items:
-          type: string
-      download_page_url:
-        description: The URL for the combined downloads page.
-        type: string
-      download_size:
-        description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-        type: string
+        format: double
     required:
       - quantity
   ItemGiftCertificate:
@@ -2511,6 +2558,7 @@ definitions:
       amount:
         description: 'Value must be between 1.00 and 1,000.00 in the store''s default currency.'
         type: number
+        format: double
       sender:
         title: Contact Entity
         type: object
@@ -2807,6 +2855,7 @@ definitions:
           cost:
             description: ''
             type: number
+            format: double
           transit_time:
             description: An estimate of the arrival time.
             type: string
@@ -2872,6 +2921,7 @@ definitions:
       cost:
         description: ''
         type: number
+        format: double
       transit_time:
         description: An estimate of the arrival time.
         type: string
@@ -2885,6 +2935,7 @@ definitions:
       amount:
         description: ''
         type: number
+        format: double
   ConsignmentDiscount:
     title: Consignment Discount
     type: object
@@ -2902,6 +2953,7 @@ definitions:
       amount:
         description: ''
         type: number
+        format: double
   CheckoutError:
     title: Checkout Error
     type: object
@@ -3131,15 +3183,18 @@ definitions:
       quantity:
         description: ''
         type: number
+        format: double
       id:
         description: The line-item ID.
         type: string
       variant_id:
         description: ''
         type: number
+        format: double
       product_id:
         description: ''
         type: number
+        format: double
       sku:
         description: ''
         type: string
@@ -3165,9 +3220,11 @@ definitions:
             id:
               description: ID of the applied discount.
               type: string
+              format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
       coupons:
         description: ''
         type: array
@@ -3187,45 +3244,33 @@ definitions:
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
+              format: double
           required:
             - code
       discount_amount:
         description: The total value of all discounts applied to this item.
         type: number
+        format: double
       coupon_amount:
         description: The total value of all coupons applied to this item.
         type: number
+        format: double
       list_price:
         description: 'Item''s list price, as quoted by the manufacturer/distributor.'
         type: number
+        format: double
       sale_price:
         description: Item's price after all discounts are applied. (The final price before tax calculation.)
         type: number
+        format: double
       extended_list_price:
         description: Item's list price multiplied by the quantity.
         type: number
+        format: double
       extended_sale_price:
         description: Item's sale price multiplied by the quantity.
-        type: number        
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: numbere
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
+        type: number
+        format: double        
     required:
       - quantity
   Order:
