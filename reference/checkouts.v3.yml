@@ -960,7 +960,7 @@ definitions:
               properties:
                 id:
                   description: ID of the applied discount.
-                  type: number
+                  type: string
                 discounted_amount:
                   description: The discounted amount applied within a given context.
                   type: number
@@ -1014,7 +1014,7 @@ definitions:
                           properties:
                             id:
                               description: ID of the applied discount.
-                              type: number
+                              type: string
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
@@ -1030,7 +1030,7 @@ definitions:
                               type: string
                             id:
                               description: The coupon ID.
-                              type: string
+                              type: number
                             coupon_type:
                               description: Key name to identify the type of coupon.
                               type: string
@@ -1113,6 +1113,9 @@ definitions:
                       variant_id:
                         description: ''
                         type: number
+                      parent_id:
+                        description:
+                        type: null
                       product_id:
                         description: ''
                         type: number
@@ -1125,6 +1128,12 @@ definitions:
                       url:
                         description: The product URL.
                         type: string
+                      is_mutable:
+                        description:
+                        type: boolean
+                      is_require_shipping:
+                        description:
+                        type: boolean
                       is_taxable:
                         description: ''
                         type: boolean
@@ -1140,7 +1149,7 @@ definitions:
                           properties:
                             id:
                               description: ID of the applied discount.
-                              type: number
+                              type: string
                             discounted_amount:
                               description: The discounted amount applied within a given context.
                               type: number
@@ -1156,7 +1165,7 @@ definitions:
                               type: string
                             id:
                               description: The coupon ID.
-                              type: string
+                              type: number
                             coupon_type:
                               description: Key name to identify the type of coupon.
                               type: string
@@ -1183,36 +1192,6 @@ definitions:
                       extended_sale_price:
                         description: Item's sale price multiplied by the quantity.
                         type: number                       
-                      options:
-                        description: The list of selected options for this product.
-                        type: array
-                        items:
-                          title: Product Option
-                          type: object
-                          properties:
-                            name:
-                              description: 'The product option name. For example, Color or Size.'
-                              type: string
-                            name_id:
-                              description: The product option identifier.
-                              type: number
-                            value:
-                              description: 'The product option value. For example, Red or Medium.'
-                              type: string
-                            value_id:
-                              description: The product option value identifier.
-                              type: number
-                      download_file_urls:
-                        description: URLs to download all product files.
-                        type: array
-                        items:
-                          type: string
-                      download_page_url:
-                        description: The URL for the combined downloads page.
-                        type: string
-                      download_size:
-                        description: 'Combined download size, in human-readable style. For example, `30MB`.'
-                        type: string
                     required:
                       - quantity
                 gift_certificates:
@@ -1254,7 +1233,7 @@ definitions:
                       name:
                         description: GiftCertificate-provided name that will appear in the control panel.
                         type: string
-                      is_taxable:
+                      taxable:
                         description: ''
                         type: boolean
                       message:
@@ -1628,7 +1607,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
@@ -1682,7 +1661,7 @@ definitions:
                       properties:
                         id:
                           description: ID of the applied discount.
-                          type: number
+                          type: string
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
@@ -1698,7 +1677,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: number
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -1793,6 +1772,12 @@ definitions:
                   url:
                     description: The product URL.
                     type: string
+                  is_mutable:
+                    description:
+                    type: boolean
+                  is_require_shipping:
+                    description:
+                    type: boolean
                   is_taxable:
                     description: ''
                     type: boolean
@@ -1808,7 +1793,7 @@ definitions:
                       properties:
                         id:
                           description: ID of the applied discount.
-                          type: number
+                          type: string
                         discounted_amount:
                           description: The discounted amount applied within a given context.
                           type: number
@@ -1824,7 +1809,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: number
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -1851,36 +1836,6 @@ definitions:
                   extended_sale_price:
                     description: Item's sale price multiplied by the quantity.
                     type: number
-                  options:
-                    description: The list of selected options for this product.
-                    type: array
-                    items:
-                      title: Product Option
-                      type: object
-                      properties:
-                        name:
-                          description: 'The product option name. For example, Color or Size'
-                          type: string
-                        name_id:
-                          description: The product option identifier.
-                          type: number
-                        value:
-                          description: 'The product option value. For example, Red or Medium'
-                          type: string
-                        value_id:
-                          description: The product option value identifier.
-                          type: number
-                  download_file_urls:
-                    description: URLs to download all product files.
-                    type: array
-                    items:
-                      type: string
-                  download_page_url:
-                    description: The URL for the combined downloads page.
-                    type: string
-                  download_size:
-                    description: 'Combined download size, in human-readable style. For example, `30MB`.'
-                    type: string
                 required:
                   - quantity
             gift_certificates:
@@ -1922,7 +1877,7 @@ definitions:
                   name:
                     description: GiftCertificate-provided name that will appear in the control panel.
                     type: string
-                  is_taxable:
+                  taxable:
                     description: ''
                     type: boolean
                   message:
@@ -1959,7 +1914,7 @@ definitions:
         type: string
       id:
         description: The coupon ID.
-        type: string
+        type: number
       discounted_amount:
         description: The discounted amount applied within a given context.
         type: number
@@ -1988,7 +1943,7 @@ definitions:
     properties:
       id:
         description: ID of the applied discount.
-        type: number
+        type: string
       discounted_amount:
         description: The discounted amount applied within a given context.
         type: number
@@ -2015,6 +1970,9 @@ definitions:
             product_id:
               description: ''
               type: number
+            parent_id:
+              description: ''
+              type: null
             sku:
               description: ''
               type: string
@@ -2027,6 +1985,9 @@ definitions:
             is_taxable:
               description: ''
               type: boolean
+            is_mutable:
+              description:
+              type: boolean 
             image_url:
               description: ''
               type: string
@@ -2039,7 +2000,7 @@ definitions:
                 properties:
                   id:
                     description: ID of the applied discount.
-                    type: number
+                    type: string
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
@@ -2055,7 +2016,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: number
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2150,6 +2111,12 @@ definitions:
             url:
               description: The product URL.
               type: string
+            is_mutable:
+              description:
+              type: boolean
+            is_require_shipping:
+              description:
+              type: boolean
             is_taxable:
               description: ''
               type: boolean
@@ -2165,7 +2132,7 @@ definitions:
                 properties:
                   id:
                     description: ID of the applied discount.
-                    type: number
+                    type: string
                   discounted_amount:
                     description: The discounted amount applied within a given context.
                     type: number
@@ -2181,7 +2148,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: number
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2208,36 +2175,6 @@ definitions:
             extended_sale_price:
               description: Item's sale price multiplied by the quantity.
               type: number
-            options:
-              description: The list of selected options for this product.
-              type: array
-              items:
-                title: Product Option
-                type: object
-                properties:
-                  name:
-                    description: 'The product option name. For example, Color or Size'
-                    type: string
-                  name_id:
-                    description: The product option identifier.
-                    type: number
-                  value:
-                    description: 'The product option value. For example, Red or Medium'
-                    type: string
-                  value_id:
-                    description: The product option value identifier.
-                    type: number
-            download_file_urls:
-              description: URLs to download all product files.
-              type: array
-              items:
-                type: string
-            download_page_url:
-              description: The URL for the combined downloads page.
-              type: string
-            download_size:
-              description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-              type: string
           required:
             - quantity
       gift_certificates:
@@ -2279,7 +2216,7 @@ definitions:
             name:
               description: GiftCertificate-provided name that will appear in the control panel.
               type: string
-            is_taxable:
+            taxable:
               description: ''
               type: boolean
             message:
@@ -2334,7 +2271,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
@@ -2350,7 +2287,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2489,7 +2426,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
@@ -2505,7 +2442,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2600,7 +2537,7 @@ definitions:
       name:
         description: GiftCertificate-provided name that will appear in the control panel.
         type: string
-      is_taxable:
+      taxable:
         description: ''
         type: boolean
       message:
@@ -3227,7 +3164,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
             discounted_amount:
               description: The discounted amount applied within a given context.
               type: number
@@ -3243,7 +3180,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
