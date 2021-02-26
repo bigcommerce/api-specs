@@ -34,9 +34,9 @@ paths:
           $ref: '#/responses/CartResponse'
       summary: Get a Cart
       description: |-
-        Returns a *Cart*. 
+        Returns a *Cart*.
 
-        By default, the cart response will return abbreviated details for cart line items. To get full details of selected product options, use the following query parameters: 
+        By default, the cart response will return abbreviated details for cart line items. To get full details of selected product options, use the following query parameters:
 
         - Physical products only: `?include=lineItems.physicalItems.options `
         - Digital products only: `?include=lineItems.digitalItems.options`
@@ -44,11 +44,11 @@ paths:
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -63,17 +63,17 @@ paths:
 
         Cart ID is generated in the response.
 
-        To add a product with a mix of variants and options, add `optionSelections` to the `lineItems` object. `optionSelections` accepts `optionId` and `optionValue`. 
+        To add a product with a mix of variants and options, add `optionSelections` to the `lineItems` object. `optionSelections` accepts `optionId` and `optionValue`.
 
-        The redirect url endpoint does not work using the Storefront Cart. At this time, shoppers can not be directed to any carts or checkouts created using the Storefront APIs. 
+        The redirect url endpoint does not work using the Storefront Cart. At this time, shoppers can not be directed to any carts or checkouts created using the Storefront APIs.
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -166,11 +166,11 @@ paths:
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -237,11 +237,11 @@ paths:
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -305,11 +305,11 @@ paths:
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -356,11 +356,11 @@ paths:
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
-        <div class="HubBlock-content"> 
+        <div class="HubBlock-content">
 
         > ### Note
         > The Send a Test Request feature is not currently supported for this endpoint.
-         
+
         </div>
         </div>
         </div>
@@ -628,7 +628,7 @@ definitions:
   Cart_Full:
     description: |-
       A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
-      Custom Items is a read only field. A custom item can only be added to a cart using the Server to Server Cart API. 
+      Custom Items is a read only field. A custom item can only be added to a cart using the Server to Server Cart API.
     type: object
     title: Cart_Full
     properties:
@@ -949,7 +949,7 @@ definitions:
                 description: |-
                   **Read Only**
 
-                  This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API. 
+                  This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API.
                 properties:
                   id:
                     type: string
@@ -1284,7 +1284,7 @@ definitions:
           description: |-
             **Read Only**
 
-            This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API. 
+            This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API.
           properties:
             id:
               type: string
@@ -1755,7 +1755,7 @@ definitions:
     description: |-
       **Read Only**
 
-      This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API. 
+      This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API.
     properties:
       id:
         type: string
@@ -1791,7 +1791,7 @@ schemes:
   - https
 x-stoplight:
   docs:
-    includeDownloadLink: true
+    includeDownloadLink: false
     showModels: false
 host: '{$$.env.store_domain}'
 tags:
