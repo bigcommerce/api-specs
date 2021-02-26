@@ -36,10 +36,16 @@ exports.onCreatePage = async ({ page, actions }) => {
 
   // page.matchPath is a special key that's used for matching pages
   // only on the client.
-  const match = page.path.match(/^\/(docs|email-templates)/);
+  const match = page.path.match(/^\/(docs|sl)/);
   if (match) {
     page.matchPath = `${match[0]}/*`;
-
+    page.context = {
+      "workspaceId": 8751,
+      "projectId": 20603,
+      "limit": 500,
+      "search": "",
+      "snapshotType": "http_service"
+    }
     // Update the page.
     createPage(page);
   }

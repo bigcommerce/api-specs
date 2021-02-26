@@ -16,6 +16,17 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain remote schema Query type
+        typeName: "SL",
+        // This is the field under which it's accessible
+        fieldName: "stoplight",
+        // URL to query from
+        url: "https://stoplight.io/graphql",
+      },
+    },
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     // this (optional) plugin enables Progressive Web App + Offline functionality

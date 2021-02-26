@@ -1,3 +1,5 @@
+* {box-sizing:border-box;}
+
 body,
 html {
   font-size: 13px;
@@ -5,4 +7,116 @@ html {
     "Helvetica Neue", system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   margin: 0;
+}
+
+main {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.TableOfContents {
+  position: fixed;
+  left: 0;
+  top: 30px;
+  bottom: 0;
+  overflow-y: scroll;
+  width: 300px;
+}
+
+.ContentViewer {
+  position: fixed;
+  left: 300px;
+  right: 0;
+  width: unset !important;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+}
+
+.Header {
+  position: fixed;
+  z-index: 9000;
+  left: 300px;
+  background-color: white;
+  right: 0;
+  height: 50px !important;
+}
+
+.sl-elements *, .sl-elements ::before, .sl-elements ::after {
+  box-sizing: unset !important;
+  border-width: 0;
+  border-style: solid;
+  border-color: #ced9e0;
+}
+
+.sl-elements, .MarkdownViewer, .w-full.flex.flex-col.m-auto.max-w-4xl {
+  max-width: unset !important;
+}
+
+.APIComponent {
+  max-width: 1681px;
+  margin: 0 auto;
+}
+
+.HttpSecuritySchemes, .HttpService > .MarkdownViewer {display: none !important;}
+
+.bp3-heading {margin-bottom: 20px !important;}
+
+h2.mt-10  {
+  margin-top: 5px !important;
+}
+
+.sl-elements .APIComponent .HttpOperation {
+  max-width: unset !important;
+}
+
+.ContentViewer > div > div:nth-child(2) {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #f5f7f9;
+  z-index: 9001;
+  height: 45px;
+  left: 300px;
+  width: unset !important;
+}
+
+.ContentViewer > div > div:nth-child(2):hover {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: #f5f7f9;
+  z-index: 9001;
+  height: 600px;
+  left: 300px;
+  transition: height 1s;
+}
+
+.ShowOnlyRequestRunner .ContentViewer > div > div:nth-child(2) {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #f5f7f9;
+  z-index: 9001;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.HideRequestRunner .ContentViewer > div > div:nth-child(2) {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #f5f7f9;
+  z-index: 9001;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
 }
