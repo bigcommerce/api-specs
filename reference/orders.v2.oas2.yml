@@ -2900,9 +2900,9 @@ components:
           example: 5
           type:
             - string
-            - float
+            - number
             - integer
-          format: number
+          format: float
         type:
           type:
             - integer
