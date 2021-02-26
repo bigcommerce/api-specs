@@ -50,6 +50,7 @@ paths:
             * `cart.lineItems.digitalItems.options` - digital options
             * `cart.lineItems.physicalItems.categoryNames` - physical categories
             * `cart.lineItems.digitalItems.categoryNames` - digital categories
+            * `cart.lineItems.customItems.categoryNames` - custom categories
             * `customer` - customer
             * `customer.customerGroup` - customer group
             * `payments` - payments
@@ -400,7 +401,7 @@ paths:
                         name: Chambray Towel
                         url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2'
                         discounts:
                           - id: total-coupon
@@ -421,7 +422,6 @@ paths:
                         name: Able Brewing System
                         url: 'http://store-url.mybigcommerce.com/all/able-brewing-system/'
                         quantity: 1
-                        taxable: true
                         image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2'
                         discounts:
                           - id: total-coupon
@@ -442,7 +442,7 @@ paths:
                         name: Canvas Laundry Cart
                         url: 'http://store-url.mybigcommerce.com/all/canvas-laundry-cart/'
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2'
                         discounts:
                           - id: total-coupon
@@ -464,7 +464,7 @@ paths:
                         name: Gather Journal Issue 7
                         url: 'http://store-url.mybigcommerce.com/all/gather-journal-issue-7/'
                         quantity: 1
-                        taxable: true
+                        is_taxable: true
                         image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2'
                         discounts:
                           - id: total-coupon
@@ -917,10 +917,13 @@ definitions:
             description: 'Cost of cart''s contents, before applying discounts.'
             type: number
             format: double
+          channel_id:
+            description: ID of channel
+            type: number  
           discount_amount:
             description: Discounted amount.
             type: number
-            format: double
+            format: double            
           cart_amount_inc_tax:
             description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax'
             type: number
@@ -941,7 +944,7 @@ definitions:
                   type: string
                 id:
                   description: The coupon ID.
-                  type: string
+                  type: integer
                 coupon_type:
                   description: Key name to identify the type of coupon.
                   type: string
@@ -960,7 +963,7 @@ definitions:
               properties:
                 id:
                   description: ID of the applied discount.
-                  type: number
+                  type: string
                   format: double
                 discounted_amount:
                   description: The discounted amount applied within a given context.
@@ -1019,7 +1022,7 @@ definitions:
                           properties:
                             id:
                               description: ID of the applied discount.
-                              type: number
+                              type: string
                               format: double
                             discounted_amount:
                               description: The discounted amount applied within a given context.
@@ -1052,30 +1055,15 @@ definitions:
                         description: Item's sale price multiplied by the quantity.
                         type: number
                         format: double
-                      options:
-                        description: The list of selected options for this product.
-                        type: array
-                        items:
-                          title: Product Option
-                          type: object
-                          properties:
-                            name:
-                              description: 'The product option name. For example, Color or Size'
-                              type: string
-                            name_id:
-                              description: The product option identifier.
-                              type: number
-                              format: double
-                            value:
-                              description: 'The product option value. For example, Red or Medium'
-                              type: string
-                            value_id:
-                              description: The product option value identifier.
-                              type: number
-                              format: double
                       is_require_shipping:
                         description: ''
                         type: boolean
+                      is_mutable:
+                        description:
+                        type: boolean
+                      parent_id:
+                        description:
+                        type: null
                       gift_wrapping:
                         title: Gift Wrapping
                         type: object
@@ -1114,6 +1102,9 @@ definitions:
                         description: ''
                         type: number
                         format: double
+                      parent_id:
+                        description:
+                        type: null
                       product_id:
                         description: ''
                         type: number
@@ -1127,6 +1118,12 @@ definitions:
                       url:
                         description: The product URL.
                         type: string
+                      is_mutable:
+                        description:
+                        type: boolean
+                      is_require_shipping:
+                        description:
+                        type: boolean
                       is_taxable:
                         description: ''
                         type: boolean
@@ -1142,7 +1139,7 @@ definitions:
                           properties:
                             id:
                               description: ID of the applied discount.
-                              type: number
+                              type: string
                               format: double
                             discounted_amount:
                               description: The discounted amount applied within a given context.
@@ -1173,40 +1170,8 @@ definitions:
                         format: double
                       extended_sale_price:
                         description: Item's sale price multiplied by the quantity.
-                        type: number
-                        format: double
-                      options:
-                        description: The list of selected options for this product.
-                        type: array
-                        items:
-                          title: Product Option
-                          type: object
-                          properties:
-                            name:
-                              description: 'The product option name. For example, Color or Size'
-                              type: string
-                            name_id:
-                              description: The product option identifier.
-                              type: number
-                              format: double
-                            value:
-                              description: 'The product option value. For example, Red or Medium'
-                              type: string
-                            value_id:
-                              description: The product option value identifier.
-                              type: number
-                              format: double
-                      download_file_urls:
-                        description: URLs to download all product files.
-                        type: array
-                        items:
-                          type: string
-                      download_page_url:
-                        description: The URL for the combined downloads page.
-                        type: string
-                      download_size:
-                        description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-                        type: string
+                        type: number  
+                        format: double                     
                     required:
                       - quantity
                 gift_certificates:
@@ -1249,7 +1214,7 @@ definitions:
                       name:
                         description: GiftCertificate-provided name that will appear in the control panel.
                         type: string
-                      is_taxable:
+                      taxable:
                         description: ''
                         type: boolean
                       message:
@@ -1260,6 +1225,27 @@ definitions:
                       - amount
                       - sender
                       - recipient
+                custom_items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: number
+                      id:
+                        type: string
+                      extended_list_price:
+                        type: number
+                      list_price:
+                        type: number
+                      sku:
+                        type: string
+                      name:
+                        type: string
+                      image_url:
+                        type: string
+                    required:
+                      - quantity
               required:
                 - physical_items
                 - digital_items
@@ -1455,7 +1441,6 @@ definitions:
                 cost:
                   description: ''
                   type: number
-                  format: double
                 transit_time:
                   description: An estimate of the arrival time.
                   type: string
@@ -1568,7 +1553,7 @@ definitions:
         description: Time when the cart was last updated.
         type: string
       customer_message:
-        description: Shopper's message provided as details for the order to be created from this checkout
+        description: Shopper's message provided as details for the order to be created from this checkout.
         type: string
   Cart:
     title: Cart
@@ -1583,7 +1568,7 @@ definitions:
         type: integer
         format: int32
       email:
-        description: The cart's email. This is the same email that is used in the billing address
+        description: The cart's email. This is the same email that is used in the billing address.
         type: string
       currency:
         title: Currency
@@ -1601,11 +1586,10 @@ definitions:
         type: number
         format: double
       cart_amount_inc_tax:
-        description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax'
+        description: 'Sum of line-items amounts, minus cart-level discounts and coupons including tax.'
         type: number
         format: double
       cart_amount_ex_tax:
-        description: 'Sum of line-items amounts, minus cart-level discounts and coupons excluding tax'
         type: number
         format: double
       coupons:
@@ -1622,7 +1606,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
               format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
@@ -1645,7 +1629,6 @@ definitions:
                   quantity:
                     description: ''
                     type: number
-                    format: double
                   id:
                     description: The line-item ID.
                     type: string
@@ -1681,7 +1664,7 @@ definitions:
                       properties:
                         id:
                           description: ID of the applied discount.
-                          type: number
+                          type: string
                           format: double
                         discounted_amount:
                           description: The discounted amount applied within a given context.
@@ -1699,7 +1682,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: number
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -1712,11 +1695,10 @@ definitions:
                   discount_amount:
                     description: The total value of all discounts applied to this item.
                     type: number
-                    format: double
                   coupon_amount:
                     description: The total value of all coupons applied to this item.
                     type: number
-                    format: double
+                    format: double                    
                   list_price:
                     description: 'Item''s list price, as quoted by the manufacturer/distributor.'
                     type: number
@@ -1733,30 +1715,15 @@ definitions:
                     description: Item's sale price multiplied by the quantity.
                     type: number
                     format: double
-                  options:
-                    description: The list of selected options for this product.
-                    type: array
-                    items:
-                      title: Product Option
-                      type: object
-                      properties:
-                        name:
-                          description: 'The product option name. For example, Color or Size'
-                          type: string
-                        name_id:
-                          description: The product option identifier.
-                          type: number
-                          format: double
-                        value:
-                          description: 'The product option value. For example, Red or Medium'
-                          type: string
-                        value_id:
-                          description: The product option value identifier.
-                          type: number
-                          format: double
                   is_require_shipping:
                     description: ''
                     type: boolean
+                  is_mutable:
+                    description:
+                    type: boolean
+                  parent_id:
+                    description:
+                    type: null
                   gift_wrapping:
                     title: Gift Wrapping
                     type: object
@@ -1808,6 +1775,12 @@ definitions:
                   url:
                     description: The product URL.
                     type: string
+                  is_mutable:
+                    description:
+                    type: boolean
+                  is_require_shipping:
+                    description:
+                    type: boolean
                   is_taxable:
                     description: ''
                     type: boolean
@@ -1823,7 +1796,7 @@ definitions:
                       properties:
                         id:
                           description: ID of the applied discount.
-                          type: number
+                          type: string
                           format: double
                         discounted_amount:
                           description: The discounted amount applied within a given context.
@@ -1841,7 +1814,7 @@ definitions:
                           type: string
                         id:
                           description: The coupon ID.
-                          type: string
+                          type: number
                         coupon_type:
                           description: Key name to identify the type of coupon.
                           type: string
@@ -1854,7 +1827,6 @@ definitions:
                   discount_amount:
                     description: The total value of all discounts applied to this item.
                     type: number
-                    format: double
                   coupon_amount:
                     description: The total value of all coupons applied to this item.
                     type: number
@@ -1875,38 +1847,6 @@ definitions:
                     description: Item's sale price multiplied by the quantity.
                     type: number
                     format: double
-                  options:
-                    description: The list of selected options for this product.
-                    type: array
-                    items:
-                      title: Product Option
-                      type: object
-                      properties:
-                        name:
-                          description: 'The product option name. For example, Color or Size'
-                          type: string
-                        name_id:
-                          description: The product option identifier.
-                          type: number
-                          format: double
-                        value:
-                          description: 'The product option value. For example, Red or Medium'
-                          type: string
-                        value_id:
-                          description: The product option value identifier.
-                          type: number
-                          format: double
-                  download_file_urls:
-                    description: URLs to download all product files.
-                    type: array
-                    items:
-                      type: string
-                  download_page_url:
-                    description: The URL for the combined downloads page.
-                    type: string
-                  download_size:
-                    description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-                    type: string
                 required:
                   - quantity
             gift_certificates:
@@ -1949,7 +1889,7 @@ definitions:
                   name:
                     description: GiftCertificate-provided name that will appear in the control panel.
                     type: string
-                  is_taxable:
+                  taxable:
                     description: ''
                     type: boolean
                   message:
@@ -1986,7 +1926,7 @@ definitions:
         type: string
       id:
         description: The coupon ID.
-        type: string
+        type: number
       discounted_amount:
         description: The discounted amount applied within a given context.
         type: number
@@ -2016,7 +1956,7 @@ definitions:
     properties:
       id:
         description: ID of the applied discount.
-        type: number
+        type: string
         format: double
       discounted_amount:
         description: The discounted amount applied within a given context.
@@ -2048,6 +1988,9 @@ definitions:
               description: ''
               type: number
               format: double
+            parent_id:
+              description: ''
+              type: null
             sku:
               description: ''
               type: string
@@ -2060,6 +2003,9 @@ definitions:
             is_taxable:
               description: ''
               type: boolean
+            is_mutable:
+              description:
+              type: boolean 
             image_url:
               description: ''
               type: string
@@ -2072,7 +2018,7 @@ definitions:
                 properties:
                   id:
                     description: ID of the applied discount.
-                    type: number
+                    type: string
                     format: double
                   discounted_amount:
                     description: The discounted amount applied within a given context.
@@ -2090,7 +2036,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: number
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2123,28 +2069,7 @@ definitions:
             extended_sale_price:
               description: Item's sale price multiplied by the quantity.
               type: number
-              format: double
-            options:
-              description: The list of selected options for this product.
-              type: array
-              items:
-                title: Product Option
-                type: object
-                properties:
-                  name:
-                    description: 'The product option name. For example, Color or Size'
-                    type: string
-                  name_id:
-                    description: The product option identifier.
-                    type: number
-                    format: double
-                  value:
-                    description: 'The product option value. For example, Red or Medium'
-                    type: string
-                  value_id:
-                    description: The product option value identifier.
-                    type: number
-                    format: double
+              format: double              
             is_require_shipping:
               description: ''
               type: boolean
@@ -2190,6 +2115,9 @@ definitions:
               description: ''
               type: number
               format: double
+            parent_id:
+              description: ''
+              type: null
             sku:
               description: ''
               type: string
@@ -2199,6 +2127,12 @@ definitions:
             url:
               description: The product URL.
               type: string
+            is_mutable:
+              description:
+              type: boolean
+            is_require_shipping:
+              description:
+              type: boolean
             is_taxable:
               description: ''
               type: boolean
@@ -2214,7 +2148,7 @@ definitions:
                 properties:
                   id:
                     description: ID of the applied discount.
-                    type: number
+                    type: string
                     format: double
                   discounted_amount:
                     description: The discounted amount applied within a given context.
@@ -2232,7 +2166,7 @@ definitions:
                     type: string
                   id:
                     description: The coupon ID.
-                    type: string
+                    type: number
                   coupon_type:
                     description: Key name to identify the type of coupon.
                     type: string
@@ -2266,38 +2200,6 @@ definitions:
               description: Item's sale price multiplied by the quantity.
               type: number
               format: double
-            options:
-              description: The list of selected options for this product.
-              type: array
-              items:
-                title: Product Option
-                type: object
-                properties:
-                  name:
-                    description: 'The product option name. For example, Color or Size'
-                    type: string
-                  name_id:
-                    description: The product option identifier.
-                    type: number
-                    format: double
-                  value:
-                    description: 'The product option value. For example, Red or Medium'
-                    type: string
-                  value_id:
-                    description: The product option value identifier.
-                    type: number
-                    format: double
-            download_file_urls:
-              description: URLs to download all product files.
-              type: array
-              items:
-                type: string
-            download_page_url:
-              description: The URL for the combined downloads page.
-              type: string
-            download_size:
-              description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-              type: string
           required:
             - quantity
       gift_certificates:
@@ -2340,7 +2242,7 @@ definitions:
             name:
               description: GiftCertificate-provided name that will appear in the control panel.
               type: string
-            is_taxable:
+            taxable:
               description: ''
               type: boolean
             message:
@@ -2398,7 +2300,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
               format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
@@ -2416,7 +2318,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2450,27 +2352,6 @@ definitions:
         description: Item's sale price multiplied by the quantity.
         type: number
         format: double
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: number
-              format: double
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
-              format: double
       is_require_shipping:
         description: ''
         type: boolean
@@ -2529,7 +2410,6 @@ definitions:
       amount_as_integer:
         description: ''
         type: number
-        format: double
   ItemDigital:
     title: Item Digital
     type: object
@@ -2573,7 +2453,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
               format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
@@ -2591,7 +2471,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -2625,38 +2505,6 @@ definitions:
         description: Item's sale price multiplied by the quantity.
         type: number
         format: double
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: number
-              format: double
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
-              format: double
-      download_file_urls:
-        description: URLs to download all product files.
-        type: array
-        items:
-          type: string
-      download_page_url:
-        description: The URL for the combined downloads page.
-        type: string
-      download_size:
-        description: 'Combined download size, in human-readable style. E.g.: `30MB`.'
-        type: string
     required:
       - quantity
   ItemGiftCertificate:
@@ -2696,7 +2544,7 @@ definitions:
       name:
         description: GiftCertificate-provided name that will appear in the control panel.
         type: string
-      is_taxable:
+      taxable:
         description: ''
         type: boolean
       message:
@@ -2941,7 +2789,6 @@ definitions:
             cost:
               description: ''
               type: number
-              format: double
             transit_time:
               description: An estimate of the arrival time.
               type: string
@@ -2987,7 +2834,6 @@ definitions:
             amount:
               description: ''
               type: number
-              format: double
       discounts:
         description: List of consignment discounts applied through cart level discounts
         type: array
@@ -3001,19 +2847,15 @@ definitions:
       shipping_cost_inc_tax:
         description: The shipping cost for this consignment including tax.
         type: number
-        format: double
       shipping_cost_ex_tax:
         description: The shipping cost for this consignment excluding tax.
         type: number
-        format: double
       handling_cost_inc_tax:
         description: The handling cost of shipping for this consignment including tax.
         type: number
-        format: double
       handling_cost_ex_tax:
         description: The handling cost of shipping for this consignment excluding tax.
-        type: number
-        format: double
+        type: number        
       line_item_ids:
         description: ''
         type: array
@@ -3336,7 +3178,7 @@ definitions:
           properties:
             id:
               description: ID of the applied discount.
-              type: number
+              type: string
               format: double
             discounted_amount:
               description: The discounted amount applied within a given context.
@@ -3354,7 +3196,7 @@ definitions:
               type: string
             id:
               description: The coupon ID.
-              type: string
+              type: number
             coupon_type:
               description: Key name to identify the type of coupon.
               type: string
@@ -3387,28 +3229,7 @@ definitions:
       extended_sale_price:
         description: Item's sale price multiplied by the quantity.
         type: number
-        format: double
-      options:
-        description: The list of selected options for this product.
-        type: array
-        items:
-          title: Product Option
-          type: object
-          properties:
-            name:
-              description: 'The product option name. For example, Color or Size'
-              type: string
-            name_id:
-              description: The product option identifier.
-              type: number
-              format: double
-            value:
-              description: 'The product option value. For example, Red or Medium'
-              type: string
-            value_id:
-              description: The product option value identifier.
-              type: number
-              format: double
+        format: double        
     required:
       - quantity
   Order:
@@ -3547,7 +3368,7 @@ responses:
                   name: Chambray Towel
                   url: 'http://store-url.mybigcommerce.com/all/chambray-towel/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/158/images/382/foglinenbeigestripetowel1b_1024x1024__83011__60806.1534344511.330.500.jpg?c=2'
                   discounts:
                     - id: total-coupon
@@ -3568,7 +3389,7 @@ responses:
                   name: Able Brewing System
                   url: 'http://store-url.mybigcommerce.com/all/able-brewing-system/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/167/images/398/ablebrewingsystem4_1024x1024__07155__93974.1534344516.330.500.jpg?c=2'
                   discounts:
                     - id: total-coupon
@@ -3589,7 +3410,7 @@ responses:
                   name: Canvas Laundry Cart
                   url: 'http://store-url.mybigcommerce.com/all/canvas-laundry-cart/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/184/images/445/naturalcanvascart2_1024x1024__92347__29648.1534344533.330.500.jpg?c=2'
                   discounts:
                     - id: total-coupon
@@ -3611,7 +3432,7 @@ responses:
                   name: Gather Journal Issue 7
                   url: 'http://store-url.mybigcommerce.com/all/gather-journal-issue-7/'
                   quantity: 1
-                  taxable: true
+                  is_taxable: true
                   image_url: 'https://cdn8.bigcommerce.com/s-{store_hash}/products/189/images/465/gather_1024x1024__17195__82620.1534344540.330.500.jpg?c=2'
                   discounts:
                     - id: total-coupon
@@ -3700,164 +3521,133 @@ responses:
           updated_time: '2018-08-15T15:54:31+00:00'
           customer_message: ''
         meta: {}
-      Available Shipping Options: |-
-        {
-            "data": {
-                "id": "306d57d7-124e-4112-82cd-35e060c0d4d9",
-                "cart": {
-                    "id": "306d57d7-124e-4112-82cd-35e060c0d4d9",
-                    "customer_id": 11,
-                    "channel_id": 1,
-                    "email": "janedoe@email.com",
-                    "currency": {
-                        "code": "USD"
-                    },
-                    "base_amount": 31.95,
-                    "discount_amount": 0,
-                    "cart_amount_inc_tax": 33.23,
-                    "cart_amount_ex_tax": 31.95,
-                    "coupons": [],
-                    "discounts": [
-                        {
-                            "id": "8edef915-8e8e-4ebd-bece-31fbb1191a7e",
-                            "discounted_amount": 0
-                        }
-                    ],
-                    "line_items": {
-                        "physical_items": [
-                            {
-                                "id": "8edef915-8e8e-4ebd-bece-31fbb1191a7e",
-                                "parent_id": null,
-                                "variant_id": 359,
-                                "product_id": 188,
-                                "sku": "DUST1",
-                                "name": "Hello",
-                                "url": "https:\/\/{store_hash}\/all\/dustpan-brush\/",
-                                "quantity": 1,
-                                "is_taxable": true,
-                                "image_url": "https:\/\/cdn11.bigcommerce.com\/s-{store_hash}\/products\/188\/images\/460\/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2",
-                                "discounts": [],
-                                "coupons": [],
-                                "discount_amount": 0,
-                                "coupon_amount": 0,
-                                "list_price": 31.95,
-                                "sale_price": 33.23,
-                                "extended_list_price": 31.95,
-                                "extended_sale_price": 33.23,
-                                "is_require_shipping": true,
-                                "gift_wrapping": null
-                            }
-                        ],
-                        "digital_items": [],
-                        "gift_certificates": [],
-                        "custom_items": []
-                    },
-                    "created_time": "2019-08-05T15:38:14+00:00",
-                    "updated_time": "2019-08-05T15:41:28+00:00"
-                },
-                "billing_address": {
-                    "id": "5d484d668e5aa",
-                    "first_name": null,
-                    "last_name": null,
-                    "email": "janedoe@email.com",
-                    "company": "BigCommerce",
-                    "address1": "123 Main Street",
-                    "address2": "Apt 1",
-                    "city": "Austin",
-                    "state_or_province": "",
-                    "state_or_province_code": "",
-                    "country": "",
-                    "country_code": "",
-                    "postal_code": null,
-                    "phone": null,
-                    "custom_fields": []
-                },
-                "consignments": [
-                    {
-                        "id": "5d484e28d20a8",
-                        "shipping_cost_inc_tax": 0,
-                        "shipping_cost_ex_tax": 0,
-                        "handling_cost_inc_tax": 0,
-                        "handling_cost_ex_tax": 0,
-                        "coupon_discounts": [],
-                        "discounts": [],
-                        "line_item_ids": [
-                            "8edef915-8e8e-4ebd-bece-31fbb1191a7e"
-                        ],
-                        "shipping_address": {
-                            "first_name": "BigCommerce",
-                            "last_name": "Cart\/Checkout",
-                            "email": "jane2@email.com",
-                            "company": "",
-                            "address1": "123 Main Street",
-                            "address2": "",
-                            "city": "Austin",
-                            "state_or_province": "Texas",
-                            "state_or_province_code": "TX",
-                            "country": "United States",
-                            "country_code": "US",
-                            "postal_code": "78751",
-                            "phone": "688546",
-                            "customFields": [
-                                {
-                                    "field_id": "field_25",
-                                    "field_value": "Great!"
-                                }
-                            ]
-                        },
-                        "available_shipping_options": [
-                            {
-                                "id": "006a58a98c9a844225552ee2a9c60ca8",
-                                "type": "shipping_byweight",
-                                "description": "Ship by Weight",
-                                "image_url": "",
-                                "cost": 8,
-                                "transit_time": "",
-                                "additional_description": ""
-                            },
-                            {
-                                "id": "722d78b5120de60a725e41be9bb8d999",
-                                "type": "shipping_flatrate",
-                                "description": "Flat Rate",
-                                "image_url": "",
-                                "cost": 12,
-                                "transit_time": "",
-                                "additional_description": ""
-                            },
-                            {
-                                "id": "71090fa93c8985348892543c3f4887b6",
-                                "type": "shipping_upsready",
-                                "description": "UPS® (UPS Next Day Air®)",
-                                "image_url": "",
-                                "cost": 43.9,
-                                "transit_time": "1 business day",
-                                "additional_description": ""
-                            }
-                        ]
-                    }
-                ],
-                "taxes": [
-                    {
-                        "name": "Tax",
-                        "amount": 1.28
-                    }
-                ],
-                "coupons": [],
-                "order_id": null,
-                "shipping_cost_total_inc_tax": 0,
-                "shipping_cost_total_ex_tax": 0,
-                "handling_cost_total_inc_tax": 0,
-                "handling_cost_total_ex_tax": 0,
-                "tax_total": 1.28,
-                "subtotal_inc_tax": 33.23,
-                "subtotal_ex_tax": 31.95,
-                "grand_total": 33.23,
-                "created_time": "2019-08-05T15:38:14+00:00",
-                "updated_time": "2019-08-05T15:41:28+00:00",
-                "customer_message": ""
-            },
-            "meta": {}
-        }
+      Available Shipping Options:
+        data:
+          id: 306d57d7-124e-4112-82cd-35e060c0d4d9
+          cart:
+            id: 306d57d7-124e-4112-82cd-35e060c0d4d9
+            customer_id: 11
+            channel_id: 1
+            email: janedoe@email.com
+            currency:
+              code: USD
+            base_amount: 31.95
+            discount_amount: 0
+            cart_amount_inc_tax: 33.23
+            cart_amount_ex_tax: 31.95
+            coupons: []
+            discounts:
+              - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
+                discounted_amount: 0
+            line_items:
+              physical_items:
+                - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
+                  parent_id: null
+                  variant_id: 359
+                  product_id: 188
+                  sku: DUST1
+                  name: Hello
+                  url: 'https://{store_hash}/all/dustpan-brush/'
+                  quantity: 1
+                  is_taxable: true
+                  image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
+                  discounts: []
+                  coupons: []
+                  discount_amount: 0
+                  coupon_amount: 0
+                  list_price: 31.95
+                  sale_price: 33.23
+                  extended_list_price: 31.95
+                  extended_sale_price: 33.23
+                  is_require_shipping: true
+                  gift_wrapping: null
+              digital_items: []
+              gift_certificates: []
+              custom_items: []
+            created_time: '2019-08-05T15:38:14+00:00'
+            updated_time: '2019-08-05T15:41:28+00:00'
+          billing_address:
+            id: 5d484d668e5aa
+            first_name: null
+            last_name: null
+            email: janedoe@email.com
+            company: BigCommerce
+            address1: 123 Main Street
+            address2: Apt 1
+            city: Austin
+            state_or_province: ''
+            state_or_province_code: ''
+            country: ''
+            country_code: ''
+            postal_code: null
+            phone: null
+            custom_fields: []
+          consignments:
+            - id: 5d484e28d20a8
+              shipping_cost_inc_tax: 0
+              shipping_cost_ex_tax: 0
+              handling_cost_inc_tax: 0
+              handling_cost_ex_tax: 0
+              coupon_discounts: []
+              discounts: []
+              line_item_ids:
+                - 8edef915-8e8e-4ebd-bece-31fbb1191a7e
+              shipping_address:
+                first_name: BigCommerce
+                last_name: Cart/Checkout
+                email: jane2@email.com
+                company: ''
+                address1: 123 Main Street
+                address2: ''
+                city: Austin
+                state_or_province: Texas
+                state_or_province_code: TX
+                country: United States
+                country_code: US
+                postal_code: '78751'
+                phone: '688546'
+                customFields:
+                  - field_id: field_25
+                    field_value: Great!
+              available_shipping_options:
+                - id: 006a58a98c9a844225552ee2a9c60ca8
+                  type: shipping_byweight
+                  description: Ship by Weight
+                  image_url: ''
+                  cost: 8
+                  transit_time: ''
+                  additional_description: ''
+                - id: 722d78b5120de60a725e41be9bb8d999
+                  type: shipping_flatrate
+                  description: Flat Rate
+                  image_url: ''
+                  cost: 12
+                  transit_time: ''
+                  additional_description: ''
+                - id: 71090fa93c8985348892543c3f4887b6
+                  type: shipping_upsready
+                  description: UPS® (UPS Next Day Air®)
+                  image_url: ''
+                  cost: 43.9
+                  transit_time: 1 business day
+                  additional_description: ''
+          taxes:
+            - name: Tax
+              amount: 1.28
+          coupons: []
+          order_id: null
+          shipping_cost_total_inc_tax: 0
+          shipping_cost_total_ex_tax: 0
+          handling_cost_total_inc_tax: 0
+          handling_cost_total_ex_tax: 0
+          tax_total: 1.28
+          subtotal_inc_tax: 33.23
+          subtotal_ex_tax: 31.95
+          grand_total: 33.23
+          created_time: '2019-08-05T15:38:14+00:00'
+          updated_time: '2019-08-05T15:41:28+00:00'
+          customer_message: ''
+        meta: {}
       Selected Shipping Options: |-
         {
           "data": {
