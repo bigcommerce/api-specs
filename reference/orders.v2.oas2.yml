@@ -254,10 +254,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/order_Req'
+              $ref: '#/components/schemas/order_Post'
         required: true
         x-examples:
           application/json:
+            status_id: 0
+            customer_id: 11
             billing_address:
               first_name: Jane
               last_name: Doe
