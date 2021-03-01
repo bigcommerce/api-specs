@@ -5,6 +5,12 @@ rules:
   oas3-unused-components-schema: off
 
 except:
+  'reference/carts.sf.yml':
+    - invalid-ref
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - operation-tag-defined
+    - openapi-tags
   'reference/carts.v3.yml':
     - oas2-oneOf
     - oas2-valid-definition-example
