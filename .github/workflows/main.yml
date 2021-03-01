@@ -1,11 +1,6 @@
 name: Run Spectral on Pull Requests
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the main branch
-  push:
-    branches:
-      - master
+on: push
 
 jobs:
   build:
