@@ -6,8 +6,6 @@ rules:
 
 except:
   # perm exceptions for host property
-  "reference/carts.sf.yml#/host":
-    - oas2-schema
   "reference/checkouts.sf.yml#/host":
     - oas2-schema
   "reference/form_fields.sf.yml#/host":
