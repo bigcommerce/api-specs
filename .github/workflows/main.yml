@@ -13,6 +13,6 @@ jobs:
       # Run Spectral
       - uses: stoplightio/spectral-action@v0.5.5
         with:
-          file_glob: ./reference/*.yml
+          file_glob: ./reference/abandoned_carts.v3.yml
           repo_token: ${{secrets.GITHUB_TOKEN}}
           spectral_ruleset: ./.spectral.yaml
