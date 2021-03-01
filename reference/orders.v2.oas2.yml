@@ -4377,3 +4377,48 @@ components:
       - quantity
       - price_ex_tax
       - price_inc_tax
+  orderCustomProduct_Put:
+    title: orderCustomProduct_Put
+    type: object
+    description: |-
+      To `add` a custom product to an existing order, don't include `id` in the payload. At least one of these fields `name`, `name_customer`, or `name_merchant` must be provided with non-empty value.
+      To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+      Note:
+      - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+      - `name` and `name_customer` always hold the same value, updating either `name` or `name_customer` will change the value for both of those fields.
+      - If both fields `name` and `name_customer` are present, they must have same value.
+      - When updating an existing order product, if both fields `name` and `name_customer` are omitted from the request, they will not be updated.
+      - When updating an existing order product, if `name_merchant` is omitted from the request, it will not be updated.
+      - When adding product, if `name_merchant` is omitted, it will be set to the value of `name` (or `name_customer`).
+      - When adding a new product to an existing order, if both fields `name` and `name_customer` are omitted, they will be set to the value of `name_merchant`.
+    properties:
+      name:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: Alias for name_customer. The product name that is shown to customer in storefront.
+      name_customer:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: The product name that is shown to customer in storefront.
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
+      quantity:
+        type: number
+      price_ex_tax:
+        type: number
+      price_inc_tax:
+        type: number
+      sku:
+        type: string
+      upc:
+        type: string
+      id:
+        type: integer
+        description: ID of the order product line
+    required:
+      - name
+      - quantity
+      - price_ex_tax
+      - price_inc_tax
