@@ -4173,7 +4173,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/shippingAddress_Base'
-    orderCatalogProduct_Post:
+  orderCatalogProduct_Post:
     title: orderCatalogProduct_Post
     type: object
     description: |-
@@ -4254,3 +4254,88 @@ components:
       - product_id
       - product_options
       - quantity
+  orderCatalogProduct_Put:
+    title: orderCatalogProduct_Put
+    type: object
+    description: |
+      To `add` product to an existing order, don't include `id` in the payload. And note that the `product_options` are required if adding a product with variants.
+      To `update` an order product line, `id` is required. The payload should only contain the fields that needs to be updated. Those fields that are omitted will not be changed.
+      Note:
+      - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
+      - If both fields `xxx` and `xxx_customer` are present, they must have same value.
+      - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer`, and `xxx_merchant`.
+      - When updating and existing order product without changing the variant, product or product options, if `xxx_merchant` is not part of the request it will not be updated.
+      - When updating an existing order product, if both fields `xxx` and `xxx_customer` not part of the request they will not be updated.
+      - When adding a product to and existing order or changing the variant, product, or product options.
+      - Empty strings `''` and `null` are invalid for `xxx`, `xxx_customer, and `xxx_merchant` if `xxx_merchant` is omitted, it will default to have the catalog value.
+      - If both fields `xxx` and `xxx_customer` are omitted from the request, they will default to the catalog value.
+    properties:
+      id:
+        type: integer
+        description: ID of the order product line
+      product_id:
+        type: integer
+      name:
+        type: string
+        description: Alias for `name_customer`. The product name that is shown to customer in storefront.
+        example: Fog Linen Chambray Towel - Beige Stripe
+      name_customer:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: The product name that is shown to customer in storefront.
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
+      product_options:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            value:
+              type: string
+            display_name:
+              type: string
+              example: couleur
+              description: Alias for `display_name_customer`. The product option name that is shown to customer in storefront.
+            display_name_customer:
+              type: string
+              description: The product option name that is shown to customer in storefront.
+              example: couleur
+            display_name_merchant:
+              type: string
+              example: color
+              description: The product option name that is shown to merchant in Control Panel.
+            display_value:
+              type: string
+              example: bleu
+              description: Alias for `display_value_customer`. The product option value that is shown to customer in storefront.
+            display_value_merchant:
+              type: string
+              example: blue
+              description: The product option value that is shown to merchant in Control Panel.
+            display_value_customer:
+              type: string
+              example: bleu
+              description: The product option value that is shown to customer in storefront.
+      quantity:
+        type: number
+      price_inc_tax:
+        type: number
+      price_ex_tax:
+        type: number
+      upc:
+        type: string
+      variant_id:
+        type: integer
+        description: '""'
+      wrapping_name:
+        type: string
+      wrapping_message:
+        type: string
+      wrapping_cost_ex_tax:
+        type: number
+      wrapping_cost_inc_tax:
+        type: number
