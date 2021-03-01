@@ -2952,6 +2952,7 @@ components:
           description: Alias of name_customer - The product name that is shown to customer in storefront.
           example: Fog Linen Chambray Towel - Beige Stripe
           type: string
+          minLength: 1
         sku:
           description: User-defined product code/stock keeping unit (SKU).
           example: S-GREE
@@ -4172,3 +4173,84 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/shippingAddress_Base'
+    orderCatalogProduct_Post:
+    title: orderCatalogProduct_Post
+    type: object
+    description: |-
+      `product_options` are required if adding a product with variants.
+      Note:
+      - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields. 
+      - If both fields `xxx` and `xxx_customer` are present, they must have same value.
+      - Empty strings `''` and `null` are invalid for `xxx` and `xxx_customer, and `xxx_merchant`.
+      - `xxx`, `xxx_customer`, and `xxx_merchant` default to the value from `catalog` if not supplied in the request.
+    properties:
+      product_id:
+        type: integer
+      name:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: Alias for name_customer. The product name that is shown to customer in storefront.
+      name_customer:
+        type: string
+        example: Fog Linen Chambray Towel - Beige Stripe
+        description: The product name that is shown to customer in storefront.
+      name_merchant:
+        type: string
+        example: Towel Type 1
+        description: The product name that is shown to merchant in Control Panel.
+      product_options:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: integer
+            value:
+              type: string
+            display_name:
+              type: string
+              example: couleur
+              description: Alias for display_name_customer. The product option name that is shown to customer in storefront.
+            display_name_customer:
+              type: string
+              example: couleur
+              description: The product option name that is shown to customer in storefront.
+            display_name_merchant:
+              type: string
+              example: color
+              description: The product option name that is shown to merchant in Control Panel.
+            display_value:
+              type: string
+              example: bleu
+              description: Alias for display_value_customer. The product option value that is shown to customer in storefront.
+            display_value_customer:
+              type: string
+              example: bleu
+              description: The product option value that is shown to customer in storefront.
+            display_value_merchant:
+              type: string
+              example: blue
+              description: The product option value that is shown to merchant in Control Panel.
+      quantity:
+        type: number
+      price_inc_tax:
+        type: number
+      price_ex_tax:
+        type: number
+      upc:
+        type: string
+      variant_id:
+        type: integer
+        description: '""'
+      wrapping_name:
+        type: string
+      wrapping_message:
+        type: string
+      wrapping_cost_ex_tax:
+        type: number
+      wrapping_cost_inc_tax:
+        type: number
+    required:
+      - product_id
+      - product_options
+      - quantity
