@@ -157,3 +157,5 @@ except:
     - oas2-schema
   'reference/shipping_provider.yml#/host':
     - oas2-schema
+  'reference/carts.sf.yml#/host':
+    - oas2-schema
