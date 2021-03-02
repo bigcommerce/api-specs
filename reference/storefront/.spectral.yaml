@@ -1,3 +1,4 @@
+extends: spectral:oas
 rules:
   storefront-api-camel-case:
     description: Storefront API keys should be camelCased.
