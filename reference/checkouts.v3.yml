@@ -394,7 +394,7 @@ paths:
                   line_items:
                     physical_items:
                       - id: 8166a146-3ecb-40aa-b40a-f39244e6c257
-                        parent_id: null
+                        parent_id: 123
                         variant_id: 328
                         product_id: 158
                         sku: SKU-BDD6E975
@@ -415,7 +415,7 @@ paths:
                         extended_sale_price: 47.03
                         is_require_shipping: true
                       - id: 1359bfee-5b01-4f73-803b-6b07d75b36cd
-                        parent_id: null
+                        parent_id: 123
                         variant_id: 338
                         product_id: 167
                         sku: ''
@@ -426,7 +426,7 @@ paths:
                         discounts:
                           - id: total-coupon
                             discounted_amount: 2.1
-                        coupons: []
+                        coupons: 0
                         discount_amount: 0
                         coupon_amount: 0
                         list_price: 218.5
@@ -435,7 +435,7 @@ paths:
                         extended_sale_price: 216.4
                         is_require_shipping: true
                       - id: 20e79ae2-5c44-472c-9ac4-aaa645b955ff
-                        parent_id: null
+                        parent_id: 123
                         variant_id: 367
                         product_id: 184
                         sku: SMA-GRE
@@ -447,7 +447,7 @@ paths:
                         discounts:
                           - id: total-coupon
                             discounted_amount: 2.27
-                        coupons: []
+                        coupons: 0
                         discount_amount: 0
                         coupon_amount: 0
                         list_price: 236.55
@@ -457,7 +457,7 @@ paths:
                         is_require_shipping: true
                     digital_items:
                       - id: 87c770bc-7a5e-42cf-aaf9-c8bceda81704
-                        parent_id: null
+                        parent_id: 123
                         variant_id: 360
                         product_id: 189
                         sku: ''
@@ -469,7 +469,7 @@ paths:
                         discounts:
                           - id: total-coupon
                             discounted_amount: 0.17
-                        coupons: []
+                        coupons: 0
                         discount_amount: 0
                         coupon_amount: 0
                         list_price: 18
@@ -574,7 +574,7 @@ paths:
                   line_items:
                     physical_items:
                     - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
-                      parent_id:
+                      parent_id: 123
                       variant_id: 359
                       product_id: 188
                       sku: DUST1
@@ -621,7 +621,6 @@ paths:
                   handling_cost_inc_tax: 0
                   handling_cost_ex_tax: 0
                   coupon_discounts: []
-                  discounts: []
                   line_item_ids:
                   - 8edef915-8e8e-4ebd-bece-31fbb1191a7e
                   shipping_address:
@@ -714,12 +713,6 @@ paths:
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
-      x-unitTests: []
-      x-operation-settings:
-        CollectParameters: false
-        AllowDynamicQueryParameters: false
-        AllowDynamicFormParameters: false
-        IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/coupons':
     post:
       description: |-
@@ -1903,7 +1896,7 @@ responses:
             line_items:
               physical_items:
                 - id: 8166a146-3ecb-40aa-b40a-f39244e6c257
-                  parent_id: null
+                  parent_id: 123
                   variant_id: 328
                   product_id: 158
                   sku: SKU-BDD6E975
@@ -1924,7 +1917,7 @@ responses:
                   extended_sale_price: 47.03
                   is_require_shipping: true
                 - id: 1359bfee-5b01-4f73-803b-6b07d75b36cd
-                  parent_id: null
+                  parent_id: 123
                   variant_id: 338
                   product_id: 167
                   sku: ''
@@ -1936,7 +1929,7 @@ responses:
                   discounts:
                     - id: total-coupon
                       discounted_amount: 2.1
-                  coupons: []
+                  coupons: 0
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 218.5
@@ -1945,7 +1938,7 @@ responses:
                   extended_sale_price: 216.4
                   is_require_shipping: true
                 - id: 20e79ae2-5c44-472c-9ac4-aaa645b955ff
-                  parent_id: null
+                  parent_id: 123
                   variant_id: 367
                   product_id: 184
                   sku: SMA-GRE
@@ -1957,7 +1950,7 @@ responses:
                   discounts:
                     - id: total-coupon
                       discounted_amount: 2.27
-                  coupons: []
+                  coupons: 0
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 236.55
@@ -1967,7 +1960,7 @@ responses:
                   is_require_shipping: true
               digital_items:
                 - id: 87c770bc-7a5e-42cf-aaf9-c8bceda81704
-                  parent_id: null
+                  parent_id: 123
                   variant_id: 360
                   product_id: 189
                   sku: ''
@@ -1979,7 +1972,7 @@ responses:
                   discounts:
                     - id: total-coupon
                       discounted_amount: 0.17
-                  coupons: []
+                  coupons: 0
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 18
@@ -2077,14 +2070,14 @@ responses:
             discount_amount: 0
             cart_amount_inc_tax: 33.23
             cart_amount_ex_tax: 31.95
-            coupons: []
+            coupons: 0
             discounts:
               - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
                 discounted_amount: 0
             line_items:
               physical_items:
                 - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
-                  parent_id: null
+                  parent_id: 123
                   variant_id: 359
                   product_id: 188
                   sku: DUST1
@@ -2094,7 +2087,7 @@ responses:
                   is_taxable: true
                   image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
                   discounts: []
-                  coupons: []
+                  coupons:
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 31.95
@@ -2211,7 +2204,7 @@ responses:
             line_items:
               physical_items:
               - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
-                parent_id:
+                parent_id: 123
                 variant_id: 359
                 product_id: 188
                 sku: DUST1
