@@ -30,7 +30,6 @@ except:
   'reference/checkouts.sf.yml':
     - oas2-valid-response-example
   'reference/checkouts.v3.yml':
-    - no-$ref-siblings
     - oas2-schema
     - oas2-operation-security-defined
     - oas2-valid-response-schema-example

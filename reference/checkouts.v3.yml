@@ -2096,7 +2096,7 @@ responses:
                   extended_list_price: 31.95
                   extended_sale_price: 33.23
                   is_require_shipping: true
-                  gift_wrapping: null
+                  gift_wrapping: {}
               digital_items: []
               gift_certificates: []
               custom_items: []
@@ -2198,7 +2198,7 @@ responses:
             discount_amount: 0
             cart_amount_inc_tax: 33.23
             cart_amount_ex_tax: 31.95
-            coupons: []
+            coupons:
             discounts:
             - id: 8edef915-8e8e-4ebd-bece-31fbb1191a7e
               discounted_amount: 0
