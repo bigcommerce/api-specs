@@ -1,0 +1,10 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - run:
+          name: "API Description Linter"
+          command: npx @stoplight/spectral lint reference/*.yml -- --ruleset=.spectral.yaml
