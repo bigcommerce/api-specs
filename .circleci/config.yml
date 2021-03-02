@@ -7,4 +7,4 @@ jobs:
       - checkout
       - run:
           name: "API Description Linter"
-          command: npx @stoplight/spectral lint reference/*.yml -v --ruleset=.spectral.yaml
+          command: npx @stoplight/spectral lint reference/*.yml -- --ruleset=.spectral.yaml
