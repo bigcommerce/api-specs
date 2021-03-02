@@ -17,3 +17,4 @@ jobs:
           file_glob: ./reference/*.yml
           repo_token: ${{secrets.GITHUB_TOKEN}}
           spectral_ruleset: ./.spectral.yaml
+        run: exit 0
