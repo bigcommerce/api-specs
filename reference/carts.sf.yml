@@ -53,11 +53,7 @@ paths:
               - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
       responses:
         '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart_Full'
+          $ref: '#/components/responses/CartResponse'
     post:
       tags:
         - Cart
@@ -513,6 +509,62 @@ components:
       description: |-
         A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
         Custom Items is a read only field. A custom item can only be added to a cart using the Server to Server Cart API.
+    Cart_Read:
+      title: Cart Read
+      type: object
+      properties:
+        baseAmount:
+          type: number
+          description: 'Cost of cart''s contents, before applying discounts.'
+        cartAmount:
+          type: number
+          description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
+        coupons:
+          type: array
+          description: Array of `AppliedCoupon` objects applied to this cart.
+          items:
+            $ref: '#/components/schemas/AppliedCoupon'
+        createdTime:
+          type: string
+          description: Time when the cart was created.
+          format: ISO-8601
+        currency:
+          $ref: '#/components/schemas/cartFullCurrency'
+        customer_id:
+          type: integer
+          description: ID of the customer to which the cart belongs.
+        discountAmount:
+          type: number
+          description: Discounted amount.
+          format: float
+        discounts:
+          type: array
+          description: Array of `AppliedDiscount` objects applied to this cart.
+          items:
+            $ref: '#/components/schemas/AppliedDiscount'
+        email:
+          type: string
+          description: The cart's email. This is the same email that is used in the billing address
+        id:
+          type: string
+          description: 'Cart ID, provided after creating a cart with a POST.'
+          format: UUID
+        isTaxIncluded:
+          type: boolean
+          description: Whether this item is taxable.
+        lineItems:
+          type: array
+          description: Array of `LineItem` objects.
+          items:
+            $ref: '#/components/schemas/cartFullLineItemsItems'
+        locale:
+          type: string
+          description: Locale of the cart.
+        updatedTime:
+          type: string
+          description: Time when the cart was last updated.
+          format: ISO-8601
+      description: Cart object used for responses.
     ContactEntity:
       title: Contact Entity
       type: object
@@ -1887,7 +1939,10 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Cart_Full'
+            $ref: '#/components/schemas/Cart_Read'
+          examples:
+            Example:
+              $ref: '#/components/examples/cartResponse'
   parameters:
     lineItems.options:
       name: include
@@ -1921,6 +1976,111 @@ components:
               options:
                 - optionId: '21294'
                   optionValue: Your Predifined Text Modifier Value
+    cartResponse:
+      value:
+        description: Cart Response
+        type: object
+        properties:
+          baseAmount: 0
+          cartAmount: 0
+          coupons:
+            - code: string
+              couponType: 0
+              discountedAmount: 0
+              id: string
+          createdTime: string
+          currency:
+            code: string
+          customer_id: 0
+          discountAmount: 0
+          discounts:
+            - discountedAmount: 0
+              id: 0
+          email: string
+          id: string
+          isTaxIncluded: true
+          lineItems:
+            - customItems:
+                - extendedListPrice: 0
+                  id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                  listPrice: 10
+                  name: Custom Item Name
+                  quantity: 1
+                  sku: SM-456
+              digitalItems:
+                - Options:
+                    - name: string
+                      nameId: 0
+                      value: string
+                      valueId: 0
+                  brand: string
+                  couponAmount: 0
+                  discountAmount: 0
+                  discounts:
+                    - discountedAmount: 0
+                      id: 0
+                  extendedListPrice: 0
+                  extendedSalePrice: 0
+                  id: '4'
+                  imageUrl: 'http://example.com'
+                  isTaxable: true
+                  listPrice: 0
+                  name: string
+                  parentId: '6'
+                  productId: 0
+                  quantity: 0
+                  salePrice: 0
+                  sku: string
+                  url: 'http://example.com'
+                  variantId: 7
+              giftCertificates:
+                - amount: 0
+                  id: string
+                  isTaxable: true
+                  message: string
+                  name: string
+                  recipient:
+                    email: user@example.com
+                    name: string
+                  sender:
+                    email: user@example.com
+                    name: string
+                  theme: string
+              physicalItems:
+                - Options:
+                    - name: string
+                      nameId: 0
+                      value: string
+                      valueId: 0
+                  brand: string
+                  couponAmount: 0
+                  discountAmount: 0
+                  discounts:
+                    - discountedAmount: 0
+                      id: 0
+                  extendedListPrice: 0
+                  extendedSalePrice: 0
+                  id: '4'
+                  imageUrl: 'http://example.com'
+                  isTaxable: true
+                  listPrice: 0
+                  name: string
+                  parentId: '6'
+                  productId: 0
+                  quantity: 0
+                  salePrice: 0
+                  sku: string
+                  url: 'http://example.com'
+                  variantId: 7
+                  giftWrapping:
+                    amount: 0
+                    message: string
+                    name: string
+                  isShippingRequired: true
+          locale: string
+          updatedTime: string
+        required:
+          - id
 x-stoplight:
   docs:
     includeDownloadLink: true
