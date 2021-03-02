@@ -242,6 +242,9 @@ paths:
         * Attributes must be [created](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attributes/customersattributespost) **BEFORE** creating a customer.
         * attribute_id
         * attribute_value -- This is input as a string, regardless of the [Type](/api-reference/customer-subscribers/v3-customers-api/models/type).
+
+        **Notes**
+        * channel_ids won't be used if the channel listed in origin_channel_id allows global access.
       summary: Create Customers
       tags:
         - Customers
@@ -286,6 +289,7 @@ paths:
                     accepts_product_review_abandoned_cart_emails: true
                     store_credit_amounts:
                       - amount: 43.15
+                    origin_channel_id: 1
         required: true
         x-examples: {}
         description: ''
@@ -338,8 +342,8 @@ paths:
 
 
         **Notes**
-
-        Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
+        * Attributes Values can not be updated using Update a Customer. Use the Update a [Customer Attribute Values](https://developer.bigcommerce.com/api-reference/customer-subscribers/v3-customers-api/customer-attribute-values/customersattributevaluesput) endpoint.
+        * channel_ids -- Updating the list of channels a customer can access may create some side effects in a multi-storefront situation. This list determines which customer account we will use to authenticate a shopper given a channel.
       summary: Update Customers
       tags:
         - Customers
@@ -398,6 +402,9 @@ paths:
                     accepts_product_review_abandoned_cart_emails: true
                     store_credit_amounts:
                       - amount: 43.15
+                    channel_ids:
+                      - 1
+                      - 2
     delete:
       description: |-
         Deletes Customers.
@@ -697,9 +704,117 @@ paths:
           headers: {}
       tags:
         - Customer Addresses
+  /customers/settings:
+    get:
+      tags:
+        - Retrieving Customer settings
+      description: Gets the customer settings.
+      responses:
+        "200":
+          description: Customer settings are returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/CustomerSettingsResponse"
+              examples:
+                data:
+                  value:
+                    privacy_settings:
+                      ask_shopper_for_tracking_consent: true
+                      policy_url: "https://bigcommmerce.com/policy"
+                    customer_group_settings:
+                      guest_customer_group_id: 1
+                      default_customer_group_id: 1
+    put:
+      tags:
+        - Declaring Customer settings
+      description: Update the customer settings.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerSettingsObjet"
+        required: true
+      responses:
+        "200":
+          description: Customer settings are returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/CustomerSettingsResponse"
+              examples:
+                data:
+                  value:
+                    privacy_settings:
+                      ask_shopper_for_tracking_consent: true
+                      policy_url: "https://bigcommmerce.com/policy"
+                    customer_group_settings:
+                      guest_customer_group_id: 1
+                      default_customer_group_id: 1
+  /customers/settings/channels/{channel_id}:
+    get:
+      tags:
+        - Retrieving Customer settings per channel
+      description: Gets the customer settings per channel.
+      parameters:
+        - in: path
+          name: channel_id
+          schema:
+            type: integer
+          required: true
+      responses:
+        "200":
+          description: Customer settings for this channel are returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/CustomerChannelSettingsResponse"
+              examples:
+                data:
+                  value:
+                    privacy_settings:
+                      ask_shopper_for_tracking_consent: true
+                      policy_url: "https://bigcommmerce.com/policy"
+                    customer_group_settings:
+                      guest_customer_group_id: 1
+                      default_customer_group_id: 1
+                    allow_global_logins: true
+    put:
+      tags:
+        - Declaring Customer settings per channel
+      description: Update the customer settings per channel.
+      parameters:
+        - in: path
+          name: channel_id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CustomerChannelSettingsObject"
+        required: true
+      responses:
+        "200":
+          description: Customer settings are returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/responses/CustomerChannelSettingsResponse"
+              examples:
+                data:
+                  value:
+                    privacy_settings:
+                      ask_shopper_for_tracking_consent: true
+                      policy_url: "https://bigcommmerce.com/policy"
+                    customer_group_settings:
+                      guest_customer_group_id: 1
+                      default_customer_group_id: 1
+                    allow_global_logins: true
   /customers/attributes:
     get:
-      description: Returns a list of Customer Attributes. Optional filter parameters can be passed in.
+      description: Returns a list of Customer Attributes. You can pass in optional filter parameters.
       summary: Get All Customer Attributes
       operationId: CustomersAttributesGet
       deprecated: false
@@ -3205,6 +3320,27 @@ components:
                 properties:
                   pagination:
                     $ref: ./channels.v3.yml#/components/schemas/pagination_Full
+    CustomerSettingsResponse:
+      description: |
+        Response payload for the BigCommerce API.
+      content:
+        application/json:
+          schema:
+            title: CustomerSettingsResponse
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/CustomerSettingsObjet"
+    CustomerChannelSettingsResponse:
+      description: |
+        Response payload for the BigCommerce API.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: "#/components/schemas/CustomerChannelSettingsObject"
     CustomerAttributesResponse:
       description: ''
       content:
@@ -3789,6 +3925,14 @@ components:
           description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
+        origin_channel_id:
+          description: Channel ID the customer has been created from
+          type: integer
+        channel_ids:
+          description: Array of channels the customer can access
+          type: array
+          items:
+            type: integer
       required:
         - email
         - first_name
@@ -3850,6 +3994,11 @@ components:
           description: It determines if the customer is signed up to receive either product review or abandoned cart emails or recieve both emails.
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
+        channel_ids:
+          description: Array of channels the customer can access
+          type: array
+          items:
+            type: integer
       required:
         - id
     attributeValue_Full:
@@ -4785,3 +4934,43 @@ components:
             type: number
             format: float
             example: 43.15
+    CustomerSettingsObjet:
+      description: |
+        Customer Settings
+      type: object
+      properties:
+        privacy_settings:
+          type: object
+          properties:
+            ask_shopper_for_tracking_consent:
+              type: boolean
+            policy_url:
+              type: string
+        customer_group_settings:
+          type: object
+          properties:
+            guest_customer_group_id:
+              type: integer
+            default_customer_group_id:
+              type: integer
+    CustomerChannelSettingsObject:
+      description: |
+        Customer Channel Settings
+      type: object
+      properties:
+        privacy_settings:
+          type: object
+          properties:
+            ask_shopper_for_tracking_consent:
+              type: boolean
+            policy_url:
+              type: string
+        customer_group_settings:
+          type: object
+          properties:
+            guest_customer_group_id:
+              type: integer
+            default_customer_group_id:
+              type: integer
+        allow_global_logins:
+          type: boolean
