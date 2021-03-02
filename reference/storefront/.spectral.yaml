@@ -1,2 +1,2 @@
 extends:
-  - ".s/pectral.yaml"
+  - ".spectral.yaml"
