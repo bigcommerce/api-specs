@@ -16,12 +16,6 @@ paths:
       description: |-
         Returns a *Cart*.
 
-        By default, the cart response will return abbreviated details for cart line items. To get full details of selected product options, use the following query parameters:
-
-        - Physical products only: `?include=lineItems.physicalItems.options `
-        - Digital products only: `?include=lineItems.digitalItems.options`
-        - Both physical and digital items: `?include=lineItems.digitalItems.options,lineItems.physicalItems.options`
-
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
         <div class="HubBlock-content">
@@ -34,23 +28,7 @@ paths:
         </div>
       operationId: getACart
       parameters:
-        - name: include
-          in: query
-          description: |-
-            To return product options add one of the following include:
-
-            `lineItems.physicalItems.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-
-            `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
-
-            `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
-          schema:
-            type: string
-            default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-            enum:
-              - lineItems.physicalItems.options
-              - lineItems.digitalItems.options
-              - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+        - $ref: '#/components/parameters/include'
       responses:
         '200':
           $ref: '#/components/responses/CartResponse'
@@ -60,16 +38,6 @@ paths:
       summary: Create a Cart
       description: |-
         Creates a *Cart*.
-
-        **Required Fields**
-        * lineItems
-        * giftCertificates – only if adding a gift certificate
-
-        Cart ID is generated in the response.
-
-        To add a product with a mix of variants and options, add `optionSelections` to the `lineItems` object. `optionSelections` accepts `optionId` and `optionValue`.
-
-        The redirect url endpoint does not work using the Storefront Cart. At this time, shoppers can not be directed to any carts or checkouts created using the Storefront APIs.
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
@@ -83,23 +51,7 @@ paths:
         </div>
       operationId: createACart
       parameters:
-        - name: include
-          in: query
-          description: |-
-            To return product options add one of the following include:
-
-            `lineItems.physicalItems.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-
-            `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
-
-            `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
-          schema:
-            type: string
-            default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-            enum:
-              - lineItems.physicalItems.options
-              - lineItems.digitalItems.options
-              - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+        - $ref: '#/components/parameters/include'
       requestBody:
         content:
           application/json:
@@ -509,13 +461,33 @@ components:
       description: |-
         A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
         Custom Items is a read only field. A custom item can only be added to a cart using the Server to Server Cart API.
-    Cart_Read:
+    cart_Read:
+      description: Cart object used in storefront cart responses.
       title: Cart Read
       type: object
       properties:
+        id:
+          type: string
+          description: 'Cart ID, provided after creating a cart with a POST.'
+          format: UUID
+        customerId:
+          type: integer
+          description: ID of the customer to which the cart belongs.
+        email:
+          type: string
+          description: The cart's email. This is the same email that is used in the billing address
+        currency:
+          $ref: '#/components/schemas/cartFullCurrency'
+        isTaxIncluded:
+          type: boolean
+          description: Whether this item is taxable.
         baseAmount:
           type: number
           description: 'Cost of cart''s contents, before applying discounts.'
+        discountAmount:
+          type: number
+          description: Discounted amount.
+          format: float
         cartAmount:
           type: number
           description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
@@ -524,47 +496,27 @@ components:
           description: Array of `AppliedCoupon` objects applied to this cart.
           items:
             $ref: '#/components/schemas/AppliedCoupon'
-        createdTime:
-          type: string
-          description: Time when the cart was created.
-          format: ISO-8601
-        currency:
-          $ref: '#/components/schemas/cartFullCurrency'
-        customer_id:
-          type: integer
-          description: ID of the customer to which the cart belongs.
-        discountAmount:
-          type: number
-          description: Discounted amount.
-          format: float
         discounts:
           type: array
           description: Array of `AppliedDiscount` objects applied to this cart.
           items:
             $ref: '#/components/schemas/AppliedDiscount'
-        email:
-          type: string
-          description: The cart's email. This is the same email that is used in the billing address
-        id:
-          type: string
-          description: 'Cart ID, provided after creating a cart with a POST.'
-          format: UUID
-        isTaxIncluded:
-          type: boolean
-          description: Whether this item is taxable.
         lineItems:
           type: array
           description: Array of `LineItem` objects.
           items:
             $ref: '#/components/schemas/cartFullLineItemsItems'
-        locale:
+        createdTime:
           type: string
-          description: Locale of the cart.
+          description: Time when the cart was created.
+          format: ISO-8601
         updatedTime:
           type: string
           description: Time when the cart was last updated.
           format: ISO-8601
-      description: Cart object used for responses.
+        locale:
+          type: string
+          description: Locale of the cart.
     ContactEntity:
       title: Contact Entity
       type: object
@@ -761,21 +713,35 @@ components:
           description: ID of the variant.
     LineItemsRequest:
       title: Line Items Request
+      oneOf:
+        - properties:
+            lineItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
+            locale:
+              type: string
+          required:
+            - lineItems
+        - properties:
+            giftCertificates:
+              type: array
+              items:
+                $ref: '#/components/schemas/LineItemGiftCertificateRequestData'
+            locale:
+              type: string
+          required:
+            - giftCertificates
+        - properties:
+            lineItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
+            giftCertificates:
+              $ref: '#/components/schemas/LineItemGiftCertificateRequestData'
+            locale:
+              type: string
       type: object
-      properties:
-        giftCertificates:
-          type: array
-          description: Array of `giftCertificate` objects.
-          items:
-            $ref: '#/components/schemas/lineItemsRequestGiftCertificatesItems'
-        lineItems:
-          type: array
-          description: Array of `lineItem` objects.
-          items:
-            $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
-        locale:
-          type: string
-          description: Locale of the cart. Accepts string of format `xx` or `xx-YY`.
     ProductOption:
       title: Product Option
       type: object
@@ -1939,7 +1905,7 @@ components:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Cart_Read'
+            $ref: '#/components/schemas/cart_Read'
           examples:
             Example:
               $ref: '#/components/examples/cartResponse'
@@ -1958,6 +1924,16 @@ components:
       schema:
         type: string
         default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+        enum:
+          - lineItems.physicalItems.options
+          - lineItems.digitalItems.options
+          - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+    include:
+      name: include
+      in: query
+      description: Include product options in specified line item types.
+      schema:
+        type: string
         enum:
           - lineItems.physicalItems.options
           - lineItems.digitalItems.options
