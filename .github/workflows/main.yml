@@ -16,4 +16,4 @@ jobs:
         with:
           file_glob: ./reference/*.yml
           repo_token: ${{secrets.GITHUB_TOKEN}}
-          spectral_ruleset: .spectral.yaml
+          spectral_ruleset: ./.spectral.yaml

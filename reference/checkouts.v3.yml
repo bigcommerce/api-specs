@@ -592,7 +592,7 @@ paths:
                       extended_list_price: 31.95
                       extended_sale_price: 33.23
                       is_require_shipping: true
-                      gift_wrapping:
+                      gift_wrapping: null
                     digital_items: []
                     gift_certificates: []
                     custom_items: []
@@ -1036,6 +1036,7 @@ definitions:
                           description: ''
                           type: number
                           format: double
+                      x-nullable: true
                   required:
                     - quantity
               digital_items:
@@ -2087,7 +2088,7 @@ responses:
                   is_taxable: true
                   image_url: 'https://cdn11.bigcommerce.com/s-{store_hash}/products/188/images/460/dustpan1_1024x1024_1024x1024__43447__69128.1534344539.330.500.jpg?c=2'
                   discounts: []
-                  coupons:
+                  coupons: 0
                   discount_amount: 0
                   coupon_amount: 0
                   list_price: 31.95
@@ -2222,7 +2223,7 @@ responses:
                 extended_list_price: 31.95
                 extended_sale_price: 33.23
                 is_require_shipping: true
-                gift_wrapping:
+                gift_wrapping:  null
               digital_items: []
               gift_certificates: []
               custom_items: []
