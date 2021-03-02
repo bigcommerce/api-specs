@@ -7,5 +7,12 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Setup Test Dir
+          command: mkdir -p ~/test_results
+      - run:
           name: "API Description Linter"
-          command: npx @stoplight/spectral lint reference/*.yml -f=junit -o junit.xml -v -F=warn --ruleset=.spectral.yaml
+          command: npx @stoplight/spectral lint reference/*.yml -f=junit -o ~/test_results/junit.xml -v -F=warn --ruleset=.spectral.yaml
+      - store_test_results:
+          path: ~/test_results 
+      - store_artifacts:
+          path: ~/test_results
