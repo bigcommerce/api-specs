@@ -1,8 +1,7 @@
-name: Run Spectral
+name: Stoplight
 
 on:
   - push
-  - pull_request
 
 jobs:
   build:
