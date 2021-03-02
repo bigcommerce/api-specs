@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
+    name: Run Spectral
     docker:
       - image: circleci/node:12
     steps:
       - checkout
       - run:
           name: "API Description Linter"
-          command: npx @stoplight/spectral lint reference/*.yml -f -v -F=warn --ruleset=.spectral.yaml
+          command: npx @stoplight/spectral lint reference/*.yml -f=junit -o junit.xml -v -F=warn --ruleset=.spectral.yaml
