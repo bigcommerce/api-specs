@@ -9,3 +9,5 @@ rules:
 except:
   'shipping_provider.yml':
     - oas2-unused-definition
+  'shipping_provider.yml#/host':
+    - oas2-schema

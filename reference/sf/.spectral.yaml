@@ -42,6 +42,25 @@ except:
   'customer_login.yml':
     - oas2-unused-definition
     - oas2-storefront-camel-case
+    - operation-operationId
+    - operation-2xx-response
   'orders.sf.yml':
     - oas2-unused-definition
     - oas2-storefront-camel-case
+    - operation-tag-defined
+  'customer_login.yml#/host':
+    - oas2-schema
+  'current_customer.yml#/host':
+    - oas2-schema
+  'form_fields.sf.yml#/host':
+    - oas2-schema
+  'form_fields.sf.yml':
+    - operation-operationId
+  'current_customer.yml':
+    - operation-2xx-response
+  'orders.sf.yml#/host':
+    - oas2-schema
+  'subscriptions.sf.yml#/host':
+    - oas2-schema
+  'subscriptions.sf.yml':
+    - operation-operationId

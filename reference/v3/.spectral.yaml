@@ -75,3 +75,6 @@ except:
     - oas2-valid-definition-example
     - oas2-valid-response-example
     - oas2-valid-response-schema-example
+  'storefront_tokens.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example

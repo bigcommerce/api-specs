@@ -7,5 +7,87 @@ rules:
   oas2-unused-definition: off
   oas3-unused-components-schema: off
 except:
+  'checkouts.sf.yml':
+    - oas2-valid-response-example
+  'currencies.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-schema-example
+    - operation-operationId
+    - no-$ref-siblings
+  'current_customer.yml':
+    - operation-2xx-response
+  'customer_login.yml':
+    - operation-operationId
+    - operation-2xx-response
   'customers.v2.yml':
-    - oas2-unused-definition
+    - oas2-valid-response-schema-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+  'form_fields.sf.yml':
+    - operation-operationId
+  'geography.v2.yml':
+    - operation-operationId
+    - oas2-valid-response-example
+  'marketing.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example
+    - operation-operationId
+  'orders.sf.yml':
+    - operation-tag-defined
+    - oas3-valid-schema-example
+  'orders.v2.yml':
+    - oas3-valid-schema-example
+    - oas3-valid-oas-content-example
+    - oas3-schema
+  'payment_methods.v2.yml':
+    - operation-operationId
+  'pricing.sf.yml':
+    - oas2-valid-response-example
+    - oas2-schema
+    - no-$ref-siblings
+  'shipping.v2.yml':
+    - oas2-valid-response-schema-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+    - typed-enum
+    - operation-operationId
+  'store_content.v2.yml':
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-schema-example
+  'store_information.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - operation-operationId
+    - oas2-valid-response-schema-example
+  'storefront_tokens.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+  'subscriptions.sf.yml':
+    - operation-operationId
+  'tax_classes.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example
+  'checkouts.sf.yml#/host':
+    - oas2-schema
+  'form_fields.sf.yml#/host':
+    - oas2-schema
+  'orders.sf.yml#/host':
+    - oas2-schema
+  'subscriptions.sf.yml#/host':
+    - oas2-schema
+  'current_customer.yml#/host':
+    - oas2-schema
+  'customer_login.yml#/host':
+    - oas2-schema
+  'shipping_provider.yml#/host':
+    - oas2-schema
+  'carts.sf.yml#/host':
+    - oas2-schema
