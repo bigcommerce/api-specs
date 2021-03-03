@@ -32,7 +32,7 @@ paths:
         - $ref: '#/components/parameters/include'
       responses:
         '200':
-          $ref: '#/components/responses/CartResponse'
+          $ref: '#/components/responses/getCarts'
     post:
       tags:
         - Cart
@@ -64,11 +64,7 @@ paths:
         required: true
       responses:
         '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart_Full'
+           $ref: '#/components/responses/postCarts'
       x-codegen-request-body-name: cartData
   /carts/{cartId}:
     delete:
@@ -151,17 +147,12 @@ paths:
               - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
       responses:
         '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart_Full'
-      x-codegen-request-body-name: ItemData
+           $ref: '#/components/responses/postCartsItems'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCartPost'
+              $ref: '#/components/schemas/requestCart'
         description: ''
   /carts/{cartId}/items/{itemId}:
     put:
@@ -222,15 +213,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCartPost'
+              $ref: '#/components/schemas/requestCart'
         required: true
       responses:
         '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart_Full'
+           $ref: '#/components/responses/putCartsItems'
       x-codegen-request-body-name: lineItem
     delete:
       tags:
@@ -286,110 +273,52 @@ paths:
               - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
       responses:
         '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Cart_Full'
+           $ref: '#/components/responses/getCarts'
 components:
   schemas:
-    AppliedCoupon:
-      title: Applied Coupon
-      required:
-        - code
-      type: object
-      properties:
-        code:
-          type: string
-          description: The coupon code.
-        couponType:
-          type: integer
-          description: |-
-            |Type `int`|Type Name|
-            |-|-|
-            |`0`|`per_item_discount`|
-            |`1`|`percentage_discount`|
-            |`2`|`per_total_discount`|
-            |`3`|`shipping_discount`|
-            |`4`|`free_shipping`|
-            |`5`|`promotion`|
-        discountedAmount:
-          type: number
-          description: The discounted amount applied within a given context.
-          format: float
-        id:
-          type: string
-          description: The coupon ID.
-    AppliedDiscount:
-      title: Applied Discount
-      type: object
-      properties:
-        discountedAmount:
-          type: number
-          description: The discounted amount applied within a given context.
-          format: float
-        id:
-          type: number
-          description: ID of the applied discount.
-    Cart_Full:
-      title: Cart_Full
-      type: object
-      properties:
-        baseAmount:
-          type: number
-          description: 'Cost of cart''s contents, before applying discounts.'
-        cartAmount:
-          type: number
-          description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
-        coupons:
-          type: array
-          description: Array of `AppliedCoupon` objects applied to this cart.
-          items:
-            $ref: '#/components/schemas/AppliedCoupon'
-        createdTime:
-          type: string
-          description: Time when the cart was created.
-          format: ISO-8601
-        currency:
-          $ref: '#/components/schemas/cartFullCurrency'
-        customerId:
-          type: integer
-          description: ID of the customer to which the cart belongs.
-        discountAmount:
-          type: number
-          description: Discounted amount.
-          format: float
-        discounts:
-          type: array
-          description: Array of `AppliedDiscount` objects applied to this cart.
-          items:
-            $ref: '#/components/schemas/AppliedDiscount'
-        email:
-          type: string
-          description: The cart's email. This is the same email that is used in the billing address
-        id:
-          type: string
-          description: 'Cart ID, provided after creating a cart with a POST.'
-          format: UUID
-        isTaxIncluded:
-          type: boolean
-          description: Whether this item is taxable.
-        lineItems:
-          type: array
-          description: Array of `LineItem` objects.
-          items:
-            $ref: '#/components/schemas/cartFullLineItemsItems'
-        locale:
-          type: string
-          description: Locale of the cart.
-        updatedTime:
-          type: string
-          description: Time when the cart was last updated.
-          format: ISO-8601
-      description: |-
-        A cart contains a collection of items, prices, discounts, etc. It does not contain customer-related data.
-        Custom Items is a read only field. A custom item can only be added to a cart using the Server to Server Cart API.
-    cart_Read:
+    responseCartCoupons:
+      title: Response Cart Coupons
+      type: array
+      items:
+        required:
+          - code
+        type: object
+        properties:
+          code:
+            type: string
+            description: The coupon code.
+          couponType:
+            type: integer
+            description: |-
+              |Type `int`|Type Name|
+              |-|-|
+              |`0`|`per_item_discount`|
+              |`1`|`percentage_discount`|
+              |`2`|`per_total_discount`|
+              |`3`|`shipping_discount`|
+              |`4`|`free_shipping`|
+              |`5`|`promotion`|
+          discountedAmount:
+            type: number
+            description: The discounted amount applied within a given context.
+            format: float
+          id:
+            type: string
+            description: The coupon ID.
+    responseCartDiscounts:
+      title: responseCartDiscounts
+      type: array
+      items:
+        type: object
+        properties:
+          discountedAmount:
+            type: number
+            description: The discounted amount applied within a given context.
+            format: float
+          id:
+            type: number
+            description: ID of the applied discount.
+    responseCart:
       description: Cart object used in storefront cart responses.
       title: Cart Read
       type: object
@@ -405,7 +334,7 @@ components:
           type: string
           description: The cart's email. This is the same email that is used in the billing address
         currency:
-          $ref: '#/components/schemas/cartFullCurrency'
+          $ref: '#/components/schemas/responseCartCurrency'
         isTaxIncluded:
           type: boolean
           description: Whether this item is taxable.
@@ -420,20 +349,17 @@ components:
           type: number
           description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
         coupons:
-          type: array
-          description: Array of `AppliedCoupon` objects applied to this cart.
-          items:
-            $ref: '#/components/schemas/AppliedCoupon'
+            $ref: '#/components/schemas/responseCartCoupons'
         discounts:
           type: array
           description: Array of `AppliedDiscount` objects applied to this cart.
           items:
-            $ref: '#/components/schemas/AppliedDiscount'
+            $ref: '#/components/schemas/responseCartDiscounts'
         lineItems:
           type: array
           description: Array of `LineItem` objects.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItems'
+            $ref: '#/components/schemas/responseCartLineItems'
         createdTime:
           type: string
           description: Time when the cart was created.
@@ -445,18 +371,18 @@ components:
         locale:
           type: string
           description: Locale of the cart.
-    CreateCartPost:
-      title: Create Cart Post
+    requestCart:
+      title: Request Cart
+      description: Cart object used for Create Cart and Add Cart Items requests.
       type: object
       properties:
         giftCertificate:
-          $ref: '#/components/schemas/createCartPostGiftCertificate'
+          $ref: '#/components/schemas/requestCartGiftCertificate'
         lineItem:
           type: array
           items:
-            $ref: '#/components/schemas/createCartPostLineItem'
-      description: ''
-    GiftWrapping:
+            $ref: '#/components/schemas/requestCartPostLineItem'
+    responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
       properties:
@@ -469,7 +395,7 @@ components:
         name:
           type: string
           description: Name of the gift-wrapping option.
-    LineItemGiftCertificateRequestData:
+    requestLineItemGiftCertificate:
       title: Line Item Gift Certificate Request Data
       required:
         - amount
@@ -496,9 +422,9 @@ components:
           type: integer
           description: Quantity of this item.
         recipient:
-          $ref: '#/components/schemas/lineItemGiftCertificateRequestDataRecipient'
+          $ref: '#/components/schemas/requestLineItemGiftCertificateRecipient'
         sender:
-          $ref: '#/components/schemas/lineItemGiftCertificateRequestDataSender'
+          $ref: '#/components/schemas/requestLineItemGiftCertificateSender'
         theme:
           type: string
           description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
@@ -518,7 +444,7 @@ components:
             giftCertificates:
               type: array
               items:
-                $ref: '#/components/schemas/LineItemGiftCertificateRequestData'
+                $ref: '#/components/schemas/requestLineItemGiftCertificate'
             locale:
               type: string
           required:
@@ -529,11 +455,11 @@ components:
               items:
                 $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
             giftCertificates:
-              $ref: '#/components/schemas/LineItemGiftCertificateRequestData'
+              $ref: '#/components/schemas/requestLineItemGiftCertificate'
             locale:
               type: string
       type: object
-    cartFullCurrency:
+    responseCartCurrency:
       title: Currency
       type: object
       properties:
@@ -543,7 +469,7 @@ components:
           format: ISO-4217
       description: This will always be the same between cart and checkout.
       x-go-gen-location: models
-    cartFullLineItemsItems:
+    responseCartLineItems:
       title: Line Item
       required:
         - digitalItems
@@ -554,24 +480,23 @@ components:
         customItems:
           type: array
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsCustomItemsItems'
+            $ref: '#/components/schemas/responseCartLineItemsCustomItems'
         digitalItems:
           type: array
           description: Array of `ItemDigital` objects.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsDigitalItemsItems'
+            $ref: '#/components/schemas/responseCartLineItemsDigitalItems'
         giftCertificates:
           type: array
           description: Array of `ItemGiftCertificate` objects.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsGiftCertificatesItems'
+            $ref: '#/components/schemas/responseCartLineItemsGiftCertificates'
         physicalItems:
           type: array
           description: Array of `ItemPhysical` objects.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsPhysicalItemsItems'
-      x-go-gen-location: models
-    cartFullLineItemsItemsCustomItemsItems:
+            $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItems'
+    responseCartLineItemsCustomItems:
       title: Item Custom
       type: object
       properties:
@@ -606,13 +531,11 @@ components:
         **Read Only**
 
         This will return in the Cart Response if the Cart was created using the [Server to Server Cart API](/api-reference/cart-checkout/server-server-cart-api). A custom item can only be added to a cart using the Server to Server API.
-      x-go-gen-location: models
-    cartFullLineItemsItemsDigitalItemsItems:
+    responseCartLineItemsDigitalItems:
       title: Item Digital
       allOf:
-        - $ref: '#/components/schemas/cartFullLineItemsItemsDigitalItemsItemsAllOf0'
-      x-go-gen-location: models
-    cartFullLineItemsItemsDigitalItemsItemsAllOf0:
+        - $ref: '#/components/schemas/responseCartLineItemsDigitalItemsAllOf0'
+    responseCartLineItemsDigitalItemsAllOf0:
       title: Base Item
       required:
         - quantity
@@ -622,7 +545,7 @@ components:
           type: array
           description: The list of selected options for this product.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsDigitalItemsItemsAllOf0OptionsItems'
+            $ref: '#/components/schemas/responseCartLineItemsDigitalItemsAllOf0OptionsItems'
         brand:
           type: string
           description: The products brand
@@ -637,7 +560,7 @@ components:
           type: array
           description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsDigitalItemsItemsAllOf0DiscountsItems'
+            $ref: '#/components/schemas/responseCartLineItemsDigitalItemsAllOf0DiscountsItems'
         extendedListPrice:
           type: number
           description: Item's list price multiplied by the quantity.
@@ -685,8 +608,7 @@ components:
           type: number
           description: ID of the variant.
           example: 7
-      x-go-gen-location: models
-    cartFullLineItemsItemsDigitalItemsItemsAllOf0DiscountsItems:
+    responseCartLineItemsDigitalItemsAllOf0DiscountsItems:
       title: Applied Discount
       type: object
       properties:
@@ -697,8 +619,7 @@ components:
         id:
           type: number
           description: ID of the applied discount.
-      x-go-gen-location: models
-    cartFullLineItemsItemsDigitalItemsItemsAllOf0OptionsItems:
+    responseCartLineItemsDigitalItemsAllOf0OptionsItems:
       title: Product Option
       type: object
       properties:
@@ -714,8 +635,7 @@ components:
         valueId:
           type: number
           description: The product option value identifier.
-      x-go-gen-location: models
-    cartFullLineItemsItemsGiftCertificatesItems:
+    responseCartLineItemsGiftCertificates:
       title: Item Gift Certificate
       required:
         - amount
@@ -740,14 +660,13 @@ components:
           type: string
           description: GiftCertificate-provided name that will appear in the control panel.
         recipient:
-          $ref: '#/components/schemas/cartFullLineItemsItemsGiftCertificatesItemsRecipient'
+          $ref: '#/components/schemas/responseCartLineItemsGiftCertificatesRecipient'
         sender:
-          $ref: '#/components/schemas/cartFullLineItemsItemsGiftCertificatesItemsSender'
+          $ref: '#/components/schemas/responseCartLineItemsGiftCertificatesSender'
         theme:
           type: string
           description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-      x-go-gen-location: models
-    cartFullLineItemsItemsGiftCertificatesItemsRecipient:
+    responseCartLineItemsGiftCertificatesRecipient:
       title: Contact Entity
       type: object
       properties:
@@ -758,8 +677,7 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
-    cartFullLineItemsItemsGiftCertificatesItemsSender:
+    responseCartLineItemsGiftCertificatesSender:
       title: Contact Entity
       type: object
       properties:
@@ -770,14 +688,12 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
-    cartFullLineItemsItemsPhysicalItemsItems:
+    responseCartLineItemsItemsPhysicalItemsItems:
       title: Item Physical
       allOf:
-        - $ref: '#/components/schemas/cartFullLineItemsItemsPhysicalItemsItemsAllOf0'
-        - $ref: '#/components/schemas/cartFullLineItemsItemsPhysicalItemsItemsAllOf1'
-      x-go-gen-location: models
-    cartFullLineItemsItemsPhysicalItemsItemsAllOf0:
+        - $ref: '#/components/schemas/responseCartBaseItem'
+        - $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItemsAllOf1'
+    responseCartBaseItem:
       title: Base Item
       required:
         - quantity
@@ -787,7 +703,7 @@ components:
           type: array
           description: The list of selected options for this product.
           items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsPhysicalItemsItemsAllOf0OptionsItems'
+            $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItemsAllOf0OptionsItems'
         brand:
           type: string
           description: The products brand
@@ -799,10 +715,7 @@ components:
           description: The total value of all discounts applied to this item (excluding coupon).
           format: float
         discounts:
-          type: array
-          description: 'List of discounts applied to this item, as an array of AppliedDiscount objects.'
-          items:
-            $ref: '#/components/schemas/cartFullLineItemsItemsPhysicalItemsItemsAllOf0DiscountsItems'
+            $ref: '#/components/schemas/responseCartDiscounts'
         extendedListPrice:
           type: number
           description: Item's list price multiplied by the quantity.
@@ -850,20 +763,7 @@ components:
           type: number
           description: ID of the variant.
           example: 7
-      x-go-gen-location: models
-    cartFullLineItemsItemsPhysicalItemsItemsAllOf0DiscountsItems:
-      title: Applied Discount
-      type: object
-      properties:
-        discountedAmount:
-          type: number
-          description: The discounted amount applied within a given context.
-          format: float
-        id:
-          type: number
-          description: ID of the applied discount.
-      x-go-gen-location: models
-    cartFullLineItemsItemsPhysicalItemsItemsAllOf0OptionsItems:
+    responseCartLineItemsItemsPhysicalItemsItemsAllOf0OptionsItems:
       title: Product Option
       type: object
       properties:
@@ -879,17 +779,15 @@ components:
         valueId:
           type: number
           description: The product option value identifier.
-      x-go-gen-location: models
-    cartFullLineItemsItemsPhysicalItemsItemsAllOf1:
+    responseCartLineItemsItemsPhysicalItemsItemsAllOf1:
       type: object
       properties:
         giftWrapping:
-          $ref: '#/components/schemas/GiftWrapping'
+          $ref: '#/components/schemas/responseCartLineItemsPhysicalItemGiftWrapping'
         isShippingRequired:
           type: boolean
           description: Whether this item requires shipping to a physical address.
-      x-go-gen-location: models
-    createCartPostGiftCertificate:
+    requestCartGiftCertificate:
       title: Line Item Gift Certificate Request Data
       required:
         - amount
@@ -916,14 +814,13 @@ components:
           type: integer
           description: Quantity of this item.
         recipient:
-          $ref: '#/components/schemas/createCartPostGiftCertificateRecipient'
+          $ref: '#/components/schemas/requestCartGiftCertificateRecipient'
         sender:
-          $ref: '#/components/schemas/createCartPostGiftCertificateSender'
+          $ref: '#/components/schemas/requestCartGiftCertificateSender'
         theme:
           type: string
           description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-      x-go-gen-location: models
-    createCartPostGiftCertificateRecipient:
+    requestCartGiftCertificateRecipient:
       title: Contact Entity
       type: object
       properties:
@@ -934,8 +831,7 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
-    createCartPostGiftCertificateSender:
+    requestCartGiftCertificateSender:
       title: Contact Entity
       type: object
       properties:
@@ -946,16 +842,14 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
-    createCartPostLineItem:
+    requestCartPostLineItem:
       title: Line Item Request Data
       type: object
-      x-go-gen-location: models
       properties:
         options:
           type: array
           items:
-            $ref: '#/components/schemas/createCartPostLineItemOptionSelections'
+            $ref: '#/components/schemas/requestCartLineItemsOptions'
         productId:
           type: number
           description: ID of the product.
@@ -967,7 +861,7 @@ components:
           description: ID of the variant.
       required:
         - quantity
-    createCartPostLineItemOptionSelections:
+    requestCartLineItemsOptions:
       type: object
       properties:
         optionId:
@@ -977,8 +871,7 @@ components:
           type: number
           description: Value of the option.
       description: Array of `OptionSelection` objects.
-      x-go-gen-location: models
-    lineItemGiftCertificateRequestDataRecipient:
+    requestLineItemGiftCertificateRecipient:
       title: Contact Entity
       type: object
       properties:
@@ -989,8 +882,7 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
-    lineItemGiftCertificateRequestDataSender:
+    requestLineItemGiftCertificateSender:
       title: Contact Entity
       type: object
       properties:
@@ -1001,7 +893,6 @@ components:
         name:
           type: string
           description: Contact's name.
-      x-go-gen-location: models
     lineItemsRequestLineItemsItems:
       title: Line Item Request Data
       required:
@@ -1017,14 +908,60 @@ components:
         variantId:
           type: number
           description: ID of the variant.
-      x-go-gen-location: models
   responses:
-    CartResponse:
+    postCarts:
       description: ''
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/cart_Read'
+            $ref: '#/components/schemas/responseCart'
+          examples:
+            Example:
+              $ref: '#/components/examples/cartResponse'
+    postCartsItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/responseCart'
+          examples:
+            Example:
+              $ref: '#/components/examples/cartResponse'
+    putCartsItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/responseCart'
+          examples:
+            Example:
+              $ref: '#/components/examples/cartResponse'
+    getCarts:
+      description: ''
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/responseCart'
+          examples:
+            Example:
+              $ref: '#/components/examples/getCartResponse'
+    deleteCartsItems:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/responseCart'
+          examples:
+            Example:
+              $ref: '#/components/examples/cartResponse'
+    deleteCarts:
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/responseCart'
           examples:
             Example:
               $ref: '#/components/examples/cartResponse'
@@ -1176,6 +1113,106 @@ components:
           updatedTime: string
         required:
           - id
+    getCartResponse:
+      value:
+        - id: string
+          customerId: 0
+          email: string
+          currency:
+            code: string
+          isTaxIncluded: true
+          baseAmount: 0
+          discountAmount: 0
+          cartAmount: 0
+          coupons:
+            - code: string
+              couponType: 0
+              discountedAmount: 0
+              id: string
+          discounts:
+            - - discountedAmount: 0
+                id: 0
+          lineItems:
+            - customItems:
+                - extendedListPrice: 0
+                  id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                  listPrice: 10
+                  name: Custom Item Name
+                  quantity: 1
+                  sku: SM-456
+              digitalItems:
+                - options:
+                    - name: string
+                      nameId: 0
+                      value: string
+                      valueId: 0
+                  brand: string
+                  couponAmount: 0
+                  discountAmount: 0
+                  discounts:
+                    - discountedAmount: 0
+                      id: 0
+                  extendedListPrice: 0
+                  extendedSalePrice: 0
+                  id: '4'
+                  imageUrl: 'http://example.com'
+                  isTaxable: true
+                  listPrice: 0
+                  name: string
+                  parentId: '6'
+                  productId: 0
+                  quantity: 0
+                  salePrice: 0
+                  sku: string
+                  url: 'http://example.com'
+                  variantId: 7
+              giftCertificates:
+                - amount: 0
+                  id: string
+                  isTaxable: true
+                  message: string
+                  name: string
+                  recipient:
+                    email: user@example.com
+                    name: string
+                  sender:
+                    email: user@example.com
+                    name: string
+                  theme: string
+              physicalItems:
+                - options:
+                    - name: string
+                      nameId: 0
+                      value: string
+                      valueId: 0
+                  brand: string
+                  couponAmount: 0
+                  discountAmount: 0
+                  discounts:
+                    - discountedAmount: 0
+                      id: 0
+                  extendedListPrice: 0
+                  extendedSalePrice: 0
+                  id: '4'
+                  imageUrl: 'http://example.com'
+                  isTaxable: true
+                  listPrice: 0
+                  name: string
+                  parentId: '6'
+                  productId: 0
+                  quantity: 0
+                  salePrice: 0
+                  sku: string
+                  url: 'http://example.com'
+                  variantId: 7
+                  giftWrapping:
+                    amount: 0
+                    message: string
+                    name: string
+                  isShippingRequired: true
+          createdTime: string
+          updatedTime: string
+          locale: string
 x-stoplight:
   docs:
     includeDownloadLink: true
