@@ -11,7 +11,7 @@ jobs:
           command: mkdir ~/junit
       - run:
           name: "Lint Provider APIs"
-          command: npx @stoplight/spectral lint reference/pv/*.yml -f=junit -o ~/junit/test_results_pv.xml -v -F=warn --ruleset=.spectral.yaml
+          command: npx @stoplight/spectral lint reference/pv/*.yml -f=junit -o ~/junit/test_results_pv.xml -v -F=warn --ruleset=./reference/pv/.spectral.yaml
       - run:
           name: "Lint Storefront APIs"
           command: npx @stoplight/spectral lint reference/sf/*.yml -f=junit -o ~/junit/test_results_sf.xml -v -F=warn --ruleset=./reference/sf/.spectral.yaml
