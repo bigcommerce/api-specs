@@ -1,7 +1,77 @@
 extends:
   - spectral:oas
   - ../.spectral.yaml
-
 rules:
   management-api-snake-case: off
   info-contact: off
+  oas3-unused-components-schema: off
+  oas2-unused-definition: off
+except:
+  'carts.v3.yml':
+    - oas2-oneOf
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - operation-tag-defined
+    - oas2-unused-definition
+  'catalog.v3.yml':
+    - oas2-operation-security-defined
+    - oas3-schema
+    - oas2-schema
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - oas2-valid-response-example
+    - oas2-valid-parameter-example
+    - management-api-snake-case
+  'channels.v3.yml':
+    - operation-operationId
+    - oas3-schema
+    - oas3-valid-oas-content-example
+  'checkouts.v3.yml':
+    - no-$ref-siblings
+    - oas2-schema
+    - oas2-operation-security-defined
+    - oas2-valid-response-schema-example
+    - oas2-valid-response-example
+    - operation-parameters
+  'custom-template-associations.v3.yml':
+    - openapi-tags
+    - operation-tag-defined
+  'email_templates.v3.yml':
+    - oas3-schema
+    - operation-tag-defined
+    - openapi-tags
+  'orders.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-anyOf
+  'price_lists.v3.yml':
+    - oas2-schema
+    - oas2-valid-response-example
+  'redirects.v3.yml':
+    - oas2-valid-response-example
+    - oas2-schema
+    - no-$ref-siblings
+  'settings.v3.yml':
+    - oas3-valid-oas-content-example
+    - operation-operationId
+  'shipping.v3.yml':
+    - oas2-valid-definition-example
+    - operation-operationId
+    - typed-enum
+  'sites.v3.yml':
+    - oas2-valid-response-example
+    - operation-operationId
+  'themes.v3.yml':
+    - oas3-schema
+    - operation-operationId
+  'webhooks.v3.yml':
+    - oas3-valid-oas-content-example
+  'widgets.v3.yml':
+    - typed-enum
+    - oas2-anyOf
+    - oas2-valid-response-example
+  'wishlists.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example

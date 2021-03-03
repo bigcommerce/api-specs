@@ -1,7 +1,11 @@
 extends:
   - spectral:oas
   - ../.spectral.yaml
-
 rules:
   management-api-snake-case: off
   info-contact: off
+  oas2-unused-definition: off
+  oas3-unused-components-schema: off
+except:
+  'customers.v2.yml':
+    - oas2-unused-definition

@@ -331,7 +331,7 @@ paths:
                     - minimum: 1
                       maximum: 1
                       discount_amount: 1
-                      discount_type: PERCENT
+                      discount_type: 'price'
               meta: {}
       tags:
         - Products

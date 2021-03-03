@@ -15,24 +15,6 @@ rules:
       functionOptions:
         type: snake
 except:
-  'carts.v3.yml':
-    - oas2-oneOf
-    - oas2-valid-definition-example
-    - oas2-valid-response-schema-example
-    - operation-tag-defined
-  'catalog.v3.yml':
-    - oas2-operation-security-defined
-    - oas3-schema
-    - oas2-schema
-    - oas2-valid-definition-example
-    - oas2-valid-response-schema-example
-    - oas2-valid-response-example
-    - oas2-valid-parameter-example
-    - management-api-snake-case
-  'channels.v3.yml':
-    - operation-operationId
-    - oas3-schema
-    - oas3-valid-oas-content-example
   'checkouts.sf.yml':
     - oas2-valid-response-example
   'checkouts.v3.yml':

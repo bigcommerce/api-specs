@@ -4,7 +4,9 @@ extends:
 rules:
   management-api-snake-case: off
   info-contact: off
-  storefront-oas3-camel-case:
+  oas3-unused-components-schema: off
+  oas2-unused-definition: off
+  oas3-storefront-camel-case:
     description: Storefront API keys should be camelCased.
     message:  "Storefront API properties should be camelCased: '{{property}}'"
     type: style
@@ -15,7 +17,7 @@ rules:
       function: casing
       functionOptions:
         type: camel
-  storefront-oas2-camel-case:
+  oas2-storefront-camel-case:
     description: Storefront API keys should be camelCased.
     message:  "Storefront API properties should be camelCased: '{{property}}'"
     type: style
@@ -34,7 +36,12 @@ except:
     - operation-tag-defined
     - openapi-tags
     - oas3-unused-components-schema
+    - oas3-storefront-camel-case
+  'checkouts.sf.yml':
+    - oas2-storefront-camel-case
   'customer_login.yml':
     - oas2-unused-definition
+    - oas2-storefront-camel-case
   'orders.sf.yml':
     - oas2-unused-definition
+    - oas2-storefront-camel-case

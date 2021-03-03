@@ -114,7 +114,7 @@ paths:
         - in: body
           name: body
           schema:
-            $ref: ./shipping.v2.yml#/definitions/customsInformation
+            $ref: '#/definitions/customsInformation'
           x-examples:
             Example:
               product_id: 77
