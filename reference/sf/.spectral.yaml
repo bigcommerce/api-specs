@@ -39,6 +39,10 @@ except:
     - oas3-storefront-camel-case
   'checkouts.sf.yml':
     - oas2-storefront-camel-case
+    - oas2-valid-response-schema-example
+    - oas2-valid-response-example
+  'checkouts.sf.yml#/host':
+    - oas2-schema
   'customer_login.yml':
     - oas2-unused-definition
     - oas2-storefront-camel-case
