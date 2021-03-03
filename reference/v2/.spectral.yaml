@@ -1,0 +1,7 @@
+extends:
+  - spectral:oas
+  - ../.spectral.yaml
+
+rules:
+  management-api-snake-case: off
+  info-contact: off
