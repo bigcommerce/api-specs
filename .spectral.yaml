@@ -1,0 +1,162 @@
+extends: spectral:oas
+rules:
+  info-contact: off
+  oas3-unused-components-schema: off
+  oas2-unused-definition: off
+except:
+  'reference/carts.sf.yml':
+    - invalid-ref
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - operation-tag-defined
+    - openapi-tags
+  'reference/carts.v3.yml':
+    - oas2-oneOf
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - operation-tag-defined
+  'reference/catalog.v3.yml':
+    - oas2-operation-security-defined
+    - oas3-schema
+    - oas2-schema
+    - oas2-valid-definition-example
+    - oas2-valid-response-schema-example
+    - oas2-valid-response-example
+    - oas2-valid-parameter-example
+  'reference/channels.v3.yml':
+    - operation-operationId
+    - oas3-schema
+    - oas3-valid-oas-content-example
+  'reference/checkouts.sf.yml':
+    - oas2-valid-response-example
+  'reference/checkouts.v3.yml':
+    - no-$ref-siblings
+    - oas2-schema
+    - oas2-operation-security-defined
+    - oas2-valid-response-schema-example
+    - oas2-valid-response-example
+    - operation-parameters
+  'reference/currencies.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-schema-example
+    - operation-operationId
+    - no-$ref-siblings
+  'reference/current_customer.yml':
+    - operation-2xx-response
+  'reference/custom-template-associations.v3.yml':
+    - openapi-tags
+    - operation-tag-defined
+  'reference/customer_login.yml':
+    - operation-operationId
+    - operation-2xx-response
+  'reference/customers.v2.yml':
+    - oas2-valid-response-schema-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+  'reference/email_templates.v3.yml':
+    - oas3-schema
+    - operation-tag-defined
+    - openapi-tags
+  'reference/form_fields.sf.yml':
+    - operation-operationId
+  'reference/geography.v2.yml':
+    - operation-operationId
+    - oas2-valid-response-example
+  'reference/marketing.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example
+    - operation-operationId
+  'reference/orders.sf.yml':
+    - operation-tag-defined
+    - oas3-valid-schema-example
+  'reference/orders.v2.oas2.yml':
+    - oas3-valid-schema-example
+    - oas3-valid-oas-content-example
+    - oas3-schema
+  'reference/orders.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-anyOf
+  'reference/payment_methods.v2.yml':
+    - operation-operationId
+  'reference/price_lists.v3.yml':
+    - oas2-schema
+    - oas2-valid-response-example
+  'reference/pricing.sf.yml':
+    - oas2-valid-response-example
+    - oas2-schema
+    - no-$ref-siblings
+  'reference/redirects.v3.yml':
+    - oas2-valid-response-example
+    - oas2-schema
+    - no-$ref-siblings
+  'reference/settings.v3.yml':
+    - oas3-valid-oas-content-example
+    - operation-operationId
+  'reference/shipping.v2.yml':
+    - oas2-valid-response-schema-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+    - typed-enum
+    - operation-operationId
+  'reference/shipping.v3.yml':
+    - oas2-valid-definition-example
+    - operation-operationId
+    - typed-enum
+  'reference/sites.v3.yml':
+    - oas2-valid-response-example
+    - operation-operationId
+  'reference/store_content.v2.yml':
+    - oas2-valid-response-example
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+    - oas2-valid-response-schema-example
+  'reference/store_information.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - operation-operationId
+    - oas2-valid-response-schema-example
+  'reference/storefront_tokens.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-parameter-example
+  'reference/subscriptions.sf.yml':
+    - operation-operationId
+  'reference/tax_classes.v2.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example
+  'reference/themes.v3.yml':
+    - oas3-schema
+    - operation-operationId
+  'reference/webhooks.v3.yml':
+    - oas3-valid-oas-content-example
+  'reference/widgets.v3.yml':
+    - typed-enum
+    - oas2-anyOf
+    - oas2-valid-response-example
+  'reference/wishlists.v3.yml':
+    - oas2-valid-definition-example
+    - oas2-valid-response-example
+    - oas2-valid-response-schema-example
+  'reference/checkouts.sf.yml#/host':
+    - oas2-schema
+  'reference/form_fields.sf.yml#/host':
+    - oas2-schema
+  'reference/orders.sf.yml#/host':
+    - oas2-schema
+  'reference/subscriptions.sf.yml#/host':
+    - oas2-schema
+  'reference/current_customer.yml#/host':
+    - oas2-schema
+  'reference/customer_login.yml#/host':
+    - oas2-schema
+  'reference/shipping_provider.yml#/host':
+    - oas2-schema
+  'reference/carts.sf.yml#/host':
+    - oas2-schema

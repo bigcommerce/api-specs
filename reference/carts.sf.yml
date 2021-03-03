@@ -195,10 +195,10 @@ paths:
               giftCertificates:
                 - sender:
                     name: Jane Doe
-                    email: janedoe@email.com
+                    email: janedoe@example.com
                   recipient:
                     name: John Doe
-                    email: johndoe@email.com
+                    email: johndoe@example.com
                   amount: 10
                   theme: Celebration
                   quantity: 1
@@ -493,6 +493,16 @@ definitions:
           variantId:
             type: number
             description: ID of the variant.
+          optionSelections:
+            type: object
+            description: Array of `OptionSelection` objects.
+            properties:
+              optionId:
+                type: number
+                description: ID of the option.
+              optionValue:
+                type: number
+                description: Value of the option.
         required:
           - quantity
       giftCertificate:
