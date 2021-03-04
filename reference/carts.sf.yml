@@ -3,6 +3,8 @@ info:
   version: Storefront
   title: Storefront Carts
   description: Manage cart operations and data via front-end JavaScript on BigCommerce stencil powered storefronts.
+servers:
+  - url: ''
 tags:
   - name: Cart
   - name: Cart Items
