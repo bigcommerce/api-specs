@@ -152,8 +152,6 @@ except:
     - oas2-schema
   'reference/shipping_provider.yml#/host':
     - oas2-schema
-  'reference/carts.sf.yml#/host':
-    - oas2-schema
   'carts.v3.yml':
     - oas2-oneOf
     - oas2-valid-definition-example
@@ -301,6 +299,4 @@ except:
   'customer_login.yml#/host':
     - oas2-schema
   'shipping_provider.yml#/host':
-    - oas2-schema
-  'carts.sf.yml#/host':
     - oas2-schema

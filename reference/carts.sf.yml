@@ -4,7 +4,7 @@ info:
   title: Storefront Carts
   description: Manage cart operations and data via front-end JavaScript on BigCommerce stencil powered storefronts.
 servers:
-  - url: ''
+  - url: 'https://{$$.env.store_domain/api/storefront'
 tags:
   - name: Cart
   - name: Cart Items
@@ -66,14 +66,14 @@ paths:
                       productId: 230
                       optionSelections:
                         - optionId: 10
-                          optionValue: 117
+                          optionValue: "Some Text Value"
                   locale: en
         required: true
       responses:
         '200':
           $ref: '#/components/responses/postCarts'
       x-codegen-request-body-name: cartData
-  '/carts/{cartId}':
+  /carts/{cartId}:
     delete:
       tags:
         - Cart
@@ -104,17 +104,13 @@ paths:
         '204':
           description: ''
           content: {}
-  '/carts/{cartId}/items':
+  /carts/{cartId}/items:
     post:
       tags:
         - Cart Items
       summary: Add Cart Line Items
       description: |-
         Adds a line items to the *Cart*.
-
-        **Required Fields**
-        * line_items object
-        * gift_certificates object – Only if adding a gift certificate to for shopper purchase
 
         <div class="HubBlock--callout">
         <div class="CalloutBlock--info">
@@ -172,7 +168,7 @@ paths:
                         - optionId: 11
                           optionValue: test
         description: ''
-  '/carts/{cartId}/items/{itemId}':
+  /carts/{cartId}/items/{itemId}:
     put:
       tags:
         - Cart Items
