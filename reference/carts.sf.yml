@@ -57,16 +57,23 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LineItemsRequest'
+              $ref: '#/components/schemas/requestCart'
             examples:
-              Text Modifier Option Value:
-                $ref: '#/components/examples/addCartLineItemWithTextModifierOptionValue'
+              With Text Modifier:
+                value:
+                  lineItems:
+                    - quantity: 2
+                      productId: 230
+                      optionSelections:
+                        - optionId: 10
+                          optionValue: 117
+                  locale: en
         required: true
       responses:
         '200':
-           $ref: '#/components/responses/postCarts'
+          $ref: '#/components/responses/postCarts'
       x-codegen-request-body-name: cartData
-  /carts/{cartId}:
+  '/carts/{cartId}':
     delete:
       tags:
         - Cart
@@ -97,7 +104,7 @@ paths:
         '204':
           description: ''
           content: {}
-  /carts/{cartId}/items:
+  '/carts/{cartId}/items':
     post:
       tags:
         - Cart Items
@@ -147,14 +154,25 @@ paths:
               - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
       responses:
         '200':
-           $ref: '#/components/responses/postCartsItems'
+          $ref: '#/components/responses/postCartsItems'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requestCart'
+              $ref: '#/components/schemas/LineItemsRequest'
+            examples:
+              With Option Selections:
+                value:
+                  lineItems:
+                    - quantity: 2
+                      productId: 230
+                      optionSelections:
+                        - optionId: 10
+                          optionValue: 117
+                        - optionId: 11
+                          optionValue: test
         description: ''
-  /carts/{cartId}/items/{itemId}:
+  '/carts/{cartId}/items/{itemId}':
     put:
       tags:
         - Cart Items
@@ -213,11 +231,18 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/requestCart'
+              $ref: '#/components/schemas/LineItemsRequest'
+            examples:
+              Example:
+                value:
+                  lineItems:
+                    - productId: 229
+                      variantId: 191
+                      quantity: 10
         required: true
       responses:
         '200':
-           $ref: '#/components/responses/putCartsItems'
+          $ref: '#/components/responses/putCartsItems'
       x-codegen-request-body-name: lineItem
     delete:
       tags:
@@ -273,7 +298,7 @@ paths:
               - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
       responses:
         '200':
-           $ref: '#/components/responses/getCarts'
+          $ref: '#/components/responses/deleteCartsItems'
 components:
   schemas:
     responseCartCoupons:
@@ -308,6 +333,7 @@ components:
     responseCartDiscounts:
       title: responseCartDiscounts
       type: array
+      x-examples: {}
       items:
         type: object
         properties:
@@ -316,7 +342,7 @@ components:
             description: The discounted amount applied within a given context.
             format: float
           id:
-            type: number
+            type: string
             description: ID of the applied discount.
     responseCart:
       description: Cart object used in storefront cart responses.
@@ -349,17 +375,11 @@ components:
           type: number
           description: 'Sum of line-items amounts, minus cart-level discounts and coupons. This amount includes taxes (where applicable).'
         coupons:
-            $ref: '#/components/schemas/responseCartCoupons'
+          $ref: '#/components/schemas/responseCartCoupons'
         discounts:
-          type: array
-          description: Array of `AppliedDiscount` objects applied to this cart.
-          items:
-            $ref: '#/components/schemas/responseCartDiscounts'
+          $ref: '#/components/schemas/responseCartDiscounts'
         lineItems:
-          type: array
-          description: Array of `LineItem` objects.
-          items:
-            $ref: '#/components/schemas/responseCartLineItems'
+          $ref: '#/components/schemas/responseCartLineItems'
         createdTime:
           type: string
           description: Time when the cart was created.
@@ -372,16 +392,40 @@ components:
           type: string
           description: Locale of the cart.
     requestCart:
-      title: Request Cart
-      description: Cart object used for Create Cart and Add Cart Items requests.
+      title: Create Cart Request Object
+      description: Cart object used in create cart requests.
+      oneOf:
+        - properties:
+            lineItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/requestCartPostLineItem'
+            locale:
+              type: string
+          required:
+            - lineItems
+        - properties:
+            giftCertificates:
+              type: array
+              items:
+                $ref: '#/components/schemas/requestLineItemGiftCertificate'
+            locale:
+              type: string
+          required:
+            - giftCertificates
+        - properties:
+            lineItems:
+              type: array
+              items:
+                $ref: '#/components/schemas/requestCartPostLineItem'
+            giftCertificates:
+              $ref: '#/components/schemas/requestLineItemGiftCertificate'
+            locale:
+              type: string
+          required:
+            - lineItems
+            - giftCertificates
       type: object
-      properties:
-        giftCertificate:
-          $ref: '#/components/schemas/requestCartGiftCertificate'
-        lineItem:
-          type: array
-          items:
-            $ref: '#/components/schemas/requestCartPostLineItem'
     responseCartLineItemsPhysicalItemGiftWrapping:
       title: Gift Wrapping
       type: object
@@ -395,6 +439,7 @@ components:
         name:
           type: string
           description: Name of the gift-wrapping option.
+      nullable: true
     requestLineItemGiftCertificate:
       title: Line Item Gift Certificate Request Data
       required:
@@ -429,15 +474,13 @@ components:
           type: string
           description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
     LineItemsRequest:
-      title: Line Items Request
+      title: requestLineItems
       oneOf:
         - properties:
             lineItems:
               type: array
               items:
-                $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
-            locale:
-              type: string
+                $ref: '#/components/schemas/requestCartPostLineItem'
           required:
             - lineItems
         - properties:
@@ -445,20 +488,21 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/requestLineItemGiftCertificate'
-            locale:
-              type: string
           required:
             - giftCertificates
         - properties:
             lineItems:
               type: array
               items:
-                $ref: '#/components/schemas/lineItemsRequestLineItemsItems'
+                $ref: '#/components/schemas/requestCartPostLineItem'
             giftCertificates:
               $ref: '#/components/schemas/requestLineItemGiftCertificate'
-            locale:
-              type: string
+          required:
+            - lineItems
+            - giftCertificates
+      x-examples: {}
       type: object
+      description: Cart object used in add items requests.
     responseCartCurrency:
       title: Currency
       type: object
@@ -470,11 +514,7 @@ components:
       description: This will always be the same between cart and checkout.
       x-go-gen-location: models
     responseCartLineItems:
-      title: Line Item
-      required:
-        - digitalItems
-        - giftCertificates
-        - physicalItems
+      title: Response Line Items Object
       type: object
       properties:
         customItems:
@@ -695,8 +735,6 @@ components:
         - $ref: '#/components/schemas/responseCartLineItemsItemsPhysicalItemsItemsAllOf1'
     responseCartBaseItem:
       title: Base Item
-      required:
-        - quantity
       type: object
       properties:
         options:
@@ -715,7 +753,7 @@ components:
           description: The total value of all discounts applied to this item (excluding coupon).
           format: float
         discounts:
-            $ref: '#/components/schemas/responseCartDiscounts'
+          $ref: '#/components/schemas/responseCartDiscounts'
         extendedListPrice:
           type: number
           description: Item's list price multiplied by the quantity.
@@ -740,9 +778,9 @@ components:
           type: string
           description: The item's product name.
         parentId:
-          type: string
+          type: number
           description: 'The product is part of a bundle such as a product pick list, then the parentId or the main product id will populate.'
-          example: '6'
+          example: 6
         productId:
           type: number
           description: ID of the product.
@@ -763,6 +801,8 @@ components:
           type: number
           description: ID of the variant.
           example: 7
+      required:
+        - quantity
     responseCartLineItemsItemsPhysicalItemsItemsAllOf0OptionsItems:
       title: Product Option
       type: object
@@ -787,90 +827,75 @@ components:
         isShippingRequired:
           type: boolean
           description: Whether this item requires shipping to a physical address.
-    requestCartGiftCertificate:
-      title: Line Item Gift Certificate Request Data
-      required:
-        - amount
-        - name
-        - quantity
-        - recipient
-        - sender
-        - theme
-      type: object
-      properties:
-        amount:
-          maximum: 1000
-          minimum: 1
-          type: number
-          description: Gift-certificate amount.
-        message:
-          type: string
-          description: 'Message shown to recipient, as provided by sender.'
-        name:
-          type: string
-          description: Name assigned to this gift-certificate line item.
-        quantity:
-          minimum: 1
-          type: integer
-          description: Quantity of this item.
-        recipient:
-          $ref: '#/components/schemas/requestCartGiftCertificateRecipient'
-        sender:
-          $ref: '#/components/schemas/requestCartGiftCertificateSender'
-        theme:
-          type: string
-          description: 'Currently supports `Birthday`, `Boy`, `Celebration`, `Christmas`, `General`, and `Girl`.'
-    requestCartGiftCertificateRecipient:
-      title: Contact Entity
-      type: object
-      properties:
-        email:
-          type: string
-          description: Contact's email address.
-          format: email
-        name:
-          type: string
-          description: Contact's name.
-    requestCartGiftCertificateSender:
-      title: Contact Entity
-      type: object
-      properties:
-        email:
-          type: string
-          description: Contact's email address.
-          format: email
-        name:
-          type: string
-          description: Contact's name.
     requestCartPostLineItem:
       title: Line Item Request Data
+      anyOf:
+        - properties:
+            productId:
+              type: number
+              description: ID of the product.
+            quantity:
+              type: number
+              description: Quantity of this item.
+          required:
+            - productId
+            - quantity
+        - properties:
+            productId:
+              type: number
+              description: ID of the product.
+            quantity:
+              type: number
+              description: Quantity of this item.
+            variantId:
+              type: number
+              description: ID of the variant.
+          required:
+            - productId
+            - quantity
+            - variantId
+        - properties:
+            productId:
+              type: number
+              description: ID of the product.
+            quantity:
+              type: number
+              description: Quantity of this item.
+            optionSelections:
+              type: array
+              items:
+                description: Array of `OptionSelection` objects.
+                x-examples: {}
+                anyOf:
+                  - properties:
+                      optionId:
+                        type: number
+                        description: ID of the option.
+                      optionValue:
+                        description: Value of the option.
+                        oneOf:
+                          - type: string
+                            properties: {}
+                          - type: number
+                            properties: {}
+                          - type: object
+                            properties:
+                              month:
+                                type: string
+                              day:
+                                type: string
+                              year:
+                                type: string
+                type: object
+          required:
+            - productId
+            - quantity
+            - optionSelections
+      x-examples:
+        example-1:
+          productId: 0
+          quantity: 0
       type: object
-      properties:
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/requestCartLineItemsOptions'
-        productId:
-          type: number
-          description: ID of the product.
-        quantity:
-          type: number
-          description: Quantity of this item.
-        variantId:
-          type: number
-          description: ID of the variant.
-      required:
-        - quantity
-    requestCartLineItemsOptions:
-      type: object
-      properties:
-        optionId:
-          type: number
-          description: ID of the option.
-        optionValue:
-          type: number
-          description: Value of the option.
-      description: Array of `OptionSelection` objects.
     requestLineItemGiftCertificateRecipient:
       title: Contact Entity
       type: object
@@ -893,31 +918,114 @@ components:
         name:
           type: string
           description: Contact's name.
-    lineItemsRequestLineItemsItems:
-      title: Line Item Request Data
-      required:
-        - quantity
-      type: object
-      properties:
-        productId:
-          type: number
-          description: ID of the product.
-        quantity:
-          type: number
-          description: Quantity of this item.
-        variantId:
-          type: number
-          description: ID of the variant.
   responses:
     postCarts:
-      description: ''
+      description: Post Carts Response
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/responseCart'
           examples:
             Example:
-              $ref: '#/components/examples/cartResponse'
+              value:
+                id: string
+                customerId: 0
+                email: string
+                currency:
+                  code: string
+                isTaxIncluded: true
+                baseAmount: 0
+                discountAmount: 0
+                cartAmount: 0
+                coupons:
+                  - code: string
+                    couponType: 0
+                    discountedAmount: 0
+                    id: string
+                discounts:
+                  - discountedAmount: 0
+                    id: string
+                lineItems:
+                  customItems:
+                    - extendedListPrice: 0
+                      id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                      listPrice: 10
+                      name: Custom Item Name
+                      quantity: 1
+                      sku: SM-456
+                  digitalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: 0
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: '6'
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                  giftCertificates:
+                    - amount: 0
+                      id: string
+                      isTaxable: true
+                      message: string
+                      name: string
+                      recipient:
+                        email: user@example.com
+                        name: string
+                      sender:
+                        email: user@example.com
+                        name: string
+                      theme: string
+                  physicalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: string
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: 6
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                      giftWrapping:
+                        amount: 0
+                        message: string
+                        name: string
+                      isShippingRequired: true
+                createdTime: string
+                updatedTime: string
+                locale: string
     postCartsItems:
       description: ''
       content:
@@ -925,8 +1033,106 @@ components:
           schema:
             $ref: '#/components/schemas/responseCart'
           examples:
-            Example:
-              $ref: '#/components/examples/cartResponse'
+            example-1:
+              value:
+                id: string
+                customerId: 0
+                email: string
+                currency:
+                  code: string
+                isTaxIncluded: true
+                baseAmount: 0
+                discountAmount: 0
+                cartAmount: 0
+                coupons:
+                  - code: string
+                    couponType: 0
+                    discountedAmount: 0
+                    id: string
+                discounts:
+                  - discountedAmount: 0
+                    id: string
+                lineItems:
+                  customItems:
+                    - extendedListPrice: 0
+                      id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                      listPrice: 10
+                      name: Custom Item Name
+                      quantity: 1
+                      sku: SM-456
+                  digitalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: 0
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: '6'
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                  giftCertificates:
+                    - amount: 0
+                      id: string
+                      isTaxable: true
+                      message: string
+                      name: string
+                      recipient:
+                        email: user@example.com
+                        name: string
+                      sender:
+                        email: user@example.com
+                        name: string
+                      theme: string
+                  physicalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: string
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: 6
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                      giftWrapping:
+                        amount: 0
+                        message: string
+                        name: string
+                      isShippingRequired: true
+                createdTime: string
+                updatedTime: string
+                locale: string
     putCartsItems:
       description: ''
       content:
@@ -935,7 +1141,105 @@ components:
             $ref: '#/components/schemas/responseCart'
           examples:
             Example:
-              $ref: '#/components/examples/cartResponse'
+              value:
+                id: string
+                customerId: 0
+                email: string
+                currency:
+                  code: string
+                isTaxIncluded: true
+                baseAmount: 0
+                discountAmount: 0
+                cartAmount: 0
+                coupons:
+                  - code: string
+                    couponType: 0
+                    discountedAmount: 0
+                    id: string
+                discounts:
+                  - discountedAmount: 0
+                    id: string
+                lineItems:
+                  customItems:
+                    - extendedListPrice: 0
+                      id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                      listPrice: 10
+                      name: Custom Item Name
+                      quantity: 1
+                      sku: SM-456
+                  digitalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: 0
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: '6'
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                  giftCertificates:
+                    - amount: 0
+                      id: string
+                      isTaxable: true
+                      message: string
+                      name: string
+                      recipient:
+                        email: user@example.com
+                        name: string
+                      sender:
+                        email: user@example.com
+                        name: string
+                      theme: string
+                  physicalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: string
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: 6
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                      giftWrapping:
+                        amount: 0
+                        message: string
+                        name: string
+                      isShippingRequired: true
+                createdTime: string
+                updatedTime: string
+                locale: string
     getCarts:
       description: ''
       content:
@@ -946,7 +1250,55 @@ components:
               $ref: '#/components/schemas/responseCart'
           examples:
             Example:
-              $ref: '#/components/examples/getCartResponse'
+              value:
+                - id: 770ded29-da45-4ee0-abc6-883e83c0e5ed
+                  customerId: 0
+                  email: ''
+                  currency:
+                    name: US Dollars
+                    code: USD
+                    symbol: $
+                    decimalPlaces: 2
+                  isTaxIncluded: false
+                  baseAmount: 246
+                  discountAmount: 0
+                  cartAmount: 221.4
+                  coupons: []
+                  discounts:
+                    - id: a83dea21-d757-47a2-a06a-73cf6a983746
+                      discountedAmount: 24.6
+                  lineItems:
+                    physicalItems:
+                      - id: a83dea21-d757-47a2-a06a-73cf6a983746
+                        parentId: 6
+                        variantId: 193
+                        productId: 230
+                        sku: sku123-VA
+                        name: options test
+                        url: 'https://store.example.com/options-test/'
+                        quantity: 2
+                        brand: BigCommerce
+                        isTaxable: true
+                        imageUrl: 'https://cdn11.bigcommerce.com/r-3b68d717e18793df0b51c71e16bc24664ad18b7c/themes/ClassicNext/images/ProductDefault.gif'
+                        discounts:
+                          - id: string
+                            discountedAmount: 24.6
+                        discountAmount: 24.6
+                        couponAmount: 0
+                        listPrice: 123
+                        salePrice: 110.7
+                        extendedListPrice: 246
+                        extendedSalePrice: 221.4
+                        isShippingRequired: true
+                        type: physical
+                        isMutable: true
+                        giftWrapping: null
+                    digitalItems: []
+                    giftCertificates: []
+                    customItems: []
+                  createdTime: '2021-03-04T14:17:50+00:00'
+                  updatedTime: '2021-03-04T14:17:50+00:00'
+                  locale: en
     deleteCartsItems:
       description: ''
       content:
@@ -955,7 +1307,102 @@ components:
             $ref: '#/components/schemas/responseCart'
           examples:
             Example:
-              $ref: '#/components/examples/cartResponse'
+              value:
+                id: string
+                customerId: 0
+                email: string
+                currency:
+                  code: string
+                isTaxIncluded: true
+                baseAmount: 0
+                discountAmount: 0
+                cartAmount: 0
+                coupons:
+                  - code: string
+                    couponType: 0
+                    discountedAmount: 0
+                    id: string
+                discounts:
+                  - discountedAmount: 0
+                    id: string
+                lineItems:
+                  customItems:
+                    - extendedListPrice: 0
+                      id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                      listPrice: 10
+                      name: Custom Item Name
+                      quantity: 1
+                      sku: SM-456
+                  digitalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: 0
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: '6'
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                  giftCertificates:
+                    - amount: 0
+                      id: string
+                      isTaxable: true
+                      message: string
+                      name: string
+                      recipient:
+                        email: user@example.com
+                        name: string
+                      sender:
+                        email: user@example.com
+                        name: string
+                      theme: string
+                  physicalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: string
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: 6
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                      giftWrapping: null
+                      isShippingRequired: true
+                createdTime: string
+                updatedTime: string
+                locale: string
     deleteCarts:
       description: ''
       content:
@@ -963,8 +1410,103 @@ components:
           schema:
             $ref: '#/components/schemas/responseCart'
           examples:
-            Example:
-              $ref: '#/components/examples/cartResponse'
+            example-1:
+              value:
+                id: string
+                customerId: 0
+                email: string
+                currency:
+                  code: string
+                isTaxIncluded: true
+                baseAmount: 0
+                discountAmount: 0
+                cartAmount: 0
+                coupons:
+                  - code: string
+                    couponType: 0
+                    discountedAmount: 0
+                    id: string
+                discounts:
+                  - discountedAmount: 0
+                    id: string
+                lineItems:
+                  customItems:
+                    - extendedListPrice: 0
+                      id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
+                      listPrice: 10
+                      name: Custom Item Name
+                      quantity: 1
+                      sku: SM-456
+                  digitalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: 0
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: '6'
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                  giftCertificates:
+                    - amount: 0
+                      id: string
+                      isTaxable: true
+                      message: string
+                      name: string
+                      recipient:
+                        email: user@example.com
+                        name: string
+                      sender:
+                        email: user@example.com
+                        name: string
+                      theme: string
+                  physicalItems:
+                    - options:
+                        - name: string
+                          nameId: 0
+                          value: string
+                          valueId: 0
+                      brand: string
+                      couponAmount: 0
+                      discountAmount: 0
+                      discounts:
+                        - discountedAmount: 0
+                          id: string
+                      extendedListPrice: 0
+                      extendedSalePrice: 0
+                      id: '4'
+                      imageUrl: 'http://example.com'
+                      isTaxable: true
+                      listPrice: 0
+                      name: string
+                      parentId: 6
+                      productId: 0
+                      quantity: 0
+                      salePrice: 0
+                      sku: string
+                      url: 'http://example.com'
+                      variantId: 7
+                      giftWrapping: null
+                      isShippingRequired: true
+                createdTime: string
+                updatedTime: string
+                locale: string
   parameters:
     lineItems.options:
       name: include
@@ -994,225 +1536,7 @@ components:
           - lineItems.physicalItems.options
           - lineItems.digitalItems.options
           - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-  examples:
-    addCartLineItemWithTextModifierOptionValue:
-      value:
-        description: Example shared example
-        title: Predifined Text Modifier
-        type: object
-        properties:
-          lineItems:
-            - quantity: 1
-              productId: '12352'
-              variantId: '11844'
-              options:
-                - optionId: '21294'
-                  optionValue: Your Predifined Text Modifier Value
-    cartResponse:
-      value:
-        description: Cart Response
-        type: object
-        properties:
-          baseAmount: 0
-          cartAmount: 0
-          coupons:
-            - code: string
-              couponType: 0
-              discountedAmount: 0
-              id: string
-          createdTime: string
-          currency:
-            code: string
-          customer_id: 0
-          discountAmount: 0
-          discounts:
-            - discountedAmount: 0
-              id: 0
-          email: string
-          id: string
-          isTaxIncluded: true
-          lineItems:
-            - customItems:
-                - extendedListPrice: 0
-                  id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
-                  listPrice: 10
-                  name: Custom Item Name
-                  quantity: 1
-                  sku: SM-456
-              digitalItems:
-                - Options:
-                    - name: string
-                      nameId: 0
-                      value: string
-                      valueId: 0
-                  brand: string
-                  couponAmount: 0
-                  discountAmount: 0
-                  discounts:
-                    - discountedAmount: 0
-                      id: 0
-                  extendedListPrice: 0
-                  extendedSalePrice: 0
-                  id: '4'
-                  imageUrl: 'http://example.com'
-                  isTaxable: true
-                  listPrice: 0
-                  name: string
-                  parentId: '6'
-                  productId: 0
-                  quantity: 0
-                  salePrice: 0
-                  sku: string
-                  url: 'http://example.com'
-                  variantId: 7
-              giftCertificates:
-                - amount: 0
-                  id: string
-                  isTaxable: true
-                  message: string
-                  name: string
-                  recipient:
-                    email: user@example.com
-                    name: string
-                  sender:
-                    email: user@example.com
-                    name: string
-                  theme: string
-              physicalItems:
-                - Options:
-                    - name: string
-                      nameId: 0
-                      value: string
-                      valueId: 0
-                  brand: string
-                  couponAmount: 0
-                  discountAmount: 0
-                  discounts:
-                    - discountedAmount: 0
-                      id: 0
-                  extendedListPrice: 0
-                  extendedSalePrice: 0
-                  id: '4'
-                  imageUrl: 'http://example.com'
-                  isTaxable: true
-                  listPrice: 0
-                  name: string
-                  parentId: '6'
-                  productId: 0
-                  quantity: 0
-                  salePrice: 0
-                  sku: string
-                  url: 'http://example.com'
-                  variantId: 7
-                  giftWrapping:
-                    amount: 0
-                    message: string
-                    name: string
-                  isShippingRequired: true
-          locale: string
-          updatedTime: string
-        required:
-          - id
-    getCartResponse:
-      value:
-        - id: string
-          customerId: 0
-          email: string
-          currency:
-            code: string
-          isTaxIncluded: true
-          baseAmount: 0
-          discountAmount: 0
-          cartAmount: 0
-          coupons:
-            - code: string
-              couponType: 0
-              discountedAmount: 0
-              id: string
-          discounts:
-            - - discountedAmount: 0
-                id: 0
-          lineItems:
-            - customItems:
-                - extendedListPrice: 0
-                  id: f1f3a531-fbcf-439b-bac1-40d5ae5c2bff
-                  listPrice: 10
-                  name: Custom Item Name
-                  quantity: 1
-                  sku: SM-456
-              digitalItems:
-                - options:
-                    - name: string
-                      nameId: 0
-                      value: string
-                      valueId: 0
-                  brand: string
-                  couponAmount: 0
-                  discountAmount: 0
-                  discounts:
-                    - discountedAmount: 0
-                      id: 0
-                  extendedListPrice: 0
-                  extendedSalePrice: 0
-                  id: '4'
-                  imageUrl: 'http://example.com'
-                  isTaxable: true
-                  listPrice: 0
-                  name: string
-                  parentId: '6'
-                  productId: 0
-                  quantity: 0
-                  salePrice: 0
-                  sku: string
-                  url: 'http://example.com'
-                  variantId: 7
-              giftCertificates:
-                - amount: 0
-                  id: string
-                  isTaxable: true
-                  message: string
-                  name: string
-                  recipient:
-                    email: user@example.com
-                    name: string
-                  sender:
-                    email: user@example.com
-                    name: string
-                  theme: string
-              physicalItems:
-                - options:
-                    - name: string
-                      nameId: 0
-                      value: string
-                      valueId: 0
-                  brand: string
-                  couponAmount: 0
-                  discountAmount: 0
-                  discounts:
-                    - discountedAmount: 0
-                      id: 0
-                  extendedListPrice: 0
-                  extendedSalePrice: 0
-                  id: '4'
-                  imageUrl: 'http://example.com'
-                  isTaxable: true
-                  listPrice: 0
-                  name: string
-                  parentId: '6'
-                  productId: 0
-                  quantity: 0
-                  salePrice: 0
-                  sku: string
-                  url: 'http://example.com'
-                  variantId: 7
-                  giftWrapping:
-                    amount: 0
-                    message: string
-                    name: string
-                  isShippingRequired: true
-          createdTime: string
-          updatedTime: string
-          locale: string
+  examples: {}
 x-stoplight:
   docs:
     includeDownloadLink: true
