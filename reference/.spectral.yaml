@@ -6,10 +6,9 @@ rules:
 except:
   'carts.sf.yml':
     - invalid-ref
-    - oas2-valid-definition-example
-    - oas2-valid-response-schema-example
     - operation-tag-defined
     - openapi-tags
+    - oas3-api-servers
   'carts.v3.yml':
     - oas2-oneOf
     - oas2-valid-definition-example
