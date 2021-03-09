@@ -725,7 +725,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/CustomerSettingsResponse"
+                $ref: "#/components/schemas/CustomerSettingsObjet"
               examples:
                 data:
                   value:
@@ -752,7 +752,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/responses/CustomerSettingsResponse"
+                $ref: "#/components/schemas/CustomerSettingsObjet"
               examples:
                 data:
                   value:
