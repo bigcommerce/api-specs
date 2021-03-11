@@ -91,7 +91,8 @@ paths:
           description: '"The requested resource was not found."'
           content:
             application/json:
-              schema: {}
+              schema:
+                type: object
       operationId: getAnOrder
     put:
       description: 'Updates an *Order*. To learn more about creating or updating orders, see [Orders Overview](/api-docs/orders/orders-api-overview).'
@@ -2664,7 +2665,7 @@ components:
                 type:
                   - string
                   - integer
-                  - float
+                  - number
                 format: number
               wrapping_cost_ex_tax:
                 description: 'The value of the wrapping cost, excluding tax. (Float, Float-As-String, Integer)'
@@ -4436,7 +4437,7 @@ components:
       description: |
         `product_options` are required if adding a product with variants.
         Note:
-        - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields. 
+        - `xxx` and `xxx_customer` always hold the same value, updating either `xxx` or `xxx_customer` will change value for both of those fields.
         - If both fields `xxx` and `xxx_customer` are present, they must have same value.
         - Empty strings `''` and `null` are invalid for `xxx` and `xxx_customer, and `xxx_merchant`.
         - `xxx`, `xxx_customer`, and `xxx_merchant` default to the value from `catalog` if not supplied in the request.
@@ -4938,7 +4939,7 @@ components:
                 AvaTaxProvider - This is for when the tax provider has been set to automatic and the order was NOT created by the API. Used for Avalara.
 
                 "\" (blank) - When the tax provider is unknown. This includes legacy orders and orders previously created via API.This can be set when creating an order using POST.
-                  
+
               enum:
                 - BasicTaxProvider
                 - AvaTaxProvider
