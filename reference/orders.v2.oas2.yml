@@ -603,7 +603,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/orderShipment_Post_Request'
+              $ref: '#/components/schemas/orderShipment_Post'
         required: true
         x-examples:
           application/json:
@@ -676,7 +676,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/orderShipment_Post_Response'
+              $ref: '#/components/schemas/orderShipment_Put'
         required: true
         x-examples:
           application/json:
@@ -3763,9 +3763,9 @@ components:
         - product_id
         - product_options
         - quantity
-    orderShipment_Post_Request:
+    orderShipment_Post:
       type: object
-      title: orderShipment_Post_Request
+      title: orderShipment_Post
       properties:
         order_address_id:
           description: ID of the desired `shipping_address` associated with the shipment.
@@ -3815,9 +3815,9 @@ components:
               quantity:
                 type: number
                 example: 2
-    orderShipment_Post_Response:
+    orderShipment_Put:
       type: object
-      title: orderShipment_Post_Response
+      title: orderShipment_Put
       properties:
         order_address_id:
           description: ID of the desired `shipping_address` associated with the shipment.
@@ -3855,21 +3855,6 @@ components:
         comments:
           description: Comments the shipper wishes to add.
           type: string
-        items:
-          description: 'The items in the shipment. This object has the following members, all integer: order_product_id (required), quantity (required), product_id (read-only). A sample items value might be: [ {"order_product_id":16,"product_id": 0,"quantity":2} ]'
-          type: array
-          items:
-            type: object
-            properties:
-              order_product_id:
-                type: integer
-                example: 5
-              product_id:
-                type: integer
-                example: 87
-              quantity:
-                type: number
-                example: 2
     orderStatus_Base:
       title: orderStatus_Base
       type: object
