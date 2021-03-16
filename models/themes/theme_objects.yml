@@ -95,6 +95,7 @@ info:
     ## Resources
 
     * [Template Object Reference](/stencil-docs/reference-docs/global-objects-and-properties/models)
+host: env_store_domain
 paths: {}
 definitions:
   configJson:
