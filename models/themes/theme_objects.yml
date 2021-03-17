@@ -3118,6 +3118,12 @@ definitions:
             type: string
           value:
             type: number
+      customer_group_id:
+        type: number
+      customer_group_name:
+        type: string
+      edit_stored_instrument:
+        type: string
       wishlists:
         type: 'null'
         description: Wishlists for this customer
