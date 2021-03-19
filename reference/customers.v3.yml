@@ -3918,7 +3918,7 @@ components:
         store_credit_amounts:
           $ref: '#/components/schemas/CustomerStoredCreditAmounts'
         origin_channel_id:
-          description: Customer created Channel ID
+          description: Channel ID the customer has been created from
           type: integer
         channel_ids:
           description: Array of channels the customer can access
