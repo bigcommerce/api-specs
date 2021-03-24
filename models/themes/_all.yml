@@ -1,8 +1,18 @@
 title: 'Theme Objects'
 type: object
 properties:
-  Global Objects:
-    description: Data available on most pages.
+  Global Theme Template Objects:
+    description: Data available to most stencil theme templates.
     type: object
     allOf:
-      - $ref: ./global.yml
+      - $ref: ./_global.yml
+  'templates/pages/product.html':
+    description: Data available to the default product page template and it's components.
+    type: object
+    allOf:
+      - $ref: ./product.yml
+  Template:
+    description: Description.
+    type: object
+    allOf:
+      - $ref: ./model.yml
