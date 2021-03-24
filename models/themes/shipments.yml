@@ -1,0 +1,19 @@
+type: array
+items:
+  type: object
+  properties:
+    date_shipped:
+      type: string
+    shipping_method:
+      type: string
+    shipping_provider:
+      type: string
+    shipping_track:
+      type: object
+      properties:
+        number:
+          type: string
+        url:
+          type: string
+    show_shipping_method:
+      type: boolean

@@ -1,0 +1,20 @@
+title: Checkout
+type: object
+description: Order confirmation page checkout object available to `templates\pages\order-confirmation.html`.
+properties:
+  order_confirmation_content:
+    type: string
+    desciption: default content from checkout template
+  checkout_head:
+    type: string
+    desciption: default content from checkout `<head>`
+  order:
+    type: object
+    properties:
+      id:
+        type: number
+        description: the `id` of the order.
+    description:
+  header_image:
+    type: string
+    description: The image `src` of the header.

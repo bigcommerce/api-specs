@@ -1,0 +1,35 @@
+type: object
+description: customer.shipping_addresses object available to custome account templates and components.
+properties:
+  address1:
+    type: string
+  address2:
+    type: string
+  city:
+    type: string
+  company:
+    type: string
+  country:
+    type: string
+  country_id:
+    type: string
+  destination:
+    type: string
+  first_name:
+    type: string
+  form_session_id:
+    type: string
+  id:
+    type: string
+  last_name:
+    type: string
+  last_used:
+    type: string
+  phone:
+    type: string
+  state:
+    type: string
+  state_id:
+    type: string
+  zip:
+    type: string

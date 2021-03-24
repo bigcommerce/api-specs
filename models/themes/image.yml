@@ -1,0 +1,11 @@
+type: object
+title: image
+description: 'Common image object; ex: `{{category.image}}`, `{{product.images.image}}'
+properties:
+  alt:
+    type: string
+    description: |
+      Corresponding text to display for missing images, accessible screen readers, etc.
+  data:
+    type: string
+    description: Internal URL to product or category image.

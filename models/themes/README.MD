@@ -1,26 +1,38 @@
+
+## {{order}}
+
+```
+.
+├── account # customer
+│   ├── orders
+│   │   ├── details.html # order
+│   │   └── invoice.html # order
+```
+
+
 ```bash
 .
-├── account
+├── account # customer, customer.wishlists, customer.recently_viewed_products, order, shipments, wishlist
 │   ├── add-address.html
 │   ├── add-payment-method.html
 │   ├── add-return.html
-│   ├── add-wishlist.html
+│   ├── add-wishlist.html #
 │   ├── addresses.html
-│   ├── download-item.html
+│   ├── download-item.html #
 │   ├── edit-payment-method.html
-│   ├── edit.html
+│   ├── edit.html # forms.edit_account
 │   ├── inbox.html
 │   ├── orders
 │   │   ├── all.html
 │   │   ├── completed.html
-│   │   ├── details.html
-│   │   └── invoice.html
+│   │   ├── details.html # order
+│   │   └── invoice.html # order
 │   ├── payment-methods.html
-│   ├── recent-items.html
+│   ├── recent-items.html # customer.recently_viewed_products.yml
 │   ├── return-saved.html
 │   ├── returns.html
-│   ├── wishlist-details.html
-│   └── wishlists.html
+│   ├── wishlist-details.html # wishlist
+│   └── wishlists.html # customer.wishlists
 ├── amp
 │   ├── category.html
 │   ├── product-options.html
@@ -33,12 +45,12 @@
 │   └── new-password.html
 ├── blog-post.html
 ├── blog.html
-├── brand.html
-├── brands.html
-├── cart.html
-├── category.html
+├── brand.html #
+├── brands.html #
+├── cart.html #
+├── category.html #
 ├── checkout.html
-├── compare.html
+├── compare.html #
 ├── contact-us.html
 ├── errors
 │   ├── 403.html
@@ -51,7 +63,7 @@
 ├── home.html
 ├── order-confirmation.html
 ├── page.html
-├── product.html
+├── product.html #
 ├── search.html
 ├── sitemap.html
 ├── subscribed.html

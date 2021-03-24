@@ -1,7 +1,7 @@
 title: 'Theme Objects'
 type: object
 properties:
-  Global Theme Template Objects:
+  Global:
     description: Data available to most stencil theme templates.
     type: object
     allOf:
@@ -11,6 +11,11 @@ properties:
     type: object
     allOf:
       - $ref: ./product.yml
+  'templates/pages/compare.html':
+    description: roperty to display an array of products on product comparison pages.
+    type: object
+    allOf:
+      - $ref: ./model.yml
   Template:
     description: Description.
     type: object
