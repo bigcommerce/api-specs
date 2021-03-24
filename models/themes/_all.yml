@@ -1,0 +1,8 @@
+title: 'Theme Objects'
+type: object
+properties:
+  Global Objects:
+    description: Data available on most pages.
+    type: object
+    allOf:
+      - $ref: ./global.yml
