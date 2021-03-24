@@ -1,0 +1,27 @@
+type: object
+properties:
+  active_currency_code:
+    type: string
+  active_currency_flag:
+    type: string
+  active_currency_id:
+    type: integer
+  active_currency_name:
+    type: string
+  currencies:
+    type: array
+    items:
+      type: object
+      properties:
+        flag:
+          type: string
+        id:
+          type: integer
+        is_active:
+          type: boolean
+        name:
+          type: string
+        switch_url:
+          type: string
+  default_currency_code:
+    type: string

@@ -13,7 +13,7 @@
 ```bash
 .
 ├── account # customer, customer.wishlists, customer.recently_viewed_products, order, shipments, wishlist
-│   ├── add-address.html
+│   ├── add-address.html # forms.address
 │   ├── add-payment-method.html
 │   ├── add-return.html
 │   ├── add-wishlist.html #

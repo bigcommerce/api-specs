@@ -27,10 +27,16 @@ properties:
    $ref: ./comparisons.yml
   countries:
    $ref: ./countries.yml
+  create_account:
+   $ref: ./createAccount.yml
   currency_selector:
    $ref: ./currencySelector.yml
   customer:
    $ref: ./customer.yml
+  customer_group_id:
+    $ref: ./customerGroupId.yml
+  customer_group_name:
+    $ref: ./customerGroupName.yml
   downloads:
    $ref: ./downloads.yml
   faceted_search:
@@ -41,7 +47,7 @@ properties:
    $ref: ./forms.yml
   head:
    $ref: ./head.yml
-  isAjax:
+  is_jax:
    $ref: ./isAjax.yml
   order:
    $ref: ./order.yml
@@ -49,12 +55,26 @@ properties:
    $ref: ./page.yml
   pages:
    $ref: ./pages.yml
+  pagination:
+    $ref: ./pagination.yml
   product:
    $ref: ./product.yml
+  products:
+    $ref: ./products.yml
+  remote_api_scripts:
+    $ref: ./remoteApiScripts.yml
+  settings:
+    $ref: ./settings.yml
   shipments:
    $ref: ./shipments.yml
   shop_by_brand:
    $ref: ./shopByBrand.yml
+  social_media:
+    $ref: ./socialMedia.yml
+  theme_settings:
+    $ref: ./themeSettings.yml
+  urls:
+    $ref: ./urls.yml
   vault:
    $ref: ./vault.yml
   wishlist:

@@ -1,4 +1,5 @@
-carousel:
+title: carousel
+description: 'Global. A list of images, text, and style assets for a storefront’s image slide show.'
 type: object
 properties:
   slides:
@@ -41,5 +42,3 @@ properties:
           type: string
   swap_frequency:
     type: integer
-description: 'Global. A list of images, text, and style assets for a storefront’s image slide show.'
-title: carousel

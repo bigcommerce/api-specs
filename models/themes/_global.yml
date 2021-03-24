@@ -1,9 +1,0 @@
-title: 'Global Theme Template Objects'
-description: Data available to most stencil pages.
-type: object
-properties:
-  banners:
-    description: Elements of marketing banners at page's top and/or bottom.
-    type: object
-    allOf:
-      - $ref: ./banners.yml

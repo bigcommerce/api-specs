@@ -89,28 +89,7 @@ properties:
   page_title:
     type: string
   price:
-    description: Price object that defines the shipping cost for this product (if shipping cost is fixed)
-    properties:
-      price_range:
-        type: object
-      tax_label:
-        description: Tax label (VAT, sales tax, etc.) displayed to customers.
-        type: string
-      without_tax:
-        description: Exposes price- and currency-related properties in both raw numeric, and formatted string, formats.
-        properties:
-          currency:
-            description: Currency code
-            type: string
-          formatted:
-            description: String representation of the price, including currency formatting
-            type: string
-          value:
-            description: Raw numeric value of the price
-            type: number
-        title: price
-        type: object
-    type: object
+    $ref: ./productPrice.yml
   rating:
     description: Rating for the product
     type: integer
