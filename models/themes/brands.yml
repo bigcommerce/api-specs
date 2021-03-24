@@ -1,0 +1,14 @@
+type: array
+description: brand object available to `templates/pages/brands.html`.
+items:
+  type: object
+  properties:
+    id:
+      type: integer
+    image:
+      type: 'null'
+    name:
+      type: string
+    url:
+      type: string
+title: brands

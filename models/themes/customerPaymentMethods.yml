@@ -1,5 +1,5 @@
-
 type: object
+description: customer.payment_methods object available to `templates/pages/account/payment-methods.html`.
 oneOf:
   - type: array
     description: Replaces `customerPaymentMethods` object used in payment_methods.html templates when `account_payment_methods_v2` is enabled in **config.json** > **meta** > **features**.

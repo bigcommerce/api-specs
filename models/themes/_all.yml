@@ -1,23 +1,61 @@
 title: 'Theme Objects'
 type: object
 properties:
-  Global:
-    description: Data available to most stencil theme templates.
-    type: object
-    allOf:
-      - $ref: ./_global.yml
-  'templates/pages/product.html':
-    description: Data available to the default product page template and it's components.
-    type: object
-    allOf:
-      - $ref: ./product.yml
-  'templates/pages/compare.html':
-    description: roperty to display an array of products on product comparison pages.
-    type: object
-    allOf:
-      - $ref: ./model.yml
-  Template:
-    description: Description.
-    type: object
-    allOf:
-      - $ref: ./model.yml
+  banners:
+   $ref: ./banners.yml
+  blog:
+   $ref: ./blog.yml
+  brand:
+   $ref: ./brand.yml
+  brands:
+   $ref: ./brands.yml
+  breadcrumbs:
+   $ref: ./breadcrumbs.yml
+  carousel:
+   $ref: ./carousel.yml
+  cart_id:
+   $ref: ./cart_id.yml
+  cart:
+   $ref: ./cart.yml
+  categories:
+   $ref: ./categories.yml
+  category:
+   $ref: ./category.yml
+  checkout:
+   $ref: ./checkout.yml
+  comparisons:
+   $ref: ./comparisons.yml
+  countries:
+   $ref: ./countries.yml
+  currency_selector:
+   $ref: ./currencySelector.yml
+  customer:
+   $ref: ./customer.yml
+  downloads:
+   $ref: ./downloads.yml
+  faceted_search:
+   $ref: ./facetedSearch.yml
+  footer:
+   $ref: ./footer.yml
+  forms:
+   $ref: ./forms.yml
+  head:
+   $ref: ./head.yml
+  isAjax:
+   $ref: ./isAjax.yml
+  order:
+   $ref: ./order.yml
+  page:
+   $ref: ./page.yml
+  pages:
+   $ref: ./pages.yml
+  product:
+   $ref: ./product.yml
+  shipments:
+   $ref: ./shipments.yml
+  shop_by_brand:
+   $ref: ./shopByBrand.yml
+  vault:
+   $ref: ./vault.yml
+  wishlist:
+   $ref: ./wishlist.yml

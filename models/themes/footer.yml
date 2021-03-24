@@ -1,0 +1,10 @@
+type: object
+title: footer
+description: The footer content for each storefront page.
+properties:
+  sitemap_url:
+    type: string
+    description: "\tThe URL to the sitemap, based on store’s SEO setting."
+  scripts:
+    type: string
+    description: Scripts to be loaded after the HTML has loaded; includes performance metrics.
