@@ -11467,17 +11467,52 @@ paths:
           required: false
           in: query
           type: string
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'name:like'
         - name: parent_id
           description: 'Filter items by parent_id. If the category is a child or sub category it can be filtered with the parent_id. '
           required: false
           in: query
           type: integer
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:in'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:min'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:max'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:greater'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:less'
         - name: page_title
           description: |
             Filter items by page_title.
           required: false
           in: query
           type: string
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'page_title:like'
         - name: keyword
           description: 'Filter items by keywords. eg. new, towel, bath'
           required: false
