@@ -11787,9 +11787,12 @@ paths:
         - Category
     delete:
       description: |-
-        By default, it deletes all *Category* objects. A filter should be added to avoid deleting all *Category* objects in a store.
+        Deletes *Category* objects. At least one filter parameter is required to perform the `DELETE` operation.
 
-        Sending a `DELETE` to this endpoint will result in a `422` error. Move products to a new category by sending a `PUT` to the `/catalog/products/{product_id}` endpoint before deleting a category.
+        **Usage Notes**
+
+        - Sending a `DELETE`request without specifying a filter parameter will result in a `422` error. 
+        - Sending a `DELETE` request for a category that contains products will result in a `422` error. Move products to a new category by sending a `PUT` requst to the `/catalog/products/{product_id}` endpoint before deleting a category.
       operationId: deleteCategories
       parameters:
         - type: integer
