@@ -1,3 +1,4 @@
+description: '`{{blog}}` objects'
 type: object
 oneOf:
   - type: object
