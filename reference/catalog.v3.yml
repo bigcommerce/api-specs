@@ -11792,6 +11792,16 @@ paths:
         Sending a `DELETE` to this endpoint will result in a `422` error. Move products to a new category by sending a `PUT` to the `/catalog/products/{product_id}` endpoint before deleting a category.
       operationId: deleteCategories
       parameters:
+        - type: integer
+          in: query
+          name: id
+          description: Filter items by id.
+        - $ref: '#/parameters/FilterIdIn'
+        - $ref: '#/parameters/FilterIdNotIn'
+        - $ref: '#/parameters/FilterIdMin'
+        - $ref: '#/parameters/FilterIdMax'
+        - $ref: '#/parameters/FilterIdGreater'
+        - $ref: '#/parameters/FilterIdLess'
         - name: name
           description: |
             Filter items by name.
@@ -11819,6 +11829,41 @@ paths:
           required: false
           in: query
           type: boolean
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'name:like'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:in'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:min'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:max'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:greater'
+        - type: array
+          items:
+            type: integer
+          in: query
+          name: 'parent_id:less'
+        - type: array
+          items:
+            type: string
+          in: query
+          name: 'page_title:like'
         - in: header
           type: string
           name: Accept
