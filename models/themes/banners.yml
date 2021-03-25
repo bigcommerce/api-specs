@@ -1,5 +1,5 @@
 type: object
-description: Global. Elements of marketing banners at page's top and/or bottom.
+description: '`global` `{{banners}}` object'
 title: banners
 properties:
   bottom:
