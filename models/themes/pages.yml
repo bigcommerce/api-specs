@@ -1,4 +1,4 @@
-description: Global. A list of all web content pages for the BigCommerce storefront.
+description: '`global` `{{pages}}` object containg storefront content page data'
 type: object
 properties:
   URL:
