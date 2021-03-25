@@ -29,12 +29,7 @@ items:
     id:
       type: string
     image:
-      type: object
-      properties:
-        alt:
-          type: string
-        data:
-          type: string
+      $ref: ./image.yml
     max_purchase_quantity:
       type: 'null'
     min_purchase_quantity:

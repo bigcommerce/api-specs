@@ -36,7 +36,7 @@ items:
     id:
       type: integer
     image:
-      type: 'null'
+      $ref: ./image.yml
     images:
       type: array
       items:

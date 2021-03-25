@@ -28,8 +28,7 @@ properties:
     type: integer
     description: Unique ID for the category.
   image:
-    type: 'null'
-    description: 'Image representing this category, in Stencil image format.'
+    $ref: ./image.yml
   meta:
     type: array
     items:

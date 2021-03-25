@@ -11,7 +11,7 @@ items:
       type: string
       description: ID of the top-level category listed.
     image:
-      type: 'null'
+      $ref: ./image.yml
     name:
       type: string
       description: Name of the top-level category

@@ -1,5 +1,5 @@
+description: '{{brand}} object available to `templates/pages/brand.html`'
 type: object
-description: brand object available to `templates/pages/brand.html`.
 properties:
   config:
     type: array
@@ -12,12 +12,7 @@ properties:
     items:
       type: object
   image:
-    type: object
-    properties:
-      alt:
-        type: string
-      data:
-        type: string
+    $ref: ./image.yml
   meta:
     type: array
     items:
@@ -54,12 +49,9 @@ properties:
         id:
           type: number
         image:
-          type: object
-          properties:
+          $ref: ./image.yml
         images:
-          type: array
-          items:
-            type: object
+          $ref: ./image.yml
         low_stock_level:
           type: object
           properties:

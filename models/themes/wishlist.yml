@@ -45,12 +45,11 @@ properties:
         id:
           type: number
         image:
-          type: object
-          properties:
+          $ref: ./image.yml
         images:
           type: array
           items:
-            type: object
+            $ref: ./image.yml
         low_stock_level:
           type: object
           properties:

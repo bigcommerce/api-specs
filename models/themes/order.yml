@@ -62,12 +62,7 @@ properties:
         gift_wrapping_name:
           type: string
         image:
-          type: object
-          properties:
-            alt:
-              type: string
-            data:
-              type: string
+          $ref: ./image.yml
         name:
           type: string
           description: Product Name
