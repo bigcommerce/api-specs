@@ -1,0 +1,21 @@
+description: Global. A list of all web content pages for the BigCommerce storefront.
+type: object
+properties:
+  URL:
+    description: URL of the page
+    type: string
+  children:
+    description: List of child pages for this page
+    items:
+      properties:
+        URL:
+          description: URL of the child page
+          type: string
+        name:
+          description: Name of the child page
+          type: string
+      type: object
+    type: array
+  name:
+    description: Name of the page
+    type: string

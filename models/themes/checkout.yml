@@ -1,6 +1,6 @@
 title: Checkout
 type: object
-description: Order confirmation page checkout object available to `templates\pages\order-confirmation.html`.
+description: '{{checkout}} object available to `templates\pages\order-confirmation.html`'
 properties:
   order_confirmation_content:
     type: string

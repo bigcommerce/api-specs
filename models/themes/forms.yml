@@ -1,12 +1,12 @@
-type: array
-items:
-  anyOf:
-    - $ref: ./formsAddresses.yml
-    - $ref: ./formsContact.yml
-    - $ref: ./formsCreateAccount.yml
-    - $ref: ./formsEditAccount.yml
-    - $ref: ./formsGiftCertificates.yml
-    - $ref: ./formsLogin.yml
-    - $ref: ./formsProvider.yml
-    - $ref: ./formsReturn.yml
-    - $ref: ./formsWishlistyml
+description: '`{{forms}}` object available to pages and components with forms'
+type: object
+anyOf:
+  - $ref: ./formsAddresses.yml
+  - $ref: ./formsContact.yml
+  - $ref: ./formsCreateAccount.yml
+  - $ref: ./formsEditAccount.yml
+  - $ref: ./formsGiftCertificate.yml
+  - $ref: ./formsLogin.yml
+  - $ref: ./formsProvider.yml
+  - $ref: ./formsReturn.yml
+  - $ref: ./formsWishlistyml

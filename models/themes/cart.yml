@@ -1,6 +1,5 @@
+description: '`{{cart}}` object available to `templates/pages/cart.html`; contains `cart_id` if one exists'
 type: object
-title: cart
-description: Present on `cart.php`. Returns the cart ID if one exists.
 properties:
   additional_checkout_buttons:
     type: array

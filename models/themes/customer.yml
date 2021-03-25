@@ -1,80 +1,95 @@
+description: '`{{customer}}` object available to templates and components with customer context such as `page/contact-us-form.html`, `common/subscription-form.html`, `account/address-list.html`, `account/messages-form.html`, and `account/wishlist-list.html`'
 type: object
-description: customer object.
 properties:
   addresses:
     $ref: ./customerAddresses.yml
+  customer_group_id:
+    type: number
+  customer_group_name:
+    type: string
+  edit_stored_instrument:
+    type: string
   email:
     type: string
   id:
+    description: Customer's ID
     type: integer
-    description: Customer’s ID
   name:
+    description: Customer's name
     type: string
-    description: Customer’s name
   num_new_messages:
-    type: integer
     description: Number of unread messages for this customer.
+    type: integer
   num_wishlists:
-    type: string
     description: Number of wishlists for this customer.
-  phone:
     type: string
-    description: Customer’s phone number
+  orders:
+    $ref: ./customerOrders.yml
+  payment_methods:
+    $ref: ./customerOrders.yml
+  phone:
+    description: Customer's phone number
+    type: string
+  recently_viewed_products:
+    $ref: ./customerOrders.yml
+  returns:
+    $ref: ./customerOrders.yml
   shipping_address:
-    type: object
     description: Shipping address used for the order
     properties:
       address1:
+        description: Customer's shipping address, first line
         type: string
-        description: 'Customer''s shipping address, first line'
       address2:
+        description: Customer's shipping address, second line
         type: string
-        description: 'Customer''s shipping address, second line'
       city:
-        type: string
         description: Customer's shipping city
+        type: string
       company:
-        type: string
         description: Customer's shipping company name
+        type: string
       country:
-        type: string
         description: Customer's shipping country
+        type: string
       country_id:
-        type: string
         description: ID for customer's shipping country
+        type: string
       destination:
-        type: string
         description: 'Type of delivery destination: residential or business/commercial'
+        type: string
       first_name:
+        description: Customer's shipping (first) name
         type: string
-        description: Customer’s shipping (first) name
       form_session_id:
-        type: string
         description: Used for custom shipping forms
+        type: string
       id:
+        description: Unique, system-generated ID
         type: string
-        description: 'Unique, system-generated ID'
       last_name:
+        description: Customer's shipping (last) name
         type: string
-        description: Customer’s shipping (last) name
       last_used:
-        type: string
         description: Timestamp when this address was last used as a shipping address
+        type: string
       phone:
+        description: Customer's shipping phone number
         type: string
-        description: Customer’s shipping phone number
       state:
-        type: string
         description: Customer's shipping state
+        type: string
       state_id:
-        type: string
         description: ID for customer's shipping state/province/region
-      zip:
         type: string
+      zip:
         description: Customer's shipping zip
-  store_credit:
+        type: string
     type: object
-    description: Customer’s store credit
+  shipping_addresses:
+    $ref: ./customerOrders.yml
+  store_credit:
+    description: Customer's store credit
     properties:
       currency:
         type: string
@@ -82,21 +97,6 @@ properties:
         type: string
       value:
         type: number
-  customer_group_id:
-    type: number
-  customer_group_name:
-    type: string
-  edit_stored_instrument:
-    type: string
+    type: object
   wishlists:
     $ref: ./customerWishlists.yml
-  orders:
-    $ref: ./customerOrders.yml
-  payment_methods:
-    $ref: ./customerOrders.yml
-  recently_viewed_products:
-    $ref: ./customerOrders.yml
-  returns:
-    $ref: ./customerOrders.yml
-  shipping_addresses:
-    $ref: ./customerOrders.yml

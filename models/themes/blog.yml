@@ -1,7 +1,7 @@
 type: object
 oneOf:
   - type: object
-    description: "Blog object used on the blog page."
+    description: '`{{blog}}` object available to blog and blog post templates and components'
     title: blog (blog page)
     properties:
       description:

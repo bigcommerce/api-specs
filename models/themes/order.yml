@@ -1,6 +1,5 @@
+description: '`{{order}}` object available to templates and components with order context'
 type: object
-title: order
-description: The order properties for a specific order.
 properties:
   billing_address:
     type: object

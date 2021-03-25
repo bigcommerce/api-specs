@@ -1,5 +1,5 @@
 title: carousel
-description: 'Global. A list of images, text, and style assets for a storefront’s image slide show.'
+description: '`global` `{{carousel}}` array of images, texts, and styles for configure for the storefront slide show'
 type: object
 properties:
   slides:

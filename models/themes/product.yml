@@ -1,5 +1,4 @@
-title: product
-description: Product object available to `templates/pages/product.html` and `templates/pages/amp/product.html` and their components.
+description: '{{product}} object available to `templates/pages/product.html`, `templates/pages/amp/product.html`, and their components'
 type: object
 properties:
   AddThisServiceButtonMeta:
@@ -120,8 +119,8 @@ properties:
   url:
     description: URL to the product detail page
     type: string
+  videos:
+    $ref: ./productVideos.yml
   warranty:
     description: Optional warranty text set by the merchant
     type: string
-  videos:
-    $ref: ./productVideos.yml

@@ -1,5 +1,5 @@
 type: object
-description: The category object for the page calling the object.
+description: '`{{category}}` available to `templates/pages/category.html` and other category page templates and components'
 title: category
 properties:
   config:

@@ -1,5 +1,5 @@
 type: array
-description: downloads object available to `/templates/pages/account/download-item.htmltemplate`.
+description: '`{{downloads}}` object available to `/templates/pages/account/download-item.htmltemplate`'
 items:
   type: object
   properties:

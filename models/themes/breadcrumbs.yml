@@ -1,3 +1,4 @@
+description: '`global` {{breadcrumbs}} array'
 type: array
 items:
   type: object
@@ -6,5 +7,3 @@ items:
       type: string
     url:
       type: string
-title: breadcrumbs
-description: Global. Defines a page’s breadcrumbs – available on virtually all pages that have a breadcrumb trail.

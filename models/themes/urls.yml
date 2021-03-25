@@ -1,5 +1,6 @@
+
+description: '`global` `{{urls}}` object containg a collection of storefront pages and their sub-pages'
 type: object
-description: Global. A list of all web content pages for the BigCommerce storefront.
 properties:
   account:
     type: object
