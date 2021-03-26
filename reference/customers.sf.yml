@@ -1,13 +1,17 @@
 openapi: 3.0.1
 info:
+  version: Storefront
   title: Storefront Customers
   description: Manage customers and data via front-end JavaScript on BigCommerce stencil powered storefronts.
-  version: v1.0.0
 servers:
   - url: 'https://{$$.env.store_domain}/api/storefront'
+tags:
+  - name: Customers
 paths:
   /customers:
     post:
+      tags:
+        - Customers
       description: |-
         Creates a *Customer*.
 
@@ -24,11 +28,6 @@ paths:
       responses:
         '204':
           description: Customer succesfully created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties: {}
         '400':
           description: ' Could not create customer'
         '422':
@@ -42,6 +41,17 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CustomerCreateData'
+            examples:
+              application/json:
+                value:
+                  firstName: Jane
+                  lastName: Doe
+                  email: janedoe@example.com
+                  password: string
+                  acceptsMarketingEmails: true
+                  customFields:
+                    - fieldId: '25'
+                      fieldValue: Leave in backyard
         description: Data sent the the customer endpoint when creating a customer during checkout.
 components:
   schemas:
@@ -76,5 +86,3 @@ components:
           type: string
         fieldValue:
           type: string
-tags:
-  - name: Customers
