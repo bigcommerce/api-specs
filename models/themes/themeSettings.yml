@@ -1,4 +1,4 @@
-desciption: '`global` `{{theme_settings}}` object'
+description: '`global` `{{theme_settings}}` object'
 type: object
 properties:
   alert-backgroundColor:
