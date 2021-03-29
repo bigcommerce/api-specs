@@ -47,7 +47,7 @@ properties:
    $ref: ./forms.yml
   head:
    $ref: ./head.yml
-  is_jax:
+  is_ajax:
    $ref: ./isAjax.yml
   order:
    $ref: ./order.yml
@@ -57,6 +57,8 @@ properties:
    $ref: ./pages.yml
   pagination:
     $ref: ./pagination.yml
+  page_type:
+    $ref: ./pageType.yml
   product:
    $ref: ./product.yml
   products:
@@ -67,6 +69,8 @@ properties:
     $ref: ./settings.yml
   shipments:
    $ref: ./shipments.yml
+  shipping_messages:
+    $ref: ./shippingMessages.yml
   shop_by_brand:
    $ref: ./shopByBrand.yml
   social_media:
