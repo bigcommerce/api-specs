@@ -1,6 +1,5 @@
-title: Checkout
-type: object
 description: '{{checkout}} object available to checkout and order confirmation templates and components'
+type: object
 properties:
   order_confirmation_content:
     type: string
