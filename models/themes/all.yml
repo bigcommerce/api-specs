@@ -100,6 +100,8 @@ schemes:
   - https
 paths: {}
 definitions:
+  overview:
+   $ref: ./overview.yml
   banners:
    $ref: ./banners.yml
   blog:
