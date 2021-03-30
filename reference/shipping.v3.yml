@@ -119,14 +119,14 @@ paths:
               $ref: '#/definitions/customsInformation'
           x-examples:
             Example:
-              product_id: 77
-              country_of_origin: US
-              commodity_description: Baseball caps
-              international_shipping: true
-              hs_codes:
-                CA: '508313'
-                AU: '817355'
-                ALL: '501000'
+              - product_id: 77
+                country_of_origin: US
+                commodity_description: Baseball caps
+                international_shipping: true
+                hs_codes:
+                  CA: '508313'
+                  AU: '817355'
+                  ALL: '501000'
 definitions:
   shippingMethod_Full:
     title: shippingMethod_Full
