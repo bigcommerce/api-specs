@@ -196,7 +196,7 @@ paths:
         IsMultiContentStreaming: false
   '/checkouts/{checkoutId}/consignments':
     post:
-      description: "Adds a new *Consignment* to *Checkout*.\n\n\nThere are two steps to add a new shipping address and shipping options with line items. \n* Add a new Consignment to Checkout.\n\t* Send a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n\t* As part of the request URL make sure to add `include=consignments.available_shipping_options` to return the available shipping options based on line items and shipping locations. This appended request will return `available_shipping_options` in the response.\n\n* [Update the Consignment](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n\n**Required Fields**\n* shipping_address\n* line_items"
+      description: "Adds a new *Consignment* to *Checkout*.\n\n\nThere are two steps to add a new shipping address and shipping options with line items. \n* Add a new Consignment to Checkout.\n\t* Send a POST to Consignments with each shipping address and line items IDs. Each address can have its own line item IDs.\n\t* \n\n* [Update the Consignment](https://developer.bigcommerce.com/api-reference/cart-checkout/server-server-checkout-api/checkout-consignments/checkoutsconsignmentsbycheckoutidandconsignmentidput) with Shipping Options.\n\n\n**Required Fields**\n* shipping_address\n* line_items"
       summary: Add Consignment to Checkout
       tags:
         - Checkout Consignments
@@ -355,7 +355,8 @@ paths:
               description: ''
           type: string
           description: Must be included to get available shipping options
-          default: consignments.available_shipping_options
+          enum: 
+            - consignments.available_shipping_options
       responses:
         '200':
           $ref: '#/responses/CheckoutResponse'
