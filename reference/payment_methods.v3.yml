@@ -1,0 +1,508 @@
+openapi: 3.0.0
+info:
+  version: ''
+  title: Payment Methods
+  contact: {}
+  description: |-
+    Get a list of a store's enabled payment methods. For processing payments, see [Payment Processing API](/api-docs/payments/payments-api-overview).
+
+    - [Authentication](#authentication)
+    - [Subresources](#subresources)
+    - [Additional Resources](#additional-resources)
+
+    ## Authentication
+
+    Authenticate requests by including an [OAuth](https://developer.bigcommerce.com/api-docs/getting-started/authentication) `access_token` in the request header.
+
+    ```http
+    GET https://api.bigcommerce.com/stores/{{STORE_HASH}}/v2/{{ENDPOINT}}
+    Content-Type: application/json
+    X-Auth-Token: {{ACCESS_TOKEN}}
+    ```
+
+    ### OAuth Scopes
+    |  **UI Name** | **Permission** | **Parameter** |
+    | --- | --- | --- |
+    |  Get Payment Methods | read-only | `store_payments_methods_read` |
+tags:
+  - name: Payment Methods
+x-stoplight:
+  docs:
+    includeDownloadLink: true
+    showModels: false
+servers:
+  - description: ''
+    url: 'https://api.bigcommerce.com/stores/{$$env.stores_hash}/v3/payment/methods'
+security:
+  - X-Auth-Client: []
+  - X-Auth-Token: []
+paths:
+  /payment/methods:
+    get:
+      description: |-
+        Returns a list of accepted payment methods based on the `order_id`.
+
+        **Required Fields**
+        * order_id
+      summary: Get All Payment Methods
+      tags:
+        - Payment Methods
+      operationId: PaymentMethodsGet
+      servers:
+        - url: 'https://api.bigcommerce.com/stores/{$$.env.store_hash}/v3'
+          variables:
+            $$.env.store_hash:
+              default: store_hash
+      deprecated: false
+      parameters:
+        - name: order_id
+          in: query
+          required: false
+          description: Identifier for the order
+          schema:
+            type: integer
+            format: int32
+            exclusiveMinimum: false
+            exclusiveMaximum: false
+        - name: Accept
+          in: header
+          schema:
+            type: string
+            default: application/json
+        - in: header
+          name: Content-Type
+          schema:
+            type: string
+            default: application/json
+      responses:
+        '200':
+          $ref: '#/components/responses/paymentMethods_Resp'
+        '400':
+          description: Request has been rejected.
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    format: int32
+                  title:
+                    description: Short summary describing the particular error
+                    type: string
+                  detail:
+                    description: Detailed summary describing the particular error
+                    type: string
+                  type:
+                    description: Reference that identifies the particular error
+                    type: string
+                  code:
+                    description: Code representing the particular error
+                    type: integer
+                    format: int32
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - status
+                  - title
+                  - type
+        '401':
+          description: Valid authentication required.
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    format: int32
+                  title:
+                    description: Short summary describing the particular error
+                    type: string
+                  detail:
+                    description: Detailed summary describing the particular error
+                    type: string
+                  type:
+                    description: Reference that identifies the particular error
+                    type: string
+                  code:
+                    description: Code representing the particular error
+                    type: integer
+                    format: int32
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - status
+                  - title
+                  - type
+        '404':
+          description: Request has been rejected due to resource not being found.
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    format: int32
+                  title:
+                    description: Short summary describing the particular error
+                    type: string
+                  detail:
+                    description: Detailed summary describing the particular error
+                    type: string
+                  type:
+                    description: Reference that identifies the particular error
+                    type: string
+                  code:
+                    description: Code representing the particular error
+                    type: integer
+                    format: int32
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - status
+                  - title
+                  - type
+        '422':
+          description: Request has been rejected due to missing or invalid data.
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    format: int32
+                  title:
+                    description: Short summary describing the particular error
+                    type: string
+                  detail:
+                    description: Detailed summary describing the particular error
+                    type: string
+                  type:
+                    description: Reference that identifies the particular error
+                    type: string
+                  code:
+                    description: Code representing the particular error
+                    type: integer
+                    format: int32
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - status
+                  - title
+                  - type
+        default:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                title: ErrorResponse
+                type: object
+                properties:
+                  status:
+                    description: HTTP status code
+                    type: integer
+                    format: int32
+                  title:
+                    description: Short summary describing the particular error
+                    type: string
+                  detail:
+                    description: Detailed summary describing the particular error
+                    type: string
+                  type:
+                    description: Reference that identifies the particular error
+                    type: string
+                  code:
+                    description: Code representing the particular error
+                    type: integer
+                    format: int32
+                  errors:
+                    type: object
+                    additionalProperties:
+                      type: string
+                required:
+                  - status
+                  - title
+                  - type
+components:
+  parameters:
+    Accept:
+      name: Accept
+      in: header
+      schema:
+        type: string
+        enum:
+          - application/vnd.bc.v1+json
+        default: application/vnd.bc.v1+json
+    Content-Type:
+      name: Content-Type
+      in: header
+      schema:
+        type: string
+        default: application/json
+  responses:
+    paymentMethods_Resp:
+      description: ''
+      content:
+        application/json:
+          schema:
+            title: Payment Methods Response
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentMethod_Full'
+          examples:
+            response:
+              value:
+                data:
+                  - id: stripe.card
+                    name: Stripe
+                    test_mode: true
+                    type: card
+                    supported_instruments:
+                      - instrument_type: VISA
+                        verification_value_required: true
+                      - instrument_type: MASTERCARD
+                        verification_value_required: true
+                      - instrument_type: AMEX
+                        verification_value_required: true
+                      - instrument_type: DISCOVER
+                        verification_value_required: true
+                      - instrument_type: JCB
+                        verification_value_required: true
+                      - instrument_type: DINERS_CLUB
+                        verification_value_required: true
+                      - instrument_type: STORED_CARD
+                        verification_value_required: true
+                    stored_instruments:
+                      - type: stored_card
+                        brand: VISA
+                        expiry_month: 9
+                        expiry_year: 2020
+                        issuer_identification_number: '424242'
+                        last_4: '4242'
+                        token: 050a1e5c982e5905288ec5ec33f292772762033a0704f46fccb16bf1940b51ef
+                        is_default: true
+                meta: {}
+  securitySchemes:
+    X-Auth-Token:
+      type: apiKey
+      in: header
+      name: X-Auth-Token
+      description: |-
+        ### OAuth Scopes
+        |  **UI Name** | **Permission** | **Parameter** |
+        | --- | --- | --- |
+        |  Create Payments | create | `store_payments_access_token_create` |
+        |  Get Payment Methods | read-only | `store_payments_methods_read` |
+
+        ### Headers
+
+        |Header|Parameter|Description|
+        |-|-|-|
+        |`X-Auth-Token`|`ACCESS_TOKEN`|Obtained by creating an API account or installing an app in a BigCommerce control panel.|
+        |`Authorization`|`{PAYMENT_ACCESS_TOKEN}`|Obtained using Create Access Token endpoint.|
+
+        ### Example
+
+        ```http
+        POST /stores/{$$.env.store_hash}/v3/payments/access_tokens
+        host: api.bigcommerce.com
+        Content-Type: application/json
+        X-Auth-Token: {ACCESS_TOKEN}
+        ```
+
+        ```http
+        POST /payments
+        host: payments.bigcommerce.com
+        Content-Type: application/json
+        Authorization: {PAYMENT_ACCESS_TOKEN}
+        ```
+
+        * For more information on Authenticating BigCommerce APIs, see: [Authentication](https://developer.bigcommerce.com/api-docs/getting-started/authentication).
+  schemas:
+    PaymentMethod_Full:
+      title: PaymentMethod_full
+      type: object
+      properties:
+        id:
+          description: Identifier for this payment method
+          type: string
+          minLength: 1
+        name:
+          description: Name of this payment method
+          type: string
+          minLength: 1
+        stored_instruments:
+          type: array
+          items:
+            $ref: '#/components/schemas/paymentMethodStoredInstrument'
+        supported_instruments:
+          type: array
+          items:
+            title: Supported Card Instrument
+            type: object
+            properties:
+              instrument_type:
+                title: InstrumentType
+                description: Type of this instrument
+                example: VISA
+                type: string
+                enum:
+                  - VISA
+                  - MASTERCARD
+                  - DISCOVER
+                  - AMEX
+                  - DINERS_CLUB
+                  - JCB
+                  - DANKORT
+                  - MAESTRO
+                  - STORED_CARD
+              verification_value_required:
+                description: Whether verification value is required for payment
+                type: boolean
+            required:
+              - instrument_type
+        test_mode:
+          description: Whether this payment method is on test mode
+          example: false
+          type: boolean
+          default: false
+        type:
+          description: Type to classify this payment method
+          example: card
+          type: string
+          default: card
+      required:
+        - id
+        - name
+        - supported_instruments
+        - test_mode
+        - type
+      description: ''
+    paymentMethodStoredInstrument:
+      title: paymentMethodStoredInstrument
+      type: object
+      properties:
+        brand:
+          description: Brand of this card such as VISA or Mastercard
+          type: string
+          minLength: 1
+        expiry_month:
+          description: Expiry month of this card
+          type: integer
+          minimum: 1
+          maximum: 12
+          format: int32
+        expiry_year:
+          description: Expiry year of this card
+          type: integer
+          format: int32
+        issuer_identification_number:
+          description: Issuer identification number of this card. This is extracted from the card when the order is payed for.
+          type: string
+          minLength: 6
+          maxLength: 6
+        last_4:
+          description: Last four numbers of this card
+          type: string
+          minLength: 4
+          maxLength: 4
+        token:
+          description: 'Identifier representing this stored card. This is used to identify cards within BigCommerce. It is the same as the `payment_access_token` that returns via the [Get Transactions endpoint](https://developer.bigcommerce.com/api-reference/orders/orders-transactions-api/orders/gettransactions).'
+          type: string
+          minLength: 64
+          maxLength: 64
+        is_default:
+          description: Whether this instrument is a default instrument
+          example: false
+          type: boolean
+          default: false
+        type:
+          description: Type to classify this stored card
+          example: stored_card
+          type: string
+          default: stored_card
+      required:
+        - brand
+        - expiry_month
+        - expiry_year
+        - issuer_identification_number
+        - last_4
+        - token
+        - is_default
+        - type
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      properties:
+        status:
+          description: HTTP status code
+          type: integer
+          format: int32
+        title:
+          description: Short summary describing the particular error
+          type: string
+        detail:
+          description: Detailed summary describing the particular error
+          type: string
+        type:
+          description: Reference that identifies the particular error
+          type: string
+        code:
+          description: Code representing the particular error
+          type: integer
+          format: int32
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - status
+        - title
+        - type
+    InstrumentType:
+      title: InstrumentType
+      description: Type of this instrument
+      example: VISA
+      type: string
+      enum:
+        - VISA
+        - MASTERCARD
+        - DISCOVER
+        - AMEX
+        - DINERS_CLUB
+        - JCB
+        - DANKORT
+        - MAESTRO
+        - STORED_CARD
+    PaymentAccessToken:
+      title: Payment Access Token
+      type: object
+      properties:
+        id:
+          description: Payment access token. This token is required in subsequent payment request to Payment API endpoint.
+          type: string
+          minLength: 1
+      required:
+        - id
