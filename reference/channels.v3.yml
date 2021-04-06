@@ -369,9 +369,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-            Invalid Response:
               examples:
-                response:
+                Invalid Response:
+                  summary: "Invalid response example"
                   value:
                     status: 400
                     title: Input is invalid
@@ -405,9 +405,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-            422 Example:
               examples:
-                response:
+                422 Example:
                   value:
                     status: 422
                     title: JSON data is missing or invalid
@@ -751,9 +750,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/currencyAssignments_Resp'
-            example-1:
               examples:
-                response:
+                example-1:
                   value:
                     data:
                       - channel_id: 123
@@ -783,9 +781,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/currencyAssignments_Resp'
-            example-1:
               examples:
-                response:
+                example-1:
                   value:
                     data:
                       - channel_id: 123
@@ -808,9 +805,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/currencyAssignments_Resp'
-            example-1:
               examples:
-                response:
+                example-1:
                   value:
                     data:
                       - channel_id: 123
@@ -838,9 +834,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/currencyAssignments_Resp'
-            example-1:
               examples:
-                response:
+                example-1:
                   value:
                     data:
                       - channel_id: 123
@@ -1054,9 +1049,7 @@ components:
                 meta:
                   pagination:
                     total: 1
-        with currencies:
-          examples:
-            response:
+            with currencies:
               value:
                 data:
                   - id: 1
@@ -1138,9 +1131,7 @@ components:
                         - title: Settings
                           query_path: settings
                 meta: {}
-        with currencies:
-          examples:
-            response:
+            with currencies:
               value:
                 data:
                   id: 391563
@@ -1908,8 +1899,7 @@ components:
           type: boolean
           description: Indicates whether the variation of the currently active Theme on the Channel has been purchased by the store
         active_theme_partner:
-          type: object
-          properties: '#/components/schemas/Partner'
+          $ref: '#/components/schemas/Partner'
         active_theme_style_editable:
           type: boolean
           description: Indicates whether the currently active Theme on the Channel is editable with the Style Editor
@@ -1935,24 +1925,24 @@ components:
         active_theme_variation_name:
           type: string
           description: The name of the variation of the currently active Theme on the Channel
-      Partner:
-        title: Partner
-        type: object
-        description: Details about the Partner's relationship to Themes
-        nullable: true
-        properties:
-          id:
-            type: string
-            description: The UUID of the partner of a theme
-          name:
-            type: string
-            description: The display name of the partner of a theme
-          contact_url:
-            type: string
-            description: The URL for contact/support of the partner of a theme
-          contact_email:
-            type: string
-            description: The email address for contact/support of the partner of a theme
+    Partner:
+      title: Partner
+      type: object
+      description: Details about the Partner's relationship to Themes
+      nullable: true
+      properties:
+        id:
+          type: string
+          description: The UUID of the partner of a theme
+        name:
+          type: string
+          description: The display name of the partner of a theme
+        contact_url:
+          type: string
+          description: The URL for contact/support of the partner of a theme
+        contact_email:
+          type: string
+          description: The email address for contact/support of the partner of a theme
     Upgrade:
       title: Upgrade
       type: object

@@ -1854,9 +1854,7 @@ components:
                     date_created: '2019-02-19T18:34:16Z'
                     date_modified: '2019-02-19T18:34:16Z'
                 meta: {}
-        with include:
-          examples:
-            response:
+            with include:
               value: |-
                 {
                     "data": [
