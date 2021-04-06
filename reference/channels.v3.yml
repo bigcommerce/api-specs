@@ -460,11 +460,6 @@ paths:
             type: string
             format: date-time
         - $ref: '#/components/parameters/product_id_in'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/listing_Full'
       responses:
         '200':
           $ref: '#/components/responses/listing_Resp_Collection'
