@@ -171,7 +171,7 @@ paths:
           $ref: '#/components/responses/order_Resp'
       operationId: updateAnOrder
     delete:
-      description: |-
+      description:
         Archives an order.
       summary: Archive an Order
       tags:
