@@ -721,7 +721,7 @@ paths:
       operationId: CustomerSettingsGet
       responses:
         '200':
-          description: Customer settings are returned.
+          description: Returns customer settings values for global level
           content:
             application/json:
               schema:
@@ -738,7 +738,7 @@ paths:
     put:
       tags:
         - Customer Settings
-      description: Update the customer settings
+      description: Updates the customer settings values on a global level
       summary: Update the customer settings
       operationId: CustomerSettingsPut
       requestBody:
@@ -749,7 +749,7 @@ paths:
         required: true
       responses:
         '200':
-          description: Customer settings are returned.
+          description: Customer settings are returned on a global level.
           content:
             application/json:
               schema:
@@ -763,11 +763,20 @@ paths:
                     customer_group_settings:
                       guest_customer_group_id: 1
                       default_customer_group_id: 1
-  /customers/settings/channels/{channel_id}:
+  '/customers/settings/channels/{channel_id}':
     get:
       tags:
         - Customer Settings Channel
-      description: Gets the customer settings per channel
+      description: |-
+        Gets the customer settings per channel
+
+        **Required Fields**
+
+        * channel_id -- ID of the channel. This must be included in the request body.
+
+        **Notes**
+
+         * "null" indicates that there is no override per given channel and values are inherited from a global level.
       summary: Gets the customer settings per channel
       operationId: CustomerSettingsChannelGet
       parameters:
@@ -795,7 +804,16 @@ paths:
     put:
       tags:
         - Customer Settings Channel
-      description: Update the customer settings per channel
+      description: |-
+        Update the customer settings per channel
+
+        **Required Fields**
+
+        * channel_id -- ID of the channel. This must be included in the request body.
+
+        **Notes**
+
+        * Setting "null" will delete override per given channel and values will be inherited from a global level.
       summary: Update the customer settings per channel
       operationId: CustomerSettingsChannelPut
       parameters:
@@ -810,6 +828,7 @@ paths:
             schema:
               $ref: '#/components/schemas/CustomerChannelSettingsObject'
         required: true
+        description: ''
       responses:
         '200':
           description: Customer settings are returned.
@@ -1438,7 +1457,7 @@ paths:
                   - name: color
                     value: blue
                     customer_id: 0
-  /customers/{customerId}/consent:
+  '/customers/{customerId}/consent':
     get:
       description: Gets the status of a customer's consent to allow data collection by cookies and scripts while shopping on a storefront.
       summary: Get Customer Consent
@@ -1516,12 +1535,24 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /customers/{customerId}/stored-instruments:
+  '/customers/{customerId}/stored-instruments':
     get:
-      summary: Get Stored Instruments
+      summary: Get Stored Instruments (Beta)
       tags:
         - Customer Stored Instruments
-      description: 'Lists all available stored instruments for a customer. This list will include all types of stored instruments namely card, account and bank_account instruments'
+      description: |-
+        Lists all available stored instruments for a customer. This list will include all types of stored instruments namely card, account and bank_account instruments
+
+        <div class="HubBlock--callout">
+        <div class="CalloutBlock--info">
+        <div class="HubBlock-content">
+
+        > ### Note
+        > * This endpoint is in beta.
+
+        </div>
+        </div>
+        </div> 
       operationId: liststoredinstruments
       parameters:
         - $ref: '#/components/parameters/customerId'
