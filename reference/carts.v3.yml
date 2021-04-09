@@ -627,6 +627,7 @@ paths:
     parameters:
       - type: string
         name: channel_id
+        description: The channel ID of the settings overrides (required)
         in: path
         required: true
     get:
@@ -645,12 +646,6 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       operationId: get-carts-settings-channels-channel_id
       description: Get the per-channel overrides for the cart settings of a store.
-      parameters:
-        - type: integer
-          in: query
-          name: channel_id
-          description: The channel ID of the settings overrides
-          required: true
     put:
       description: Update the global cart settings of a store.
       summary: Update cart settings channel ID
@@ -660,11 +655,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - type: string
-          in: query
-          name: channel_id
-          description: The channel ID of the settings overrides
-          required: true
         - in: body
           name: body
           schema:
