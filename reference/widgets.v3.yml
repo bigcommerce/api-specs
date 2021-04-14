@@ -521,60 +521,7 @@ paths:
 
         ## Template files
 
-        The `template_file` property accepts the following values:
-
-        * `pages/account/add-address` 
-        * `pages/account/add-return`
-        * `pages/account/add-wishlist`
-        * `pages/account/addresses`
-        * `pages/account/download-item`
-        * `pages/account/edit` 
-        * `pages/account/inbox`
-        * `pages/account/orders/all`
-        * `pages/account/orders/completed`
-        * `pages/account/orders/details`
-        * `pages/account/orders/invoice`
-        * `pages/account/recent-items`
-        * `pages/account/return-saved`
-        * `pages/account/returns`
-        * `pages/account/wishlist-details`
-        * `pages/account/wishlists`
-        * `pages/auth/account-created` 
-        * `pages/auth/create-account` 
-        * `pages/auth/forgot-password` 
-        * `pages/auth/login` 
-        * `pages/auth/new-password` 
-        * `pages/blog`
-        * `pages/blog-post` 
-        * `pages/brand` 
-        * `pages/brands` 
-        * `pages/cart` 
-        * `pages/category` 
-        * `pages/compare` 
-        * `pages/contact-us` 
-        * `pages/errors/403` 
-        * `pages/errors/404` 
-        * `pages/errors/generic` 
-        * `pages/gift-certificate/balance` 
-        * `pages/gift-certificate/purchase`
-        * `pages/gift-certificate/redeem`
-        * `pages/home` 
-        * `pages/order-confirmation` 
-        * `pages/page` 
-        * `pages/product` 
-        * `pages/search` 
-        * `pages/sitemap` 
-        * `pages/subscribed` 
-        * `pages/unavailable/hibernation` 
-        * `pages/unavailable/maintenance`
-        * `pages/unsubscribe`
-
-        The `template_file` property accepts the following **custom** values:
-
-        * `pages/custom/product/<filename>`
-        * `pages/custom/brand/<filename>`
-        * `pages/custom/category/<filename>`
-        * `pages/custom/page/<filename>`
+        To view the list of values accepted by the `template_file` property, including **custom** templates, see [Placements](https://developer.bigcommerce.com/api-docs/store-management/widgets/overview#placements).
     get:
       tags:
         - Placement
