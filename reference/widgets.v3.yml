@@ -519,7 +519,7 @@ paths:
         * widget_uuid
         * template_file
 
-        ## Template files
+        **Template Files**
 
         To view the list of values accepted by the `template_file` property, including **custom** templates, see [Placements](https://developer.bigcommerce.com/api-docs/store-management/widgets/overview#placements).
     get:
