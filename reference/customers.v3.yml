@@ -861,7 +861,7 @@ paths:
           name: channel_id
           schema:
             type: integer
-            required: true
+          required: true
       responses:
         '200':
           description: Customer settings for this channel are returned.
@@ -898,7 +898,7 @@ paths:
           name: channel_id
           schema:
             type: integer
-            required: true
+          required: true
       requestBody:
         content:
           application/json:
