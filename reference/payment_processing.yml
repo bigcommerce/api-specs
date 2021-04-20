@@ -787,6 +787,23 @@ paths:
                   - status
                   - title
                   - type
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+            examples:
+              example-1:
+                value:
+                  order_id: 0
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
 components:
   parameters:
     Accept:
