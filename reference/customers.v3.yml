@@ -806,7 +806,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerSettingsObject'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerSettingsObject'
+                  meta:
+                    type: object
               examples:
                 data:
                   value:
@@ -834,7 +839,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerSettingsObject'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerSettingsObject'
+                  meta:
+                    type: object
               examples:
                 data:
                   value:
@@ -868,7 +878,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerChannelSettingsObject'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerChannelSettingsObject'
+                  meta:
+                    type: object
               examples:
                 data:
                   value:
@@ -912,7 +927,12 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CustomerSettingsObject'
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/CustomerSettingsObject'
+                  meta:
+                    type: object
               examples:
                 data:
                   value:
