@@ -659,7 +659,7 @@ components:
           $ref: '#/components/schemas/TaxClass'
         tax_exempt:
           type: boolean
-          description: Flag whether or not this item is always tax exempt. Gift Certificate purchases for example. Tax Exempt items should be included in the Request for auditing purposes.
+          description: Flag whether or not this item is always tax exempt. For example, for Gift Certificate purchases and order-level refunds (whereby the merchant is refunding an arbitrary amount that's less than the total refundable amount). Tax Exempt items should be included in the Request for auditing purposes.
           default: 'false'
         type:
           type: string
