@@ -597,6 +597,10 @@ paths:
       description: |-
         Returns a list of accepted payment methods based on the `order_id`.
 
+        **Notes**
+        * Use the [Create an Order](https://developer.bigcommerce.com/api-reference/store-management/checkouts/checkout-orders/createanorder) endpoint, to generate the `order_id`.
+        * Orders created will be set to incomplete order status.
+
         **Required Fields**
         * order_id
       summary: Get Accepted Payment Methods
@@ -808,7 +812,7 @@ paths:
             examples:
               example-1:
                 value:
-                  order_id: 0
+                  order_id: 155
           application/xml:
             schema:
               type: object
