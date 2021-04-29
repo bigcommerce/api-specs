@@ -2127,7 +2127,7 @@ definitions:
         maxLength: 1000
       item_id:
         type: integer
-        description: Order Product ID.
+        description: Given refund involves a custom value at the order level, associated order id is the expected value.
   AmountBoundItem:
     type: object
     title: Amount Bound Item
@@ -2209,7 +2209,7 @@ definitions:
           - ORDER
       item_id:
         type: integer
-        description: Reference to the item
+        description: Reference to the item or order (if refund was at the order level).
       reason:
         type: string
         description: Reason for refunding an item
