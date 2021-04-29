@@ -125,12 +125,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -209,12 +209,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -314,12 +314,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -373,12 +373,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -472,12 +472,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -526,12 +526,12 @@ paths:
           in: query
           type: array
           collectionFormat: csv
+          description: |-
+            * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+            * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+            * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
           items:
             type: string
-            description: |-
-              * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-              * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-              * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
             enum:
               - redirect_urls
               - line_items.physical_items.options
@@ -2652,12 +2652,12 @@ parameters:
     in: query
     type: array
     collectionFormat: csv
+    description: |-
+      * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
+      * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
+      * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
     items:
       type: string
-      description: |-
-        * `redirect_urls`: Create a direct link to a Cart. This can be used during the /POST request for Carts.
-        * `line_items.physical_items.options`: The Cart returns an abbreviated result. Use this to return physical items product options. Can also be used in a /POST to have the extended Cart object return.
-        * `line_items.digital_items.options`: The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
       enum:
         - redirect_urls
         - line_items.physical_items.options
