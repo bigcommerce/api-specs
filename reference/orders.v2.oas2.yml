@@ -263,7 +263,7 @@ paths:
 
         **Required Fields**
 
-        *   products
+        *   products or consignments
         *   billing_address
       summary: Create an Order
       tags:
@@ -4615,7 +4615,7 @@ components:
         - $ref: '#/components/schemas/order_Shared'
     order_Post:
       title: order_Post
-      description: Products and Billing address only required for POST operation.
+      description: Products (or consignments) and Billing address only required for POST operation.
       allOf:
         - type: object
           properties:
