@@ -20538,8 +20538,8 @@ definitions:
           id:
             type: integer
             description: |-
-              The unique numeric ID of the custom field; increments sequentially.
-              Read-Only
+            The unique numeric ID of the custom field; increments sequentially. Read-Only. Required to update existing custom field in /PUT request.
+            Read-Only
             minimum: 1
             example: 6
           name:
