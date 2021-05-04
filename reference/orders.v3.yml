@@ -9,7 +9,7 @@ info:
 
     - [Authentication](#authentication)
     - [Order Transactions](#order-transactions)
-    - [Order refunds](#order-refunds)
+    - [Payment Actions](#payment-actions)
     - [Resources](#resources)
 
     ## Authentication
@@ -39,7 +39,11 @@ info:
     * PayPal Express
     * Amazon Pay
 
-    ## Order Refunds
+    ## Payment Actions
+    ### Capture and Void
+    Capture or void the payment for and order.
+
+    ### Order Refunds
     The Order API refund endpoints allow developers to process refunds against orders with settled payments. Refund endpoints are useful when building order management or payment integrations. They make embedding refund functionality directly into the application possible without requiring merchants to return to their BigCommerce Control Panel.
 
     ## Resources
@@ -54,7 +58,7 @@ host: api.bigcommerce.com
 basePath: '/stores/{$$.env.store_hash}/v3'
 tags:
   - name: Metafields
-  - name: Order Refunds
+  - name: Payment Actions
   - name: Transactions
 schemes:
   - https
@@ -279,7 +283,7 @@ paths:
         '200':
           $ref: '#/responses/RefundCollection_Resp'
       tags:
-        - Order Refunds
+        - Payment Actions
     post:
       summary: Create Refunds - BATCH
       description: |-
@@ -418,7 +422,7 @@ paths:
                   }
               }
       tags:
-        - Order Refunds
+        - Payment Actions
       x-private: true
   '/orders/{order_id}/payment_actions/refund_quotes':
     post:
@@ -475,7 +479,7 @@ paths:
         '422':
           $ref: '#/responses/422_UnprocessableEntity'
       tags:
-        - Order Refunds
+        - Payment Actions
     parameters:
       - name: order_id
         in: path
@@ -577,7 +581,7 @@ paths:
                   error: Tax service gone away
               meta: {}
       tags:
-        - Order Refunds
+        - Payment Actions
     get:
       summary: Get Refunds for Order
       description: |-
@@ -597,7 +601,7 @@ paths:
         '200':
           $ref: '#/responses/RefundCollection_Resp'
       tags:
-        - Order Refunds
+        - Payment Actions
     parameters:
       - name: order_id
         in: path
@@ -707,7 +711,7 @@ paths:
                 success: 0
                 total: 2
       tags:
-        - Order Refunds
+        - Payment Actions
       x-private: true
   '/orders/{order_id}/metafields':
     parameters:
