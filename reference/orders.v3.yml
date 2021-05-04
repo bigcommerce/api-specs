@@ -220,210 +220,6 @@ paths:
           in: header
           type: string
           default: application/json
-  /orders/payment_actions/refunds:
-    get:
-      summary: Get All Refunds
-      description: |-
-        Returns a list of refunds ordered by refund ID in ascending order.
-
-        Requires at least one of the following scopes:
-        * `store_v2_transactions_read_only`
-        * `store_v2_transactions`
-        * `store_v2_orders_read_only`
-        * `store_v2_orders`
-      operationId: getrefunds
-      parameters:
-        - name: 'order_id:in'
-          in: query
-          description: Filter by `order_id`. Accepts multiple as comma-separated values.
-          type: array
-          items:
-            type: integer
-          collectionFormat: csv
-        - name: 'id:in'
-          in: query
-          description: Filter by refund `id`. Accepts multiple as comma-separated values.
-          type: array
-          items:
-            type: integer
-          collectionFormat: csv
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-        - in: query
-          name: 'created:min'
-          type: string
-          description: |-
-            Filter results so they are later than or equal to provided date.
-
-
-            Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
-            Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
-          format: date-time
-        - in: query
-          name: 'created:max'
-          type: string
-          format: date-time
-          description: |-
-            Filter results so they are earlier than or equal to provided date.
-
-
-            Must be in url-encoded RFC 3339 format.
-            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
-            Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
-        - in: query
-          name: page
-          type: integer
-          description: Specifies the page number in a limited (paginated) list of items.
-        - in: query
-          name: limit
-          type: integer
-          description: Controls the number of items per page in a limited (paginated) list of items.
-      responses:
-        '200':
-          $ref: '#/responses/RefundCollection_Resp'
-      tags:
-        - Payment Actions
-    post:
-      summary: Create Refunds - BATCH
-      description: |-
-        Creates a refund.
-
-        This endpoint will accept a batch of one or more.
-
-        Requires at least one of the following scopes:
-        * `store_v2_orders`
-        * `store_v2_transactions`
-
-
-      operationId: postrefunds
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            $ref: '#/definitions/PostRefundsRequest'
-          x-examples:
-            application/json:
-              - items:
-                  - item_id: 76
-                    item_type: PRODUCT
-                    quantity: 1
-                tax_adjustment_amount: 0
-                payments:
-                  - provider_id: testgateway
-                    amount: 220.5
-                    offline: false
-                  - provider_id: storecredit
-                    amount: 2.25
-                    offline: true
-        - $ref: '#/parameters/Accept'
-        - $ref: '#/parameters/Content-Type'
-      responses:
-        '201':
-          $ref: '#/responses/refundsBATCH_Resp'
-        '422':
-          description: Partial success/failure response. HTTP status for the entire response to roll up to the most severe individual failure to the whole request.
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/Refund'
-              errors:
-                type: array
-                items:
-                  $ref: '#/definitions/FailedQuoteError'
-              meta:
-                type: object
-          examples:
-            Example 1: |-
-              {
-                  "data": [
-                      {
-                          "id": 1,
-                          "order_id": 100,
-                          "user_id": 1,
-                          "created": "",
-                          "reason": "",
-                          "total_amount": 0.05,
-                          "total_tax": 1,
-                          "items": [
-                              {
-                                  "item_type": "ORDER",
-                                  "item_id": 1,
-                                  "reason": "",
-                                  "quantity": 1,
-                                  "requested_amount": 0.05
-                              }
-                          ],
-                          "payments": [
-                              {
-                                  "id": 1,
-                                  "provider_id": "checkout_paypalexpress",
-                                  "amount": 0.05,
-                                  "offline": true,
-                                  "is_declined": true,
-                                  "declined_message": ""
-                              }
-                          ]
-                      }
-                  ],
-                  errors: [
-                      {
-                          "order_id": 1,
-                          "status": 422,
-                          "error": "Refund amount was negative"
-                      }
-                  ],
-                  "meta": {
-                      "failure": 1,
-                      "success": 1,
-                      "total": 2
-                  }
-              }
-        '503':
-          description: All failure response.
-          schema:
-            type: object
-            properties:
-              data:
-                type: array
-                items:
-                  $ref: '#/definitions/Refund'
-              errors:
-                type: array
-                items:
-                  $ref: '#/definitions/FailedQuoteError'
-              meta:
-                type: object
-          examples:
-            "All failure response. \nHTTP status code for the entire batch request to roll up to the most severe individual failure to the whole request.": |-
-              {
-                  "data": [
-                  ],
-                  "errors": [
-                      {
-                          "order_id": 1,
-                          "status": 422,
-                          "error": "Refund amount was negative"
-                      },
-                      {
-                          "order_id": 100,
-                          "status": 503,
-                          "error": "Tax service could not be contacted"
-                      }
-                  ],
-                  "meta": {
-                      "failure": 2,
-                      "success": 0,
-                      "total": 2
-                  }
-              }
-      tags:
-        - Payment Actions
-      x-private: true
   '/orders/{order_id}/payment_actions/refund_quotes':
     post:
       summary: Create a Refund Quote
@@ -485,6 +281,7 @@ paths:
         in: path
         type: string
         required: true
+
   '/orders/{order_id}/payment_actions/refunds':
     post:
       summary: Create a Refund
@@ -710,6 +507,210 @@ paths:
                 failure: 2
                 success: 0
                 total: 2
+      tags:
+        - Payment Actions
+      x-private: true
+  /orders/payment_actions/refunds:
+    get:
+      summary: Get All Refunds
+      description: |-
+        Returns a list of refunds ordered by refund ID in ascending order.
+
+        Requires at least one of the following scopes:
+        * `store_v2_transactions_read_only`
+        * `store_v2_transactions`
+        * `store_v2_orders_read_only`
+        * `store_v2_orders`
+      operationId: getrefunds
+      parameters:
+        - name: 'order_id:in'
+          in: query
+          description: Filter by `order_id`. Accepts multiple as comma-separated values.
+          type: array
+          items:
+            type: integer
+          collectionFormat: csv
+        - name: 'id:in'
+          in: query
+          description: Filter by refund `id`. Accepts multiple as comma-separated values.
+          type: array
+          items:
+            type: integer
+          collectionFormat: csv
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+        - in: query
+          name: 'created:min'
+          type: string
+          description: |-
+            Filter results so they are later than or equal to provided date.
+
+
+            Must be in url-encoded RFC 3339 format.
+            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
+            Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
+          format: date-time
+        - in: query
+          name: 'created:max'
+          type: string
+          format: date-time
+          description: |-
+            Filter results so they are earlier than or equal to provided date.
+
+
+            Must be in url-encoded RFC 3339 format.
+            e.g. `2020-01-15T01:02:34-01:00` is RFC 3339 format.
+            Url-encoded this will be `2020-01-15T01%3A02%3A34%2B01%3A00`
+        - in: query
+          name: page
+          type: integer
+          description: Specifies the page number in a limited (paginated) list of items.
+        - in: query
+          name: limit
+          type: integer
+          description: Controls the number of items per page in a limited (paginated) list of items.
+      responses:
+        '200':
+          $ref: '#/responses/RefundCollection_Resp'
+      tags:
+        - Payment Actions
+    post:
+      summary: Create Refunds - BATCH
+      description: |-
+        Creates a refund.
+
+        This endpoint will accept a batch of one or more.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
+
+
+      operationId: postrefunds
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PostRefundsRequest'
+          x-examples:
+            application/json:
+              - items:
+                  - item_id: 76
+                    item_type: PRODUCT
+                    quantity: 1
+                tax_adjustment_amount: 0
+                payments:
+                  - provider_id: testgateway
+                    amount: 220.5
+                    offline: false
+                  - provider_id: storecredit
+                    amount: 2.25
+                    offline: true
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+      responses:
+        '201':
+          $ref: '#/responses/refundsBATCH_Resp'
+        '422':
+          description: Partial success/failure response. HTTP status for the entire response to roll up to the most severe individual failure to the whole request.
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Refund'
+              errors:
+                type: array
+                items:
+                  $ref: '#/definitions/FailedQuoteError'
+              meta:
+                type: object
+          examples:
+            Example 1: |-
+              {
+                  "data": [
+                      {
+                          "id": 1,
+                          "order_id": 100,
+                          "user_id": 1,
+                          "created": "",
+                          "reason": "",
+                          "total_amount": 0.05,
+                          "total_tax": 1,
+                          "items": [
+                              {
+                                  "item_type": "ORDER",
+                                  "item_id": 1,
+                                  "reason": "",
+                                  "quantity": 1,
+                                  "requested_amount": 0.05
+                              }
+                          ],
+                          "payments": [
+                              {
+                                  "id": 1,
+                                  "provider_id": "checkout_paypalexpress",
+                                  "amount": 0.05,
+                                  "offline": true,
+                                  "is_declined": true,
+                                  "declined_message": ""
+                              }
+                          ]
+                      }
+                  ],
+                  errors: [
+                      {
+                          "order_id": 1,
+                          "status": 422,
+                          "error": "Refund amount was negative"
+                      }
+                  ],
+                  "meta": {
+                      "failure": 1,
+                      "success": 1,
+                      "total": 2
+                  }
+              }
+        '503':
+          description: All failure response.
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/Refund'
+              errors:
+                type: array
+                items:
+                  $ref: '#/definitions/FailedQuoteError'
+              meta:
+                type: object
+          examples:
+            "All failure response. \nHTTP status code for the entire batch request to roll up to the most severe individual failure to the whole request.": |-
+              {
+                  "data": [
+                  ],
+                  "errors": [
+                      {
+                          "order_id": 1,
+                          "status": 422,
+                          "error": "Refund amount was negative"
+                      },
+                      {
+                          "order_id": 100,
+                          "status": 503,
+                          "error": "Tax service could not be contacted"
+                      }
+                  ],
+                  "meta": {
+                      "failure": 2,
+                      "success": 0,
+                      "total": 2
+                  }
+              }
       tags:
         - Payment Actions
       x-private: true
