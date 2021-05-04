@@ -141,13 +141,15 @@ paths:
             `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
 
             `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
+          style: form
+          explode: false
           schema:
-            type: string
-            default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-            enum:
-              - lineItems.physicalItems.options
-              - lineItems.digitalItems.options
-              - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+            type: array
+            items:
+              type: string
+              enum:
+                - lineItems.physicalItems.options
+                - lineItems.digitalItems.options
       responses:
         '200':
           $ref: '#/components/responses/postCartsItems'
@@ -215,13 +217,15 @@ paths:
             `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
 
             `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
+          style: form
+          explode: false
           schema:
-            type: string
-            default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-            enum:
-              - lineItems.physicalItems.options
-              - lineItems.digitalItems.options
-              - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+            type: array
+            items:
+              type: string
+              enum:
+                - lineItems.physicalItems.options
+                - lineItems.digitalItems.options
       requestBody:
         content:
           application/json:
@@ -284,13 +288,15 @@ paths:
             `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
 
             `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
+          style: form
+          explode: false
           schema:
-            type: string
-            default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-            enum:
-              - lineItems.physicalItems.options
-              - lineItems.digitalItems.options
-              - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+            type: array
+            items:
+              type: string
+              enum:
+                - lineItems.physicalItems.options
+                - lineItems.digitalItems.options
       responses:
         '200':
           $ref: '#/components/responses/deleteCartsItems'
@@ -1514,23 +1520,28 @@ components:
         `lineItems.digitalItems.options`:  The Cart returns an abbreviated result. Use this to return digital items product options.  Can also be used in a /POST to have the extended Cart object return.
 
         `lineItems.digitalItems.options,lineItems.physicalItems.options`:  The Cart returns an abbreviated result. Use this to return digital and physical options. Can also be used in a /POST to have the extended Cart object return.
+      style: form
+      explode: false
       schema:
-        type: string
-        default: 'lineItems.digitalItems.options,lineItems.physicalItems.options'
-        enum:
-          - lineItems.physicalItems.options
-          - lineItems.digitalItems.options
-          - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+        type: array
+        items:
+          type: string
+          enum:
+            - lineItems.physicalItems.options
+            - lineItems.digitalItems.options
     include:
       name: include
       in: query
       description: Include product options in specified line item types.
+      style: form
+      explode: false
       schema:
-        type: string
-        enum:
-          - lineItems.physicalItems.options
-          - lineItems.digitalItems.options
-          - 'lineItems.digitalItems.options,lineItems.physicalItems.options'
+        type: array
+        items:
+          type: string
+          enum:
+            - lineItems.physicalItems.options
+            - lineItems.digitalItems.options
   examples: {}
 x-stoplight:
   docs:
