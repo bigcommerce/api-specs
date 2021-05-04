@@ -74,7 +74,20 @@ paths:
     get:
       tags:
         - Transactions
-      description: "Returns an **order's** transactions. \n\n**Usage Notes**\n* Depending on the payment method, different information will be available (not all payment gateways return full card or fraud detail).\n* Transactions are not created for the following payment methods:\n\t* Test Payment Gateway\n\t* PayPal Express\n\t* Amazon Pay"
+      description: |-
+        Returns an **order's** transactions.
+
+        **Usage Notes**
+        * Depending on the payment method, different information will be available (not all payment gateways return full card or fraud detail).
+        * Transactions are not created for the following payment methods:
+          * Test Payment Gateway
+          * PayPal Express
+          * Amazon Pay
+
+
+        Requires at least one of the following scopes:
+        * `store_v2_transactions_read_only`
+        * `store_v2_transactions`
       operationId: getTransactions
       responses:
         '200':
@@ -136,7 +149,14 @@ paths:
   /orders/payment_actions/refunds:
     get:
       summary: Get All Refunds
-      description: Returns a list of refunds ordered by refund ID in ascending order.
+      description: |-
+        Returns a list of refunds ordered by refund ID in ascending order.
+
+        Requires at least one of the following scopes:
+        * `store_v2_transactions_read_only`
+        * `store_v2_transactions`
+        * `store_v2_orders_read_only`
+        * `store_v2_orders`
       operationId: getrefunds
       parameters:
         - name: 'order_id:in'
@@ -192,7 +212,16 @@ paths:
         - Order Refunds
     post:
       summary: Create Refunds - BATCH
-      description: Creates a refund. This endpoint will accept a batch of one or more.
+      description: |-
+        Creates a refund.
+
+        This endpoint will accept a batch of one or more.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
+
+
       operationId: postrefunds
       parameters:
         - name: body
@@ -324,7 +353,12 @@ paths:
   '/orders/{order_id}/payment_actions/refund_quotes':
     post:
       summary: Create a Refund Quote
-      description: 'Calculate the tax amount, total refund amount and get availble payment options for an order refund by providing items and costs or quantities to refund.'
+      description: |-
+        Calculate the tax amount, total refund amount and get available payment options for an order refund by providing items and costs or quantities to refund.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
       operationId: postrefundquote
       parameters:
         - name: order_id
@@ -380,7 +414,12 @@ paths:
   '/orders/{order_id}/payment_actions/refunds':
     post:
       summary: Create a Refund
-      description: Creates a refund.
+      description: |-
+        Creates a refund.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
       operationId: postrefund
       parameters:
         - name: order_id
@@ -471,7 +510,15 @@ paths:
         - Order Refunds
     get:
       summary: Get Refunds for Order
-      description: Returns a list of refunds ordered by refund ID in ascending order for the given order.
+      description: |-
+        Returns a list of refunds ordered by refund ID in ascending order for the given order.
+
+        Requires at least one of the following scopes:
+        * `store_v2_transactions_read_only`
+        * `store_v2_transactions`
+        * `store_v2_orders_read_only`
+        * `store_v2_orders`
+
       operationId: getorderrefunds
       parameters:
         - $ref: '#/parameters/Accept'
@@ -493,6 +540,10 @@ paths:
         Calculate the tax amount, total refund amount and get availble payment options for an order refund by providing items and costs or quantities to refund.
 
         This endpoint will accept a batch of one or more.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
       operationId: postrefundquotes
       parameters:
         - name: body
@@ -775,8 +826,10 @@ securityDefinitions:
       ### OAuth Scopes
       |  **UI Name** | **Permission** | **Parameter** |
       | --- | --- | --- |
-      |  Order Transactions | modify | `store_v2_transactions` |
-      |  Order Transactions | read-only | `store_v2_transactions_read_only` |
+      |  Order Transactions | read and modify `transactions` and `payment_methods` | `store_v2_transactions` |
+      |  Order Transactions | read `transactions` and `payment_methods`  | `store_v2_transactions_read_only` |
+      |  Orders | read and modify `payment_methods` |`store_v2_orders`|
+      |  Orders | read `payment_methods` |`store_v2_orders_read_only`|
 
       ### Headers
 
@@ -2582,6 +2635,11 @@ responses:
       properties: {}
   201_Acknowledged:
     description: Request acknowledged.
+    schema:
+      type: object
+      properties: {}
+  201_Created:
+    description: Resource Created.
     schema:
       type: object
       properties: {}
