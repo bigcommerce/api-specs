@@ -2657,15 +2657,25 @@ responses:
   CartResponse:
     description: ''
     schema:
-      $ref: '#/definitions/Cart_Full'
+      type: object
+      properties:
+        data:
+          $ref: '#/definitions/Cart_Full'
+        meta:
+          type: object
   CartRedirectResponse:
     description: ''
     schema:
       type: object
       properties:
-        cart_url:
-          type: string
-          format: url
-        checkout_url:
-          type: string
-          format: url
+        data:
+          type: object
+          properties:
+            cart_url:
+              type: string
+              format: url
+            checkout_url:
+              type: string
+              format: url
+        meta:
+          type: object

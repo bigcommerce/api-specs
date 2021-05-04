@@ -97,9 +97,14 @@ paths:
         '200':
           description: ''
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/customsInformation'
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/definitions/customsInformation'
+              meta:
+                type: object
       summary: Upsert Customs Information
       description: |-
         Creates and updates product customs information.
