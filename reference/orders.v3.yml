@@ -63,6 +63,76 @@ produces:
 consumes:
   - application/json
 paths:
+  '/orders/{order_id}/payment_actions/capture':
+    post:
+      summary: Capture
+      description: |-
+        Capture the payment for an order updating the `payment_status` to `capture pending`.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
+      operationId: paymentactioncapture
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          type: integer
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+      responses:
+        '201':
+          $ref: '#/responses/201_Created'
+        '400':
+          $ref: '#/responses/400_BadRequest'
+        '404':
+          $ref: '#/responses/404_NotFound'
+        '422':
+          $ref: '#/responses/422_UnprocessableEntity'
+        '502':
+          $ref: '#/responses/502_GatewayError'
+        '503':
+          $ref: '#/responses/503_ServiceUnavailable'
+        '504':
+          $ref: '#/responses/504_GatewayTimeout'
+      tags:
+        - Payment Actions
+  '/orders/{order_id}/payment_actions/void':
+    post:
+      summary: Void
+      description: |-
+        Void the payment for an order updating the `payment_status` to `void pending`.
+
+        Requires at least one of the following scopes:
+        * `store_v2_orders`
+        * `store_v2_transactions`
+      operationId: paymentactionvoid
+      parameters:
+        - name: order_id
+          in: path
+          description: ID of the order
+          required: true
+          type: integer
+        - $ref: '#/parameters/Accept'
+        - $ref: '#/parameters/Content-Type'
+      responses:
+        '201':
+          $ref: '#/responses/201_Created'
+        '400':
+          $ref: '#/responses/400_BadRequest'
+        '404':
+          $ref: '#/responses/404_NotFound'
+        '422':
+          $ref: '#/responses/422_UnprocessableEntity'
+        '502':
+          $ref: '#/responses/502_GatewayError'
+        '503':
+          $ref: '#/responses/503_ServiceUnavailable'
+        '504':
+          $ref: '#/responses/504_GatewayTimeout'
+      tags:
+        - Payment Actions
   '/orders/{order_id}/transactions':
     parameters:
       - name: order_id
