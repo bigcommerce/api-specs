@@ -5,6 +5,8 @@ info:
   title: Storefront Cookie Consent API
   description: Storefront API for specifying consent to particular categories of cookies for compliance purposes.
   version: Storefront
+tags:
+  - name: Consent
 paths:
   /consent:
     post:
@@ -29,22 +31,22 @@ paths:
                       - 3
                   deny:
                     - 4
-        description: Data sent to the customer endpoint when creating a customer during checkout
         required: true
-      description: |-
-        Sets the status of a customer's consent to allow data collection by cookies and scripts according to the following consent categories:
+        description: |-
+          Sets the status of a customer's consent to allow data collection by cookies and scripts according to the following consent categories:
 
 
-          **2**) Analytics — These cookies provide statistical information on site usage so the store owner can improve the website over time.
-          
-          **3**) Functional — These cookies enable enhanced functionality, such as videos and live chat. If a shopper does not allow these, then some or all of these functions may not work properly.
-          
-          **4**) Targeting; Advertising — These cookies are used to create profiles or personalize content to enhance the user’s shopping experience.
-          
-          
-        This endpoint only works if the cookie consent feature is enabled. It is assumed the shopper has not consented to anything until a value is explicitly set. The request body must be populated with a complete set of allowed and denied categories.
+            **2**) Analytics — These cookies provide statistical information on site usage so the store owner can improve the website over time.
+            
+            **3**) Functional — These cookies enable enhanced functionality, such as videos and live chat. If a shopper does not allow these, then some or all of these functions may not work properly.
+            
+            **4**) Targeting; Advertising — These cookies are used to create profiles or personalize content to enhance the user’s shopping experience.
+            
+            
+          This endpoint only works if the cookie consent feature is enabled. It is assumed the shopper has not consented to anything until a value is explicitly set. The request body must be populated with a complete set of allowed and denied categories.
 
-        Once set, consent preferences will be saved as a cookie for guest shoppers. Consent preferences will be persisted to a shopper's account to be used for future sessions once they have logged in. Consent preferences can also be managed using the [Customer Consent](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-consent/) V3 endpoint. 
+          Once set, consent preferences will be saved as a cookie for guest shoppers. Consent preferences will be persisted to a shopper's account to be used for future sessions once they have logged in. Consent preferences can also be managed using the [Customer Consent](https://developer.bigcommerce.com/api-reference/store-management/customers-v3/customer-consent/) V3 endpoint. 
+    operationId: postConsent
     parameters: []
 components:
   schemas:
@@ -74,7 +76,6 @@ components:
             example:
               - 2
               - 3
-            format: int64
         deny:
           type: array
           description: 'Explicitly allowed consent categories. Allowed values are 2, 3, 4.'
@@ -85,7 +86,6 @@ components:
               - 3
               - 4
             example: 4
-            format: int64
       required:
         - allow
         - deny
