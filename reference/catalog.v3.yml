@@ -138,12 +138,6 @@ paths:
           required: false
           in: query
           type: string
-        - name: sku
-          description: |
-            Filter items by sku.
-          required: false
-          in: query
-          type: string
         - name: upc
           description: |
             Filter items by upc.
@@ -19338,7 +19332,7 @@ definitions:
             maxLength: 255
           image_url:
             type: string
-            description: Publicly available image url 
+            description: Publicly available image url
       - properties:
           product_id:
             type: integer
