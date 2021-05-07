@@ -27,7 +27,8 @@ paths:
               Example:
                 value:
                   allow:
-                    - 2, 3
+                    - 2
+                    - 3
                   deny:
                     - 4
         description: Data sent to the customer endpoint when creating a customer during checkout
@@ -73,9 +74,7 @@ components:
               - 2
               - 3
               - 4
-            example:
-              - 2
-              - 3
+            example: 3
         deny:
           type: array
           description: 'Explicitly allowed consent categories. Allowed values are 2, 3, 4.'
