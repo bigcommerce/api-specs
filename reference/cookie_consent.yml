@@ -87,3 +87,7 @@ components:
       required:
         - allow
         - deny
+x-stoplight:
+  docs:
+    includeDownloadLink: false
+    showModels: false
