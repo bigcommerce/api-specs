@@ -74,6 +74,7 @@ components:
             example:
               - 2
               - 3
+            format: int64
         deny:
           type: array
           description: 'Explicitly allowed consent categories. Allowed values are 2, 3, 4.'
@@ -84,6 +85,7 @@ components:
               - 3
               - 4
             example: 4
+            format: int64
       required:
         - allow
         - deny
